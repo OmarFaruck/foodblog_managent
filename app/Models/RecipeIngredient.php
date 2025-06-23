@@ -29,5 +29,5 @@ class RecipeIngredient extends Pivot
         'recipe_id',
         'ingredient_id',
         'ingredient_group',
-    ];
+    ]; 
 }
