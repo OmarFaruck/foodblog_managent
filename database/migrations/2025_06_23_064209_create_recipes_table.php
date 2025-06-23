@@ -21,10 +21,6 @@ return new class extends Migration
             $table->integer('prep_time'); //Preparation time in minutes
             $table->integer('cook_time'); //Cooking time in minutes
             $table->integer('serving_size'); //Number of servings
-            //$table->unsignedBigInteger('category_id');
-            $table->text('ingredients');
-            $table->text('instructions');
-            $table->text('nutritional_info');
             $table->boolean('is_featured')->default(false);       
             $table->timestamps();
         });
