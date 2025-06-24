@@ -2,27 +2,41 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
-                <div class="card w-90  p-4">
+                <div class="card w-90 food-card p-4">
+                    <div class="text-center mb-4">
+                        <h3 class="mt-3 food-heading font-lobster">Foodieland.</h3>
+                        <p class="text-muted">Sign in to explore delicious recipes and culinary adventures</p>
+                    </div>
                     <form @submit.prevent="submit">
                         <div class="card-body">
-                            <h4>SIGN IN</h4>
-                            <br/>
-                            <input id="email" v-model="form.email"  placeholder="User Email" class="form-control" type="email"/>
-                            <br/>
-                            <input id="password" v-model="form.password" placeholder="User Password" class="form-control" type="password"/>
-                            <br/>
-                            <button type="submit"  class="btn w-100 btn-success">Login</button>
-                            <hr/>
-                            <div class="text-center mt-3">
-                                <span>
-                                    <strong>Login:</strong> admin@foodblog.com <br> <strong>Password:</strong>:123
-                                    <!--Link class="text-center ms-3 h6" href="/register">Sign Up </Link>
-                                    <span class="ms-1">|</span>
-                                    <Link class="text-center ms-3 h6" href="/send-otp">Forget Password</Link-->
-                                </span>
+                            <div class="input-group mb-3 auth-input-group">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input id="email" v-model="form.email" placeholder="Email Address" class="form-control" type="email"/>
+                            </div>
+                            
+                            <div class="input-group mb-3 auth-input-group">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                <input id="password" v-model="form.password" placeholder="Password" class="form-control" type="password"/>
+                            </div>
+                            
+                            <button type="submit" class="btn w-100 btn-success">
+                                Search
+                            </button>
+                            
+                            <div class="text-center mt-4">
+                                <p class="mb-0">
+                                    <span class="text-muted">Don't have an account?</span>
+                                    <Link class="ms-2 food-link elegant-link" href="/register">Join our Food Community</Link>
+                                </p>
+                                <div class="mt-2 credential-hint">
+                                    <small class="text-muted"><strong>Demo:</strong> admin@foodblog.com | 123</small>
+                                </div>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="food-quotes text-center mt-3">
+                    <p><i class="fa fa-quote-left me-2"></i>Food is our common ground, a universal experience.<i class="fa fa-quote-right ms-2"></i></p>
                 </div>
             </div>
         </div>
@@ -50,12 +64,9 @@ function submit() {
     } else {
         form.post("/login", {
             onSuccess: () => {
-                //console.log(page.props.flash);
-
                 if (page.props.flash.status) {
                     router.get("/dashboard");
                 } else {
-                    //console.log('inside error');
                     toaster.error(page.props.flash.message);
                 }
             }

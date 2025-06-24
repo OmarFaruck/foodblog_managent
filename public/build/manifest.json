@@ -40,12 +40,12 @@
     "src": "resources/js/Assets/img/logo.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-CNItKoZ7.js",
+    "file": "assets/app-tZ3KEkMk.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-DNdFS5V-.css"
+      "assets/app-D0OpSCWX.css"
     ],
     "assets": [
       "assets/logo-_LsBAgl5.png",
