@@ -61,4 +61,43 @@ class UserController extends Controller
         return redirect()->route('LoginPage');
 
     }    
+
+    public function RegistrationPage(Request $request)
+    {
+        $email=$request->session()->get('email','default'); //dd($email);
+
+        if($email != 'default') {
+            return redirect()->route('DashboardPage');
+        }
+        return Inertia::render('User/Register');
+    }   
+    
+    function register(Request $request){
+
+        try {
+            $email=$request->input('email');
+            $name=$request->input('name');
+            $role='user';
+            $password=$request->input('password');
+
+            User::create([
+                'name'=>$name,
+                'email'=>$email,
+                'role'=>$role,
+                'password'=>$password
+            ]);
+
+            session()->flash('message', 'Registration Successful');
+            session()->flash('status', true);
+            session()->flash('error', '');
+
+            return  redirect()->route('RegistrationPage');
+        }
+        catch (\Exception $e) {
+            session()->flash('message', 'Registration Fail');
+            session()->flash('status', false);
+            session()->flash('error', $e->getMessage());
+        }
+
+    }    
 }

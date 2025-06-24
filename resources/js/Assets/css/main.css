@@ -1,10 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 @import "fontawesome.css";
 @import "sidebar.css";
 
+
+.font-lobster{
+    font-family: 'Lobster', cursive !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #f8f9fa !important;
+    color: #343a40 !important;
+}
+
 .text-green{
-    color:#41b883 !important;
+    color:#000000 !important;
 }
 
 .card{
@@ -12,8 +25,8 @@
 }
 
 .btn-success{
-    background: #41b883 !important;
-    border-color:  #41b883 !important;
+    background: #000000 !important;
+    border-color:  #000000 !important;
 }
 .center-screen{
     display: flex;
@@ -25,7 +38,7 @@
 
 /* Customize the progress bar */
 #nprogress .bar {
-    background: #4CAF50 !important; /* Green color */
+    background: #000000 !important; /* Green color */
     height: 4px !important; /* Adjust height */
 }
 
@@ -55,5 +68,190 @@
 .container-fluid {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/* Auth Form Styles - Shared between login and registration */
+.food-card {
+    border: none !important;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.food-heading {
+    color: #000000;
+    font-weight: 600;
+}
+
+.food-link {
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.food-link:hover {
+    color: #333333;
+    text-decoration: underline;
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.auth-input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px !important;
+}
+
+.auth-input-group .input-group-text {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-right: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.auth-input-group .input-group-text i {
+    color: #333333 !important;  /* Darker color for icons */
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.auth-input-group .form-control {
+    border-left: none;
+    background-color: #ffffff;
+    padding: 15px;
+    height: auto;
+    font-size: 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.auth-input-group:focus-within {
+    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.07);
+}
+
+.btn-success {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 40px !important; /* Rounded corners matching the screenshot */
+    padding: 12px 24px !important; /* More padding for better appearance */
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.btn-success:hover {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.food-quotes {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.credential-hint {
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.food-benefits {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.benefit-item {
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .benefit-item {
+        margin-bottom: 5px;
+    }
+}
+
+/* Additional UI enhancements */
+.search-btn-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-success::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-success:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Add nicer focus styles to match black theme */
+.form-control:focus {
+    border-color: #cccccc;
+    box-shadow: none;
+}
+
+/* Elegant underline animation for links */
+.elegant-link {
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+}
+
+.elegant-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.elegant-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
