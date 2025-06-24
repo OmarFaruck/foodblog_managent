@@ -35,20 +35,15 @@
     "file": "assets/icon-CCwf_-ea.svg",
     "src": "resources/js/Assets/img/icon.svg"
   },
-  "resources/js/Assets/img/logo.png": {
-    "file": "assets/logo-_LsBAgl5.png",
-    "src": "resources/js/Assets/img/logo.png"
-  },
   "resources/js/app.js": {
-    "file": "assets/app-CD8fV7Ro.js",
+    "file": "assets/app-C23WoAdB.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-D0OpSCWX.css"
+      "assets/app-ZqkTttY3.css"
     ],
     "assets": [
-      "assets/logo-_LsBAgl5.png",
       "assets/icon-CCwf_-ea.svg",
       "assets/fa-brands-400-D_cYUPeE.woff2",
       "assets/fa-brands-400-D1LuMI3I.ttf",
