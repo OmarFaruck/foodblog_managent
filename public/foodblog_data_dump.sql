@@ -11,11 +11,11 @@ INSERT INTO categories (name, icon, created_at, updated_at) VALUES
 ('Seafood', 'seafood.svg', NOW(), NOW());
 
 INSERT INTO users (name, email, email_verified_at, password, avatar, bio, role, created_at, updated_at) VALUES
-('Admin User', 'admin@foodblog.com', NOW(), '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin.jpg', 'Food blog administrator and professional chef with 10 years of culinary experience.', 'admin', NOW(), NOW()),
-('Julia Chen', 'julia@foodblog.com', NOW(), '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'julia.jpg', 'Pastry chef specializing in French desserts and Asian fusion cuisine.', 'user', NOW(), NOW()),
-('Marco Rossi', 'marco@foodblog.com', NOW(), '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'marco.jpg', 'Italian home cook sharing family recipes passed down for generations.', 'user', NOW(), NOW()),
-('Priya Patel', 'priya@foodblog.com', NOW(), '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'priya.jpg', 'Vegetarian food enthusiast specializing in modern Indian cuisine.', 'user', NOW(), NOW()),
-('David Kim', 'david@foodblog.com', NOW(), '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'david.jpg', 'Culinary school graduate passionate about Korean-American fusion dishes.', 'user', NOW(), NOW());
+('Admin User', 'admin@foodblog.com', NOW(), '$2y$12$H/uZYrrw/lW3w8RfPrt./.jTLjAy.AkRwAhII4uNnecq47frVztLG', 'admin.jpg', 'Food blog administrator and professional chef with 10 years of culinary experience.', 'admin', NOW(), NOW()),
+('Julia Chen', 'julia@foodblog.com', NOW(), '$2y$12$H/uZYrrw/lW3w8RfPrt./.jTLjAy.AkRwAhII4uNnecq47frVztLG', 'julia.jpg', 'Pastry chef specializing in French desserts and Asian fusion cuisine.', 'user', NOW(), NOW()),
+('Marco Rossi', 'marco@foodblog.com', NOW(), '$2y$12$H/uZYrrw/lW3w8RfPrt./.jTLjAy.AkRwAhII4uNnecq47frVztLG', 'marco.jpg', 'Italian home cook sharing family recipes passed down for generations.', 'user', NOW(), NOW()),
+('Priya Patel', 'priya@foodblog.com', NOW(), '$2y$12$H/uZYrrw/lW3w8RfPrt./.jTLjAy.AkRwAhII4uNnecq47frVztLG', 'priya.jpg', 'Vegetarian food enthusiast specializing in modern Indian cuisine.', 'user', NOW(), NOW()),
+('David Kim', 'david@foodblog.com', NOW(), '$2y$12$H/uZYrrw/lW3w8RfPrt./.jTLjAy.AkRwAhII4uNnecq47frVztLG', 'david.jpg', 'Culinary school graduate passionate about Korean-American fusion dishes.', 'user', NOW(), NOW());
 
 INSERT INTO recipes (category_id, user_id, title, description, recipe_image, prep_time, cook_time, serving_size, is_featured, created_at, updated_at) VALUES
 (3, 3, 'Classic Spaghetti Carbonara', 'Authentic Italian carbonara with pancetta, eggs, and pecorino cheese. No cream needed for this rich, silky pasta dish.', 'carbonara.jpg', 15, 15, 4, true, NOW(), NOW()),
