@@ -32,7 +32,7 @@
                                 
                                 <div class="col-12">
                                     <div class="d-grid">                                        <button type="submit" class="btn w-100 btn-success">
-                                            Search
+                                            Register
                                         </button>
                                     </div>
                                 </div>
