@@ -72,6 +72,41 @@
                                     <span>{{ user ? user.name : 'Unknown' }}</span>
                                 </template>
 
+                                <template #item-quick_actions="{ id, directions_count, nutrition_facts_count }">
+                                    <div v-if="id" class="quick-actions-container">
+                                        <!-- Create/Add Group -->
+                                        <div class="btn-group me-2" role="group">
+                                            <Link :href="`/DirectionSavePage?recipe_id=${id}`" 
+                                                  class="btn btn-sm btn-info" 
+                                                  title="Add Directions">
+                                                <i class="fa fa-list-ol me-1"></i>Add Steps
+                                            </Link>
+                                            <Link :href="`/NutritionFactSavePage?recipe_id=${id}`" 
+                                                  class="btn btn-sm btn-warning" 
+                                                  title="Add Nutrition Facts">
+                                                <i class="fa fa-chart-pie me-1"></i>Add Nutrition
+                                            </Link>
+                                        </div>
+                                        
+                                        <!-- View/List Group - Only show if data exists -->
+                                        <div v-if="directions_count > 0 || nutrition_facts_count > 0" class="btn-group" role="group">
+                                            <Link v-if="directions_count > 0" 
+                                                  :href="`/direction?recipe=${id}`" 
+                                                  class="btn btn-sm btn-outline-info" 
+                                                  title="View Directions">
+                                                <i class="fa fa-eye me-1"></i>View Steps ({{ directions_count }})
+                                            </Link>
+                                            <Link v-if="nutrition_facts_count > 0" 
+                                                  :href="`/nutrition-fact?recipe=${id}`" 
+                                                  class="btn btn-sm btn-outline-warning" 
+                                                  title="View Nutrition Facts">
+                                                <i class="fa fa-chart-bar me-1"></i>View Nutrition
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div v-else>Loading...</div>
+                                </template>
+
                                 <template #item-actions="{ id }">
                                     <div v-if="id" class="edit-delete-container">
                                         <Link class="btn btn-edit" :href="`/RecipeSavePage?id=${id}`">EDIT</Link>
@@ -119,6 +154,7 @@ const Header = [
     { text: "Servings", value: "serving_size" },
     { text: "Featured", value: "is_featured", sortable: false },
     { text: "Author", value: "user", sortable: false },
+    { text: "Quick Actions", value: "quick_actions", sortable: false },
     { text: "Action", value: "actions", sortable: false },
 ];
 
@@ -184,10 +220,92 @@ const confirmDelete = () => {
     font-style: italic;
 }
 
-
 .edit-delete-container {
     display: flex;
     gap: 8px;
 }
 
+.quick-actions-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-group {
+    display: flex;
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-group .btn:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right: none;
+}
+
+.btn-edit {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+    padding: 4px 12px;
+    font-size: 12px;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 4px 12px;
+    font-size: 12px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-outline-info {
+    color: #17a2b8;
+    border-color: #17a2b8;
+    background-color: transparent;
+}
+
+.btn-outline-info:hover {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.btn-outline-warning {
+    color: #ffc107;
+    border-color: #ffc107;
+    background-color: transparent;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107;
+    color: #212529;
+}
 </style>

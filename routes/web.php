@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\Admin\IngredientController;
+use App\Http\Controllers\Admin\DirectionController;
+use App\Http\Controllers\Admin\NutritionFactController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SessionAuthenticate;
 use Illuminate\Support\Facades\Route;
@@ -42,5 +44,19 @@ Route::middleware(SessionAuthenticate::class)->group(callback: function () {
     Route::post("/create-ingredient",[IngredientController::class,'create']);
     Route::post("/update-ingredient",[IngredientController::class,'update']);
     Route::get("/delete-ingredient/{id}",[IngredientController::class,'delete']);
+    
+    // Direction Routes
+    Route::get('/direction', [DirectionController::class, 'DirectionPage'])->name('DirectionPage');
+    Route::get('/DirectionSavePage', [DirectionController::class, 'DirectionSavePage'])->name('DirectionSavePage');
+    Route::post("/create-direction",[DirectionController::class,'create']);
+    Route::post("/update-direction",[DirectionController::class,'update']);
+    Route::get("/delete-direction/{id}",[DirectionController::class,'delete']);
+    
+    // Nutrition Fact Routes
+    Route::get('/nutrition-fact', [NutritionFactController::class, 'NutritionFactPage'])->name('NutritionFactPage');
+    Route::get('/NutritionFactSavePage', [NutritionFactController::class, 'NutritionFactSavePage'])->name('NutritionFactSavePage');
+    Route::post("/create-nutrition-fact",[NutritionFactController::class,'create']);
+    Route::post("/update-nutrition-fact",[NutritionFactController::class,'update']);
+    Route::get("/delete-nutrition-fact/{id}",[NutritionFactController::class,'delete']);
         
 });
