@@ -122,16 +122,4 @@ function submit() {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.btn-edit {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    font-weight: bold;
-}
-
-.btn-edit:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
 </style>
