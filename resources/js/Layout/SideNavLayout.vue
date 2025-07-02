@@ -34,6 +34,11 @@
             
             <div class="sidebar-divider"></div>
 
+            <Link href="/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/ingredient' }" @click="setActiveMenu('/ingredient')">
+                <span class="side-bar-item-icon"><i class="fa fa-carrot"/></span>
+                <span class="side-bar-item-caption">Ingredients</span>
+            </Link>
+
             <Link href="/recipe" class="side-bar-item" :class="{ active: activeMenu === '/recipe' }" @click="setActiveMenu('/recipe')">
                 <span class="side-bar-item-icon"><i class="fa fa-utensils"/></span>
                 <span class="side-bar-item-caption">Recipes</span>
