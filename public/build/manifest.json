@@ -36,12 +36,12 @@
     "src": "resources/js/Assets/img/icon.svg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-C23WoAdB.js",
+    "file": "assets/app-BeFPiBcY.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-ZqkTttY3.css"
+      "assets/app-CaYW5slF.css"
     ],
     "assets": [
       "assets/icon-CCwf_-ea.svg",

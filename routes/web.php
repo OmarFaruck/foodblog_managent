@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RecipeController;
+use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SessionAuthenticate;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +28,19 @@ Route::middleware(SessionAuthenticate::class)->group(callback: function () {
     Route::post("/create-category",[CategoryController::class,'create']);
     Route::post("/update-category",[CategoryController::class,'update']);
     Route::get("/delete-category/{id}",[CategoryController::class,'delete']);
+    
+    // Recipe Routes
+    Route::get('/recipe', [RecipeController::class, 'RecipePage'])->name('RecipePage');
+    Route::get('/RecipeSavePage', [RecipeController::class, 'RecipeSavePage'])->name('RecipeSavePage');
+    Route::post("/create-recipe",[RecipeController::class,'create']);
+    Route::post("/update-recipe",[RecipeController::class,'update']);
+    Route::get("/delete-recipe/{id}",[RecipeController::class,'delete']);
+    
+    // Ingredient Routes
+    Route::get('/ingredient', [IngredientController::class, 'IngredientPage'])->name('IngredientPage');
+    Route::get('/IngredientSavePage', [IngredientController::class, 'IngredientSavePage'])->name('IngredientSavePage');
+    Route::post("/create-ingredient",[IngredientController::class,'create']);
+    Route::post("/update-ingredient",[IngredientController::class,'update']);
+    Route::get("/delete-ingredient/{id}",[IngredientController::class,'delete']);
         
 });

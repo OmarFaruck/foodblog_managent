@@ -33,8 +33,8 @@
             </Link>
             
             <div class="sidebar-divider"></div>
-            
-            <Link href="#" class="side-bar-item">
+
+            <Link href="/recipe" class="side-bar-item" :class="{ active: activeMenu === '/recipe' }" @click="setActiveMenu('/recipe')">
                 <span class="side-bar-item-icon"><i class="fa fa-utensils"/></span>
                 <span class="side-bar-item-caption">Recipes</span>
             </Link>
