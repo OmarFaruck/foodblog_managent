@@ -44,6 +44,18 @@
                 <span class="side-bar-item-caption">Recipes</span>
             </Link>
             
+            <Link href="/direction" class="side-bar-item" :class="{ active: activeMenu === '/direction' }" @click="setActiveMenu('/direction')">
+                <span class="side-bar-item-icon"><i class="fa fa-list-ol"/></span>
+                <span class="side-bar-item-caption">Directions</span>
+            </Link>
+            
+            <Link href="/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/nutrition-fact' }" @click="setActiveMenu('/nutrition-fact')">
+                <span class="side-bar-item-icon"><i class="fa fa-chart-pie"/></span>
+                <span class="side-bar-item-caption">Nutrition Facts</span>
+            </Link>
+            
+            <div class="sidebar-divider"></div>
+            
             <Link href="#" class="side-bar-item">
                 <span class="side-bar-item-icon"><i class="fa fa-book"/></span>
                 <span class="side-bar-item-caption">Blog Posts</span>
