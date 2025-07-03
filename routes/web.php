@@ -5,17 +5,23 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectionController;
 use App\Http\Controllers\Admin\IngredientController;
 use App\Http\Controllers\Admin\NutritionFactController;
-use App\Http\Controllers\Admin\RecipeController;
+use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\RecipeController;
 use App\Http\Middleware\SessionAuthenticate;
+use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
 
 
 
 
 
+
 Route::get('/', [PageController::class, 'home'])->name('HomePage');
+
+Route::get('/recipes', [RecipeController::class, 'index'])->name('RecipeListPage');
+Route::get('/recipe/detail', [RecipeController::class, 'show'])->name('RecipeDetailPage');
 
 Route::get('/admin/login', [UserController::class, 'LoginPage'])->name('LoginPage');
 Route::post('/admin/login', [UserController::class, 'login'])->name('user.login');
@@ -34,11 +40,11 @@ Route::middleware(SessionAuthenticate::class)->group(callback: function () {
     Route::get("/admin/delete-category/{id}",[CategoryController::class,'delete']);
 
     // Recipe Routes
-    Route::get('/admin/recipe', [RecipeController::class, 'RecipePage'])->name('RecipePage');
-    Route::get('/admin/RecipeSavePage', [RecipeController::class, 'RecipeSavePage'])->name('RecipeSavePage');
-    Route::post("/admin/create-recipe",[RecipeController::class,'create']);
-    Route::post("/admin/update-recipe",[RecipeController::class,'update']);
-    Route::get("/admin/delete-recipe/{id}",[RecipeController::class,'delete']);
+    Route::get('/admin/recipe', [AdminRecipeController::class, 'RecipePage'])->name('RecipePage');
+    Route::get('/admin/RecipeSavePage', [AdminRecipeController::class, 'RecipeSavePage'])->name('RecipeSavePage');
+    Route::post("/admin/create-recipe",[AdminRecipeController::class,'create']);
+    Route::post("/admin/update-recipe",[AdminRecipeController::class,'update']);
+    Route::get("/admin/delete-recipe/{id}",[AdminRecipeController::class,'delete']);
 
     // Ingredient Routes
     Route::get('/admin/ingredient', [IngredientController::class, 'IngredientPage'])->name('IngredientPage');
