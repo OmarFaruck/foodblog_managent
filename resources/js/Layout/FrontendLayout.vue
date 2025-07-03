@@ -13,19 +13,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item px-2">
-                        <a class="nav-link active fw-medium" href="/">Home</a>
+                        <Link class="nav-link active fw-medium" href="/">Home</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link fw-medium" href="/recipes">Recipes</a>
+                        <Link class="nav-link fw-medium" href="/recipes">Recipes</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link fw-medium" href="blog-detail.html">Blog</a>
+                        <Link class="nav-link fw-medium" href="/blog">Blog</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link fw-medium" href="contact-us.html">Contact</a>
+                        <Link class="nav-link fw-medium" href="/contact-us">Contact</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link fw-medium" href="about-us.html">About Us</a>
+                        <Link class="nav-link fw-medium" href="/about-us">About Us</Link>
                     </li>
                     <li class="nav-item px-2">
                         <Link href="/admin/login" class="nav-link fw-medium">Login</Link>
@@ -92,10 +92,11 @@
                 </div>
                 <div class="footer-right">
                     <nav class="footer-nav">
-                        <a href="recipe-list.html" class="footer-link">Recipes</a>
-                        <a href="blog-detail.html" class="footer-link">Blog</a>
-                        <a href="contact-us.html" class="footer-link">Contact</a>
-                        <a href="about-us.html" class="footer-link">About us</a>
+                        <Link href="/" class="footer-link">Home</Link>
+                        <Link href="/recipes" class="footer-link">Recipes</Link>
+                        <Link href="/blog" class="footer-link">Blog</Link>
+                        <Link href="/contact-us" class="footer-link">Contact</Link>
+                        <Link href="/about-us" class="footer-link">About us</Link>
                     </nav>
                 </div>
             </div>
