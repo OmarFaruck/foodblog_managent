@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col text-end">
-                    <Link href="/IngredientSavePage" class="btn btn-dark create-btn">CREATE INGREDIENT</Link>
+                    <Link href="/admin/IngredientSavePage" class="btn btn-dark create-btn">CREATE INGREDIENT</Link>
                 </div>
             </div>
             
@@ -24,7 +24,7 @@
                             <i class="fa fa-filter me-2"></i>
                             <strong>Filtered by Recipe:</strong> {{ getRecipeName(recipeFilter) }}
                         </div>
-                        <Link href="/ingredient" class="btn btn-sm btn-outline-secondary">
+                        <Link href="/admin/ingredient" class="btn btn-sm btn-outline-secondary">
                             <i class="fa fa-times me-1"></i>Clear Filter
                         </Link>
                     </div>
@@ -64,7 +64,7 @@
 
                                 <template #item-actions="{ id }">
                                     <div v-if="id" class="edit-delete-container">
-                                        <Link class="btn btn-edit" :href="`/IngredientSavePage?id=${id}`">EDIT</Link>
+                                        <Link class="btn btn-edit" :href="`/admin/IngredientSavePage?id=${id}`">EDIT</Link>
                                         <button class="btn btn-delete" @click="deleteResource(id)">DELETE</button>
                                     </div>
                                     <div v-else>Loading...</div>
@@ -151,11 +151,11 @@ const deleteResource = (id) => {
 };
 
 const confirmDelete = () => {
-    form.get(`/delete-ingredient/${resourceToDelete.value}`, {
+    form.get(`/admin/delete-ingredient/${resourceToDelete.value}`, {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/ingredient")
+                router.get("/admin/ingredient")
             } else {
                 toaster.error(page.props.flash.message);
             }

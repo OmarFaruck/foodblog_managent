@@ -13,7 +13,7 @@
                     </div>
                 </div>              
                 <div class="col text-end">
-                    <Link :href="`/category`" class="btn btn-dark create-btn">BACK TO LIST</Link>
+                    <Link :href="`/admin/category`" class="btn btn-dark create-btn">BACK TO LIST</Link>
                 </div>
             </div>
             
@@ -58,7 +58,7 @@
                         <!-- Buttons -->
                         <div class="mt-4">
                             <button type="submit" class="btn btn-edit me-2">SAVE</button>
-                            <Link :href="`/category`" class="btn btn-secondary">CANCEL</Link>
+                            <Link :href="`/admin/category`" class="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -85,11 +85,11 @@ const form = useForm({
 import {ref} from "vue";
 const page = usePage()
 
-let apiEndpoint="/create-category";
+let apiEndpoint="/admin/create-category";
 let list=page.props.list;
 
 if(id.value!==0 && list!==null){
-    apiEndpoint="/update-category";
+    apiEndpoint="/admin/update-category";
     // fill the form with existing
     form.name=list['name']
     form.id=list['id']
@@ -131,7 +131,7 @@ function submit() {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/category");
+                router.get("/admin/category");
             } else {
                 toaster.error(page.props.flash.message);
             }

@@ -12,7 +12,7 @@
                     </div>
                 </div>              
                 <div class="col text-end">
-                    <Link :href="`/direction`" class="btn btn-dark create-btn">BACK TO LIST</Link>
+                    <Link :href="`/admin/direction`" class="btn btn-dark create-btn">BACK TO LIST</Link>
                 </div>
             </div>
             
@@ -104,7 +104,7 @@
                         <!-- Buttons -->
                         <div class="mt-4">
                             <button type="submit" class="btn btn-edit me-2">{{ id ? 'UPDATE' : 'CREATE' }}</button>
-                            <Link :href="`/direction`" class="btn btn-secondary">CANCEL</Link>
+                            <Link :href="`/admin/direction`" class="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -132,13 +132,13 @@ const form = useForm({
     id: id.value,
 })
 
-let apiEndpoint = "/create-direction";
+let apiEndpoint = "/admin/create-direction";
 let direction = page.props.direction;
 let recipes = page.props.recipes || [];
 let preSelectedRecipeId = page.props.preSelectedRecipeId;
 
 if (id.value && direction !== null && direction !== undefined) {
-    apiEndpoint = "/update-direction";
+    apiEndpoint = "/admin/update-direction";
     // Fill the form with existing data
     form.recipe_id = direction.recipe_id || '';
     form.step_number = direction.step_number || '';
@@ -166,7 +166,7 @@ function submit() {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/direction");
+                router.get("/admin/direction");
             } else {
                 toaster.error(page.props.flash.message);
             }

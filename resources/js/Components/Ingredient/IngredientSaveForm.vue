@@ -12,7 +12,7 @@
                     </div>
                 </div>              
                 <div class="col text-end">
-                    <Link :href="`/ingredient`" class="btn btn-dark create-btn">BACK TO LIST</Link>
+                    <Link :href="`/admin/ingredient`" class="btn btn-dark create-btn">BACK TO LIST</Link>
                 </div>
             </div>
             
@@ -41,7 +41,7 @@
                         <!-- Buttons -->
                         <div class="mt-4">
                             <button type="submit" class="btn btn-edit me-2">{{ id ? 'UPDATE' : 'CREATE' }}</button>
-                            <Link :href="`/ingredient`" class="btn btn-secondary">CANCEL</Link>
+                            <Link :href="`/admin/ingredient`" class="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -66,11 +66,11 @@ const form = useForm({
     id: id.value,
 })
 
-let apiEndpoint = "/create-ingredient";
+let apiEndpoint = "/admin/create-ingredient";
 let ingredient = page.props.ingredient;
 
 if (id.value && ingredient !== null && ingredient !== undefined) {
-    apiEndpoint = "/update-ingredient";
+    apiEndpoint = "/admin/update-ingredient";
     // Fill the form with existing data
     form.name = ingredient.name || '';
     form.id = ingredient.id;
@@ -81,7 +81,7 @@ function submit() {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/ingredient");
+                router.get("/admin/ingredient");
             } else {
                 toaster.error(page.props.flash.message);
             }

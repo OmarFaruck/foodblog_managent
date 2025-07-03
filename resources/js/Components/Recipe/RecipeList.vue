@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col text-end">
-                    <Link href="/RecipeSavePage" class="btn btn-dark create-btn">CREATE RECIPE</Link>
+                    <Link href="/admin/RecipeSavePage" class="btn btn-dark create-btn">CREATE RECIPE</Link>
                 </div>
             </div>
             
@@ -76,13 +76,13 @@
                                     <div v-if="id" class="quick-actions-container">
                                         <!-- Directions Group -->
                                         <div class="btn-group me-2" role="group">
-                                            <Link :href="`/DirectionSavePage?recipe_id=${id}`" 
+                                            <Link :href="`/admin/DirectionSavePage?recipe_id=${id}`" 
                                                   class="btn btn-sm btn-info" 
                                                   title="Add Directions">
                                                 <i class="fa fa-list-ol me-1"></i>Add Steps
                                             </Link>
                                             <Link v-if="directions_count > 0" 
-                                                  :href="`/direction?recipe=${id}`" 
+                                                  :href="`/admin/direction?recipe=${id}`" 
                                                   class="btn btn-sm btn-outline-info" 
                                                   title="View Directions">
                                                 <i class="fa fa-eye me-1"></i>View ({{ directions_count }})
@@ -92,7 +92,7 @@
                                         <div class="w-100"></div>
                                         <!-- Nutrition Group -->
                                         <div class="btn-group me-2" role="group">
-                                            <Link :href="`/NutritionFactSavePage?recipe_id=${id}`" 
+                                            <Link :href="`/admin/NutritionFactSavePage?recipe_id=${id}`" 
                                                   class="btn btn-sm btn-warning" 
                                                   title="Add Nutrition Facts">
                                                 <i class="fa fa-chart-pie me-1"></i>Add Nutrition
@@ -109,13 +109,13 @@
                                         
                                         <!-- Ingredients Group -->
                                         <div class="btn-group" role="group">
-                                            <Link :href="`/RecipeSavePage?id=${id}`" 
+                                            <Link :href="`/admin/RecipeSavePage?id=${id}`" 
                                                   class="btn btn-sm btn-secondary" 
                                                   title="Edit Recipe & Ingredients">
                                                 <i class="fa fa-leaf me-1"></i>Edit Ingredients
                                             </Link>
                                             <Link v-if="ingredients_count > 0" 
-                                                  :href="`/ingredient?recipe=${id}`" 
+                                                  :href="`/admin/ingredient?recipe=${id}`" 
                                                   class="btn btn-sm btn-outline-secondary" 
                                                   title="View Ingredients">
                                                 <i class="fa fa-eye me-1"></i>View ({{ ingredients_count }})
@@ -127,7 +127,7 @@
 
                                 <template #item-actions="{ id }">
                                     <div v-if="id" class="edit-delete-container">
-                                        <Link class="btn btn-edit" :href="`/RecipeSavePage?id=${id}`">EDIT</Link>
+                                        <Link class="btn btn-edit" :href="`/admin/RecipeSavePage?id=${id}`">EDIT</Link>
                                         <button class="btn btn-delete" @click="deleteResource(id)">DELETE</button>
                                     </div>
                                     <div v-else>Loading...</div>
@@ -211,11 +211,11 @@ const deleteResource = (id) => {
 };
 
 const confirmDelete = () => {
-    form.get(`/delete-recipe/${resourceToDelete.value}`, {
+    form.get(`/admin/delete-recipe/${resourceToDelete.value}`, {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/recipe")
+                router.get("/admin/recipe")
             } else {
                 toaster.error(page.props.flash.message);
             }
