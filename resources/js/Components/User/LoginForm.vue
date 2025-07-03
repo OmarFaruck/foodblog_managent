@@ -4,7 +4,9 @@
             <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
                 <div class="card w-90 food-card p-4">
                     <div class="text-center mb-4">
-                        <h3 class="mt-3 food-heading font-lobster">Foodieland.</h3>
+                        <Link href="/" class="text-decoration-none">
+                            <h3 class="mt-3 food-heading font-lobster">Foodieland.</h3>
+                        </Link>
                         <p class="text-muted">Sign in to explore delicious recipes and culinary adventures</p>
                     </div>
                     <form @submit.prevent="submit">
