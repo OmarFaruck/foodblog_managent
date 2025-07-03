@@ -3,13 +3,22 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PageController extends Controller
 {
     public function home(){
-        return Inertia::render("Frontend/Pages/Home");
+        // Get featured recipe with author information
+        $featuredRecipe = Recipe::with(['user', 'category'])
+            ->where('is_featured', true)
+            ->inRandomOrder()
+            ->first(); //dd($featuredRecipe);
+
+        return Inertia::render("Frontend/Pages/Home", [
+            'featuredRecipe' => $featuredRecipe
+        ]);
     }
 
     public function about(){

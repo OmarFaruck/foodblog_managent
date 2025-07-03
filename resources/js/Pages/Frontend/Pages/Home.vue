@@ -1,11 +1,11 @@
 <template>
     <FrontendLayout>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
+      <!-- Hero Section -->
+    <section id="home" class="hero-section">
         <div class="container">
-            <div class="hero-wrapper rounded-40">
-                <div class="row g-0 align-items-stretch">
+            <div class=" rounded-40">
+                <div class="row g-0 hero-wrapper">
                     <div class="col-lg-6">
                         <div class="hero-content">
                             <div class="hero-badge mb-4">
@@ -13,44 +13,42 @@
                                 Hot Recipes
                             </div>
                             <h1 class="mb-4">
-                                Spicy delicious<br>chicken wings
+                                {{ featuredRecipe.title }}
                             </h1>
-                            <p class="mb-5 text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud.
+                            <p class="mb-5 text-muted w-100">
+                                {{ featuredRecipe.description }}
                             </p>
                             <div class="mb-4">
                                 <div class="hero-meta-badge hero-meta-badge2 me-2">
                                     <i class="far fa-clock me-2"></i>
-                                    <span>25 minutes</span>
+                                    <span>{{ formatTime(featuredRecipe.cook_time) }}</span>
                                 </div>
                                 <div class="hero-meta-badge hero-meta-badge2">
                                     <i class="fas fa-utensils me-2"></i>
-                                    <span>lunch</span>
+                                   <span>{{ featuredRecipe.category.name }}</span>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
                                 <div class="hero-author d-flex align-items-center">
                                     <img src="@/Assets/img/users/chef-2.png" alt="Author" class="rounded-circle me-3" width="50" height="50">
                                     <div>
-                                        <h6 class="mb-0">Robert H. Houston</h6>
-                                        <small class="text-muted">5 June 2022</small>
+                                        <h6 class="mb-0">{{ featuredRecipe.user.name }}</h6>
+                                        <small class="text-muted">{{ formatDate(featuredRecipe.created_at) }}</small>
                                     </div>
                                 </div>
                                 <div class="mt-3 mt-sm-0">
-                                    <a href="#" class="btn btn-dark btn-lg view-recipes-btn">
+                                    <Link href="/recipe/detail" class="btn btn-dark btn-lg view-recipes-btn">
                                         View Recipes
                                         <i class="fas fa-chevron-right"></i>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 h-100">
-                        <div class="hero-image position-relative h-100">
-                            <div class="hero-image-wrapper">
-                                <img src="@/Assets/img/hand-picked-recipes/food-1.png" 
-                                     alt="Spicy chicken wings" class="img-fluid hero-main-image">
+                    <div class="col-lg-6 position-relative">
+                            <div 
+                            class="hero-image-wrapper bg-hero"
+                            :style="`background-image: url('/storage/${featuredRecipe.recipe_image}')`">
                             </div>
                             <!-- Floating elements -->
                             <div class="floating-element floating-1">
@@ -61,7 +59,6 @@
                                 <img src="@/Assets/img/hand-picked-recipes/food-3.png" 
                                      alt="Side dish" class="img-fluid shadow rounded-circle">
                             </div>
-                        </div>
                     </div>
                     
                     <!-- Hand-picked recipes badge in the middle -->
@@ -683,8 +680,15 @@
 </template>
 
 <script setup>
-
 import FrontendLayout from '@/Layout/FrontendLayout.vue';
+import { formatTime, formatDate } from '@/utilities/date.js';
+import { Link } from '@inertiajs/vue3';
+
+// Define props to receive data from controller
+const props = defineProps({
+    featuredRecipe: Object
+});
+
 
 </script>
 
