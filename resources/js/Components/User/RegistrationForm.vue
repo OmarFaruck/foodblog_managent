@@ -4,7 +4,9 @@
             <div class="col-md-7 col-lg-6 center-screen">
                 <div class="card animated fadeIn w-100 p-4 food-card">
                     <div class="text-center mb-4">
-                        <h3 class="mt-3 food-heading font-lobster">Foodieland.</h3>
+                        <Link href="/" class="text-decoration-none">
+                            <h3 class="mt-3 food-heading font-lobster">Foodieland.</h3>
+                        </Link>
                         <p class="text-muted">Create an account to share recipes, save favorites, and connect with fellow food enthusiasts</p>
                     </div>
                     
