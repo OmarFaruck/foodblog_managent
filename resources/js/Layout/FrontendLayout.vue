@@ -13,10 +13,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item px-2">
-                        <a class="nav-link active fw-medium" href="index.html">Home</a>
+                        <a class="nav-link active fw-medium" href="/">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link fw-medium" href="recipe-list.html">Recipes</a>
+                        <a class="nav-link fw-medium" href="/recipes">Recipes</a>
                     </li>
                     <li class="nav-item px-2">
                         <a class="nav-link fw-medium" href="blog-detail.html">Blog</a>

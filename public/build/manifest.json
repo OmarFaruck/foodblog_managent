@@ -119,6 +119,18 @@
     "file": "assets/newsletter-2-D0LQpsaH.png",
     "src": "resources/js/Assets/img/newsletter/newsletter-2.png"
   },
+  "resources/js/Assets/img/post details/image1.jpg": {
+    "file": "assets/image1-qJIDm6Ou.jpg",
+    "src": "resources/js/Assets/img/post details/image1.jpg"
+  },
+  "resources/js/Assets/img/recipes/Star-1.png": {
+    "file": "assets/Star-1-DmZnCDVm.png",
+    "src": "resources/js/Assets/img/recipes/Star-1.png"
+  },
+  "resources/js/Assets/img/recipes/direction.png": {
+    "file": "assets/direction-LkcfEdbS.png",
+    "src": "resources/js/Assets/img/recipes/direction.png"
+  },
   "resources/js/Assets/img/recipes/food-13.png": {
     "file": "assets/food-13-B3v4FjVZ.png",
     "src": "resources/js/Assets/img/recipes/food-13.png"
@@ -151,6 +163,10 @@
     "file": "assets/food-20-BV-Lnlw0.png",
     "src": "resources/js/Assets/img/recipes/food-20.png"
   },
+  "resources/js/Assets/img/recipes/promotional-banner.png": {
+    "file": "assets/promotional-banner-B4BZx3Qd.png",
+    "src": "resources/js/Assets/img/recipes/promotional-banner.png"
+  },
   "resources/js/Assets/img/users/chef-2.png": {
     "file": "assets/chef-2-BQNQMJ2C.png",
     "src": "resources/js/Assets/img/users/chef-2.png"
@@ -160,7 +176,7 @@
     "src": "resources/js/Assets/img/users/chef-4.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-tubZF2Pk.js",
+    "file": "assets/app-h8HMMV20.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -196,7 +212,11 @@
       "assets/food-19-ZE0FgzZI.png",
       "assets/food-20-BV-Lnlw0.png",
       "assets/newsletter-1-ClHF-wOH.png",
-      "assets/newsletter-2-D0LQpsaH.png"
+      "assets/newsletter-2-D0LQpsaH.png",
+      "assets/image1-qJIDm6Ou.jpg",
+      "assets/direction-LkcfEdbS.png",
+      "assets/Star-1-DmZnCDVm.png",
+      "assets/promotional-banner-B4BZx3Qd.png"
     ]
   }
 }
