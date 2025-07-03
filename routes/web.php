@@ -12,8 +12,7 @@ use App\Http\Controllers\Frontend\RecipeController;
 use App\Http\Middleware\SessionAuthenticate;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Controllers\Frontend\BlogController;
 
 
 
@@ -22,6 +21,9 @@ Route::get('/', [PageController::class, 'home'])->name('HomePage');
 
 Route::get('/recipes', [RecipeController::class, 'index'])->name('RecipeListPage');
 Route::get('/recipe/detail', [RecipeController::class, 'show'])->name('RecipeDetailPage');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('BlogListPage');
+Route::get('/blog/detail', [BlogController::class, 'show'])->name('BlogDetailPage');
 
 Route::get('/admin/login', [UserController::class, 'LoginPage'])->name('LoginPage');
 Route::post('/admin/login', [UserController::class, 'login'])->name('user.login');

@@ -43,6 +43,26 @@
     "file": "assets/main-C0om5YRK.css",
     "src": "resources/js/Assets/css/main.css"
   },
+  "resources/js/Assets/img/blogs/article-1.png": {
+    "file": "assets/article-1-CT8hiqLB.png",
+    "src": "resources/js/Assets/img/blogs/article-1.png"
+  },
+  "resources/js/Assets/img/blogs/article-2.png": {
+    "file": "assets/article-2-CdPKiZtQ.png",
+    "src": "resources/js/Assets/img/blogs/article-2.png"
+  },
+  "resources/js/Assets/img/blogs/article-3.png": {
+    "file": "assets/article-3-B7rrWMvY.png",
+    "src": "resources/js/Assets/img/blogs/article-3.png"
+  },
+  "resources/js/Assets/img/blogs/article-4.png": {
+    "file": "assets/article-4-C9dP_mv8.png",
+    "src": "resources/js/Assets/img/blogs/article-4.png"
+  },
+  "resources/js/Assets/img/blogs/article-5.png": {
+    "file": "assets/article-5-CVf3pSnR.png",
+    "src": "resources/js/Assets/img/blogs/article-5.png"
+  },
   "resources/js/Assets/img/categories/breakfast.png": {
     "file": "assets/breakfast-BPbcacp0.png",
     "src": "resources/js/Assets/img/categories/breakfast.png"
@@ -176,7 +196,7 @@
     "src": "resources/js/Assets/img/users/chef-4.png"
   },
   "resources/js/app.js": {
-    "file": "assets/app-h8HMMV20.js",
+    "file": "assets/app-D82AWf2E.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -185,8 +205,26 @@
     ],
     "assets": [
       "assets/icon-CCwf_-ea.svg",
-      "assets/hot-recipe-BtFeXoaa.png",
+      "assets/chef-4-DB3x09kv.png",
+      "assets/image1-qJIDm6Ou.jpg",
+      "assets/direction-LkcfEdbS.png",
+      "assets/food-18-CO8zIVJQ.png",
+      "assets/food-19-ZE0FgzZI.png",
+      "assets/food-20-BV-Lnlw0.png",
+      "assets/food-13-B3v4FjVZ.png",
+      "assets/newsletter-1-ClHF-wOH.png",
+      "assets/newsletter-2-D0LQpsaH.png",
+      "assets/article-1-CT8hiqLB.png",
+      "assets/article-2-CdPKiZtQ.png",
       "assets/chef-2-BQNQMJ2C.png",
+      "assets/article-3-B7rrWMvY.png",
+      "assets/article-4-C9dP_mv8.png",
+      "assets/article-5-CVf3pSnR.png",
+      "assets/food-15-Du5VKzr0.png",
+      "assets/food-14-CGepGdeA.png",
+      "assets/Star-1-DmZnCDVm.png",
+      "assets/promotional-banner-B4BZx3Qd.png",
+      "assets/hot-recipe-BtFeXoaa.png",
       "assets/food-1-Ck5e_X4k.png",
       "assets/food-2-yi2nZV9G.png",
       "assets/food-3-DErzAZgH.png",
@@ -197,26 +235,13 @@
       "assets/dessert-DIXnO5Ea.png",
       "assets/lunch-D3HFkUkW.png",
       "assets/chocolate-C_qj5UBd.png",
-      "assets/food-13-B3v4FjVZ.png",
-      "assets/food-14-CGepGdeA.png",
-      "assets/food-15-Du5VKzr0.png",
       "assets/food-16-B60Twjph.png",
       "assets/food-17-CRDPFPde.png",
       "assets/cooker-1-CnWUbgNB.png",
       "assets/meat-CcM88xx3.png",
       "assets/tomato-CmjFmdd7.png",
       "assets/onion-C3x1hHC8.png",
-      "assets/lettuce-BfoKhT74.png",
-      "assets/chef-4-DB3x09kv.png",
-      "assets/food-18-CO8zIVJQ.png",
-      "assets/food-19-ZE0FgzZI.png",
-      "assets/food-20-BV-Lnlw0.png",
-      "assets/newsletter-1-ClHF-wOH.png",
-      "assets/newsletter-2-D0LQpsaH.png",
-      "assets/image1-qJIDm6Ou.jpg",
-      "assets/direction-LkcfEdbS.png",
-      "assets/Star-1-DmZnCDVm.png",
-      "assets/promotional-banner-B4BZx3Qd.png"
+      "assets/lettuce-BfoKhT74.png"
     ]
   }
 }
