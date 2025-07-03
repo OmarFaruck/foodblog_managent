@@ -12,8 +12,22 @@ class IngredientController
     function IngredientPage(Request $request)
     {
         $user_id = $request->header('id');
-        $list = Ingredient::orderBy('id', 'desc')->get();
-        return Inertia::render('Admin/Ingredient/IngredientPage', ['list' => $list]);
+        $recipe_filter = $request->query('recipe');
+        
+        $query = Ingredient::with(['recipes'])
+                           ->orderBy('id', 'desc');
+        
+        if ($recipe_filter) {
+            $query->whereHas('recipes', function($q) use ($recipe_filter) {
+                $q->where('recipes.id', $recipe_filter);
+            });
+        }
+        
+        $list = $query->get();
+        return Inertia::render('Admin/Ingredient/IngredientPage', [
+            'list' => $list,
+            'recipeFilter' => $recipe_filter
+        ]);
     }
 
     function IngredientSavePage(Request $request)

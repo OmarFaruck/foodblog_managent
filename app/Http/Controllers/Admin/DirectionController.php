@@ -52,7 +52,7 @@ class DirectionController
             'recipe_id' => 'required|exists:recipes,id',
             'step_number' => 'required|integer|min:1',
             'instruction' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'direction_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         try {
@@ -60,7 +60,7 @@ class DirectionController
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = now()->format('YmdHis') . '_step_' . $image->getClientOriginalName();
-                $imagePath = $image->storeAs('directions', $imageName, 'public');
+                $imagePath = $image->storeAs('direction-items', $imageName, 'public');
             }
 
             Direction::create([
@@ -108,7 +108,7 @@ class DirectionController
                 
                 $image = $request->file('image');
                 $imageName = now()->format('YmdHis') . '_step_' . $image->getClientOriginalName();
-                $imagePath = $image->storeAs('directions', $imageName, 'public');
+                $imagePath = $image->storeAs('direction-items', $imageName, 'public');
             }
 
             $direction->update([
