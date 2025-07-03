@@ -248,7 +248,7 @@ const form = useForm({
     prep_time: '',
     cook_time: '',
     serving_size: '',
-    is_featured: false,
+    is_featured: 0,
     recipe_image: '',
     ingredients: [],
     id: id.value,
@@ -279,7 +279,7 @@ if (id.value && recipe !== null && recipe !== undefined) {
     form.prep_time = recipe.prep_time || '';
     form.cook_time = recipe.cook_time || '';
     form.serving_size = recipe.serving_size || '';
-    form.is_featured = recipe.is_featured || false;
+    form.is_featured = recipe.is_featured === 1 ? true : false;
     form.recipe_image = recipe.recipe_image || '';
     form.id = recipe.id;
     

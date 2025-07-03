@@ -60,7 +60,7 @@ class RecipeController
                 $imageName = now()->format('YmdHis') . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('recipe-items', $imageName, 'public');
             }
-
+            
             $recipe = Recipe::create([
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
@@ -69,7 +69,7 @@ class RecipeController
                 'prep_time' => $validatedData['prep_time'],
                 'cook_time' => $validatedData['cook_time'],
                 'serving_size' => $validatedData['serving_size'],
-                'is_featured' => $request->boolean('is_featured'),
+                'is_featured' => $request->input('is_featured') === true ? 1 : 0,
                 'recipe_image' => $imagePath,
             ]);
 
@@ -136,7 +136,7 @@ class RecipeController
                 $imageName = now()->format('YmdHis') . '_' . $image->getClientOriginalName();
                 $imagePath = $image->storeAs('recipe-items', $imageName, 'public');
             }
-
+            //dd($request->all());
             $recipe->update([
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
@@ -144,7 +144,7 @@ class RecipeController
                 'prep_time' => $validatedData['prep_time'],
                 'cook_time' => $validatedData['cook_time'],
                 'serving_size' => $validatedData['serving_size'],
-                'is_featured' => $request->boolean('is_featured'),
+                'is_featured' => $request->input('is_featured') === true ? 1 : 0,
                 'recipe_image' => $imagePath,
             ]);
 

@@ -36,7 +36,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/js/Assets/css/frontend.css": {
-    "file": "assets/frontend-DLtwqOTc.css",
+    "file": "assets/frontend-BGmXYo1h.css",
     "src": "resources/js/Assets/css/frontend.css"
   },
   "resources/js/Assets/css/main.css": {
@@ -212,12 +212,12 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-COIuyFfj.js",
+    "file": "assets/app-Bp-VEUQF.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-Mcbie9zw.css"
+      "assets/app-BJTtO17d.css"
     ],
     "assets": [
       "assets/icon-CCwf_-ea.svg",
@@ -245,7 +245,6 @@
       "assets/chef-3-C2meQZhU.png",
       "assets/Cook-contact-5_sDndCp.png",
       "assets/hot-recipe-BtFeXoaa.png",
-      "assets/food-1-Ck5e_X4k.png",
       "assets/food-2-yi2nZV9G.png",
       "assets/food-3-DErzAZgH.png",
       "assets/hand-picked-recipes-CZvgI-Jk.png",
@@ -261,7 +260,8 @@
       "assets/meat-CcM88xx3.png",
       "assets/tomato-CmjFmdd7.png",
       "assets/onion-C3x1hHC8.png",
-      "assets/lettuce-BfoKhT74.png"
+      "assets/lettuce-BfoKhT74.png",
+      "assets/food-1-Ck5e_X4k.png"
     ]
   }
 }
