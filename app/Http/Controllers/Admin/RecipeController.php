@@ -16,7 +16,7 @@ class RecipeController
         $user_id = $request->header('id');
         //dd('inside recipe page');
         $list = Recipe::with(['category', 'user'])
-                     ->withCount(['directions', 'nutritionFacts'])
+                     ->withCount(['directions', 'nutritionFacts', 'ingredients'])
                      ->orderBy('id', 'desc')
                      ->get();
         return Inertia::render('Admin/Recipe/RecipePage', ['list' => $list]);

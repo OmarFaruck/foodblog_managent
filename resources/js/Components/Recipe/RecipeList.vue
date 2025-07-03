@@ -72,35 +72,53 @@
                                     <span>{{ user ? user.name : 'Unknown' }}</span>
                                 </template>
 
-                                <template #item-quick_actions="{ id, directions_count, nutrition_facts_count }">
+                                <template #item-quick_actions="{ id, directions_count, nutrition_facts_count, ingredients_count }">
                                     <div v-if="id" class="quick-actions-container">
-                                        <!-- Create/Add Group -->
+                                        <!-- Directions Group -->
                                         <div class="btn-group me-2" role="group">
                                             <Link :href="`/DirectionSavePage?recipe_id=${id}`" 
                                                   class="btn btn-sm btn-info" 
                                                   title="Add Directions">
                                                 <i class="fa fa-list-ol me-1"></i>Add Steps
                                             </Link>
+                                            <Link v-if="directions_count > 0" 
+                                                  :href="`/direction?recipe=${id}`" 
+                                                  class="btn btn-sm btn-outline-info" 
+                                                  title="View Directions">
+                                                <i class="fa fa-eye me-1"></i>View ({{ directions_count }})
+                                            </Link>
+                                        </div>
+                                         <!-- Break -->
+                                        <div class="w-100"></div>
+                                        <!-- Nutrition Group -->
+                                        <div class="btn-group me-2" role="group">
                                             <Link :href="`/NutritionFactSavePage?recipe_id=${id}`" 
                                                   class="btn btn-sm btn-warning" 
                                                   title="Add Nutrition Facts">
                                                 <i class="fa fa-chart-pie me-1"></i>Add Nutrition
                                             </Link>
-                                        </div>
-                                        
-                                        <!-- View/List Group - Only show if data exists -->
-                                        <div v-if="directions_count > 0 || nutrition_facts_count > 0" class="btn-group" role="group">
-                                            <Link v-if="directions_count > 0" 
-                                                  :href="`/direction?recipe=${id}`" 
-                                                  class="btn btn-sm btn-outline-info" 
-                                                  title="View Directions">
-                                                <i class="fa fa-eye me-1"></i>View Steps ({{ directions_count }})
-                                            </Link>
                                             <Link v-if="nutrition_facts_count > 0" 
                                                   :href="`/nutrition-fact?recipe=${id}`" 
                                                   class="btn btn-sm btn-outline-warning" 
                                                   title="View Nutrition Facts">
-                                                <i class="fa fa-chart-bar me-1"></i>View Nutrition
+                                                <i class="fa fa-chart-bar me-1"></i>View ({{ nutrition_facts_count }})
+                                            </Link>
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="w-100"></div>
+                                        
+                                        <!-- Ingredients Group -->
+                                        <div class="btn-group" role="group">
+                                            <Link :href="`/RecipeSavePage?id=${id}`" 
+                                                  class="btn btn-sm btn-secondary" 
+                                                  title="Edit Recipe & Ingredients">
+                                                <i class="fa fa-leaf me-1"></i>Edit Ingredients
+                                            </Link>
+                                            <Link v-if="ingredients_count > 0" 
+                                                  :href="`/ingredient?recipe=${id}`" 
+                                                  class="btn btn-sm btn-outline-secondary" 
+                                                  title="View Ingredients">
+                                                <i class="fa fa-eye me-1"></i>View ({{ ingredients_count }})
                                             </Link>
                                         </div>
                                     </div>
@@ -220,20 +238,17 @@ const confirmDelete = () => {
     font-style: italic;
 }
 
-.edit-delete-container {
-    display: flex;
-    gap: 8px;
-}
-
 .quick-actions-container {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .btn-group {
     display: flex;
+    flex-shrink: 0;
 }
 
 .btn-group .btn {
@@ -252,25 +267,9 @@ const confirmDelete = () => {
     border-right: none;
 }
 
-.btn-edit {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-    color: white;
-    padding: 4px 12px;
-    font-size: 12px;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    color: white;
-    padding: 4px 12px;
-    font-size: 12px;
-}
-
 .btn-sm {
-    padding: 6px 12px;
-    font-size: 11px;
+    padding: 5px 10px;
+    font-size: 10px;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -285,6 +284,12 @@ const confirmDelete = () => {
     background-color: #ffc107;
     border-color: #ffc107;
     color: #212529;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
 }
 
 .btn-outline-info {
@@ -307,5 +312,16 @@ const confirmDelete = () => {
 .btn-outline-warning:hover {
     background-color: #ffc107;
     color: #212529;
+}
+
+.btn-outline-success {
+    color: #28a745;
+    border-color: #28a745;
+    background-color: transparent;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
 }
 </style>

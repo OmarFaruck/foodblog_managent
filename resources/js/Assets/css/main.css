@@ -632,3 +632,13 @@ body {
     white-space: nowrap;
 }
 
+.search-input {
+    padding-left: 35px !important;
+    height: 47px !important;
+}
+
+.no-image {
+    color: #6c757d;
+    font-style: italic;
+}
+

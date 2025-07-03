@@ -107,19 +107,10 @@ function submit() {
     z-index: 10;
 }
 
-.search-input {
-    padding-left: 45px;
-}
-
 .form-control {
     border: 2px solid #e9ecef;
     border-radius: 8px;
     padding: 12px;
-}
-
-.form-control:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 </style>

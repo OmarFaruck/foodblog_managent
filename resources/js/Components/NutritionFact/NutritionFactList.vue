@@ -179,24 +179,5 @@ const confirmDelete = () => {
 </script>
 
 <style scoped>
-.edit-delete-container {
-    display: flex;
-    gap: 8px;
-}
 
-.btn-edit {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-    color: white;
-    padding: 4px 12px;
-    font-size: 12px;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    color: white;
-    padding: 4px 12px;
-    font-size: 12px;
-}
 </style>

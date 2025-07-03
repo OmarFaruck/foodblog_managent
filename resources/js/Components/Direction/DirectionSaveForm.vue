@@ -200,31 +200,10 @@ function submit() {
     z-index: 10;
 }
 
-.search-input {
-    padding-left: 45px;
-}
-
 .form-control, .form-select {
     border: 2px solid #e9ecef;
     border-radius: 8px;
     padding: 12px;
 }
 
-.form-control:focus, .form-select:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.btn-edit {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    font-weight: bold;
-}
-
-.btn-edit:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
 </style>
