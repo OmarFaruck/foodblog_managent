@@ -9,7 +9,7 @@
                     <span class="navbar-brand font-lobster text-white ms-2 d-none d-md-block">Foodieland Admin</span>
                 </div>
                 <div>
-                    <Link href="/logout" class="btn-logout">
+                    <Link href="/admin/logout" class="btn-logout">
                         <i class="fa fa-sign-out-alt me-1"></i> Logout
                     </Link>
                 </div>
@@ -22,34 +22,34 @@
                 <div class="sidebar-divider"></div>
             </div>
 
-            <Link href="/dashboard" class="side-bar-item" :class="{ active: activeMenu === '/dashboard' }" @click="setActiveMenu('/dashboard')">
+            <Link href="/admin/dashboard" class="side-bar-item" :class="{ active: activeMenu === '/admin/dashboard' }" @click="setActiveMenu('/dashboard')">
                 <span class="side-bar-item-icon"><i class="fa fa-tachometer-alt"/></span>
                 <span class="side-bar-item-caption">Dashboard</span>
             </Link>
 
-            <Link href="/category" class="side-bar-item" :class="{ active: activeMenu === '/category' }" @click="setActiveMenu('/category')">
+            <Link href="/admin/category" class="side-bar-item" :class="{ active: activeMenu === '/admin/category' }" @click="setActiveMenu('/category')">
                 <span class="side-bar-item-icon"><i class="fa fa-th-list"/></span>
                 <span class="side-bar-item-caption">Categories</span>
             </Link>
             
             <div class="sidebar-divider"></div>
 
-            <Link href="/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/ingredient' }" @click="setActiveMenu('/ingredient')">
+            <Link href="/admin/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/admin/ingredient' }" @click="setActiveMenu('/ingredient')">
                 <span class="side-bar-item-icon"><i class="fa fa-carrot"/></span>
                 <span class="side-bar-item-caption">Ingredients</span>
             </Link>
 
-            <Link href="/direction" class="side-bar-item" :class="{ active: activeMenu === '/direction' }" @click="setActiveMenu('/direction')">
+            <Link href="/admin/direction" class="side-bar-item" :class="{ active: activeMenu === '/admin/direction' }" @click="setActiveMenu('/direction')">
                 <span class="side-bar-item-icon"><i class="fa fa-list-ol"/></span>
                 <span class="side-bar-item-caption">Directions</span>
             </Link>        
-            
-            <Link href="/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/nutrition-fact' }" @click="setActiveMenu('/nutrition-fact')">
+
+            <Link href="/admin/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/admin/nutrition-fact' }" @click="setActiveMenu('/nutrition-fact')">
                 <span class="side-bar-item-icon"><i class="fa fa-chart-pie"/></span>
                 <span class="side-bar-item-caption">Nutrition Facts</span>
             </Link>            
 
-            <Link href="/recipe" class="side-bar-item" :class="{ active: activeMenu === '/recipe' }" @click="setActiveMenu('/recipe')">
+            <Link href="/admin/recipe" class="side-bar-item" :class="{ active: activeMenu === '/admin/recipe' }" @click="setActiveMenu('/recipe')">
                 <span class="side-bar-item-icon"><i class="fa fa-utensils"/></span>
                 <span class="side-bar-item-caption">Recipes</span>
             </Link>

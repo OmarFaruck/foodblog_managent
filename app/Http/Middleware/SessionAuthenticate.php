@@ -19,7 +19,7 @@ class SessionAuthenticate
         $user_id=$request->session()->get('user_id','default');
 
         if($email=="default"){
-            return redirect('/login');
+            return redirect('/admin/login');
         }
         else{
             $request->headers->set('email',$email);

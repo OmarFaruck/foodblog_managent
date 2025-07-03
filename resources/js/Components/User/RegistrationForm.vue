@@ -41,7 +41,7 @@
                             <div class="text-center mt-4">
                                 <p class="mb-0">
                                     <span class="text-muted">Already have an account?</span>
-                                    <Link class="ms-2 food-link elegant-link" href="/login">Sign in here</Link>
+                                    <Link class="ms-2 food-link elegant-link" href="/admin/login">Sign in here</Link>
                                 </p>
                             </div>
                             
@@ -98,12 +98,13 @@ function submit(){
         toaster.error("Password Required")
     }
     else {
-        form.post("/register",{
+        form.post("/admin/register",{
             onSuccess:()=>{
                 if(page.props.flash.status===true){
-                    router.get("/login")
+                    router.get("/admin/login")
                 }
-                else {                    toaster.error(page.props.flash.message)
+                else {                    
+                    toaster.error(page.props.flash.message)
                 }
             }
         })

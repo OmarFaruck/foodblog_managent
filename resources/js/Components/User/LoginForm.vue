@@ -26,7 +26,7 @@
                             <div class="text-center mt-4">
                                 <p class="mb-0">
                                     <span class="text-muted">Don't have an account?</span>
-                                    <Link class="ms-2 food-link elegant-link" href="/register">Join our Food Community</Link>
+                                    <Link class="ms-2 food-link elegant-link" href="/admin/register">Join our Food Community</Link>
                                 </p>
                                 <div class="mt-2 credential-hint">
                                     <small class="text-muted"><strong>Demo:</strong> admin@foodblog.com | 123</small>
@@ -62,10 +62,10 @@ function submit() {
     } else if (!form.password) {
         toaster.error("Password Required");
     } else {
-        form.post("/login", {
+        form.post("/admin/login", {
             onSuccess: () => {
                 if (page.props.flash.status) {
-                    router.get("/dashboard");
+                    router.get("/admin/dashboard");
                 } else {
                     toaster.error(page.props.flash.message);
                 }
