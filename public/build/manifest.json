@@ -36,7 +36,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/js/Assets/css/frontend.css": {
-    "file": "assets/frontend-B-NPtxhI.css",
+    "file": "assets/frontend-DLtwqOTc.css",
     "src": "resources/js/Assets/css/frontend.css"
   },
   "resources/js/Assets/css/main.css": {
@@ -106,6 +106,10 @@
   "resources/js/Assets/img/chef/tomato.png": {
     "file": "assets/tomato-CmjFmdd7.png",
     "src": "resources/js/Assets/img/chef/tomato.png"
+  },
+  "resources/js/Assets/img/contact-us/Cook-contact.png": {
+    "file": "assets/Cook-contact-5_sDndCp.png",
+    "src": "resources/js/Assets/img/contact-us/Cook-contact.png"
   },
   "resources/js/Assets/img/hand-picked-recipes/food-1.png": {
     "file": "assets/food-1-Ck5e_X4k.png",
@@ -187,16 +191,28 @@
     "file": "assets/promotional-banner-B4BZx3Qd.png",
     "src": "resources/js/Assets/img/recipes/promotional-banner.png"
   },
+  "resources/js/Assets/img/users/chef-1.png": {
+    "file": "assets/chef-1-83u84PT0.png",
+    "src": "resources/js/Assets/img/users/chef-1.png"
+  },
   "resources/js/Assets/img/users/chef-2.png": {
     "file": "assets/chef-2-BQNQMJ2C.png",
     "src": "resources/js/Assets/img/users/chef-2.png"
+  },
+  "resources/js/Assets/img/users/chef-3.png": {
+    "file": "assets/chef-3-C2meQZhU.png",
+    "src": "resources/js/Assets/img/users/chef-3.png"
   },
   "resources/js/Assets/img/users/chef-4.png": {
     "file": "assets/chef-4-DB3x09kv.png",
     "src": "resources/js/Assets/img/users/chef-4.png"
   },
+  "resources/js/Assets/img/users/our-experience.jpg": {
+    "file": "assets/our-experience-CAvP8lVN.jpg",
+    "src": "resources/js/Assets/img/users/our-experience.jpg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-D82AWf2E.js",
+    "file": "assets/app-qyLYXo5U.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -224,6 +240,10 @@
       "assets/food-14-CGepGdeA.png",
       "assets/Star-1-DmZnCDVm.png",
       "assets/promotional-banner-B4BZx3Qd.png",
+      "assets/our-experience-CAvP8lVN.jpg",
+      "assets/chef-1-83u84PT0.png",
+      "assets/chef-3-C2meQZhU.png",
+      "assets/Cook-contact-5_sDndCp.png",
       "assets/hot-recipe-BtFeXoaa.png",
       "assets/food-1-Ck5e_X4k.png",
       "assets/food-2-yi2nZV9G.png",
