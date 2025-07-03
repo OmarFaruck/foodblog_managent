@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class UserController extends Controller
+class UserController
 {
     public function index(): Response
     {
@@ -23,7 +23,7 @@ class UserController extends Controller
             return redirect()->route('DashboardPage');
         }
 
-        return Inertia::render('User/Login');
+        return Inertia::render('Admin/User/Login');
     }  
     
     function login(Request $request) { //dd(Hash::make($request->input('password')));
@@ -69,7 +69,7 @@ class UserController extends Controller
         if($email != 'default') {
             return redirect()->route('DashboardPage');
         }
-        return Inertia::render('User/Register');
+        return Inertia::render('Admin/User/Register');
     }   
     
     function register(Request $request){
