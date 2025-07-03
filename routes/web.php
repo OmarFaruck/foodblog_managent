@@ -25,6 +25,9 @@ Route::get('/recipe/detail', [RecipeController::class, 'show'])->name('RecipeDet
 Route::get('/blog', [BlogController::class, 'index'])->name('BlogListPage');
 Route::get('/blog/detail', [BlogController::class, 'show'])->name('BlogDetailPage');
 
+Route::get('/about-us', [PageController::class, 'about'])->name('AboutPage');
+Route::get('/contact-us', [PageController::class, 'contact'])->name('ContactPage');
+
 Route::get('/admin/login', [UserController::class, 'LoginPage'])->name('LoginPage');
 Route::post('/admin/login', [UserController::class, 'login'])->name('user.login');
 Route::get('/admin/logout', [UserController::class, 'logout'])->name('user.logout');

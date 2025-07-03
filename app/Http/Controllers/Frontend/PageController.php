@@ -11,4 +11,12 @@ class PageController extends Controller
     public function home(){
         return Inertia::render("Frontend/Pages/Home");
     }
+
+    public function about(){
+        return Inertia::render("Frontend/Pages/About");
+    }
+
+    public function contact(){
+        return Inertia::render("Frontend/Pages/Contact");
+    }    
 }

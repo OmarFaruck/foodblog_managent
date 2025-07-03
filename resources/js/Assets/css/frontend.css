@@ -2320,7 +2320,7 @@ html {
 
 /* Blog List Page Styles */
 .blog-header {
-    padding-top: 9rem !important;
+    padding-top: 6rem !important;
     padding-bottom: 2rem;
 }
 
@@ -2538,7 +2538,7 @@ html {
 }
 
 .about-header {
-    padding-top: 60px;
+    padding-top: 6rem !important;
 }
 
 /* Refine chef card spacing */
