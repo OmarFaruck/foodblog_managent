@@ -100,6 +100,11 @@ class RecipeController
 
     function update(Request $request)
     {
+        // Remove empty recipe_image field if it exists
+        if ($request->has('recipe_image') && empty($request->file('recipe_image'))) {
+            $request->request->remove('recipe_image');
+        }
+
         // Validating the request
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -109,7 +114,7 @@ class RecipeController
             'cook_time' => 'required|integer|min:1',
             'serving_size' => 'required|integer|min:1',
             'is_featured' => 'boolean',
-            'recipe_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'recipe_image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
             'ingredients' => 'nullable|array',
             'ingredients.*.id' => 'required|exists:ingredients,id',
             'ingredients.*.group' => 'nullable|string|max:255',

@@ -221,7 +221,7 @@
                         <!-- Buttons -->
                         <div class="mt-4">
                             <button type="submit" class="btn btn-edit me-2">{{ id ? 'UPDATE' : 'CREATE' }}</button>
-                            <Link :href="`/recipe`" class="btn btn-secondary">CANCEL</Link>
+                            <Link :href="`/admin/recipe`" class="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -254,7 +254,7 @@ const form = useForm({
     id: id.value,
 })
 
-let apiEndpoint = "/create-recipe";
+let apiEndpoint = "/admin/create-recipe";
 let recipe = page.props.recipe;
 let categories = page.props.categories || [];
 let ingredients = page.props.ingredients || [];
@@ -271,7 +271,7 @@ const availableIngredients = computed(() => {
 });
 
 if (id.value && recipe !== null && recipe !== undefined) {
-    apiEndpoint = "/update-recipe";
+    apiEndpoint = "/admin/update-recipe";
     // Fill the form with existing data
     form.title = recipe.title || '';
     form.description = recipe.description || '';
@@ -326,7 +326,7 @@ function submit() {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/recipe");
+                router.get("/admin/recipe");
             } else {
                 toaster.error(page.props.flash.message);
             }

@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="col text-end">
-                        <Link href="/CategorySavePage" class="btn btn-dark create-btn">CREATE CATEGORY</Link>
+                        <Link href="/admin/CategorySavePage" class="btn btn-dark create-btn">CREATE CATEGORY</Link>
                     </div>
                 </div>
                 
@@ -48,7 +48,7 @@
 
                                     <template #item-number="{ id }">
                                     <div v-if="id" class="edit-delete-container">
-                                        <Link class="btn btn-edit" :href="`/CategorySavePage?id=${id}`">EDIT</Link>
+                                        <Link class="btn btn-edit" :href="`/admin/CategorySavePage?id=${id}`">EDIT</Link>
                                         <button class="btn btn-delete" @click="deleteResource(id)">DELETE</button>
                                     </div>
                                     <div v-else>Loading...</div>
@@ -121,11 +121,11 @@ const deleteResource = (id) => {
 };
 
 const confirmDelete = () => {
-    form.get(`/delete-category/${resourceToDelete.value}`,{
+    form.get(`/admin/delete-category/${resourceToDelete.value}`,{
         onSuccess:()=>{
             if(page.props.flash.status===true){
                 toaster.success(page.props.flash.message);
-                router.get("/category")
+                router.get("/admin/category")
             }
             else {
                 toaster.error(page.props.flash.message);

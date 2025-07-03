@@ -12,7 +12,7 @@
                     </div>
                 </div>              
                 <div class="col text-end">
-                    <Link :href="`/nutrition-fact`" class="btn btn-dark create-btn">BACK TO LIST</Link>
+                    <Link :href="`/admin/nutrition-fact`" class="btn btn-dark create-btn">BACK TO LIST</Link>
                 </div>
             </div>
             
@@ -151,7 +151,7 @@
                         <!-- Buttons -->
                         <div class="mt-4">
                             <button type="submit" class="btn btn-edit me-2">{{ id ? 'UPDATE' : 'CREATE' }}</button>
-                            <Link :href="`/nutrition-fact`" class="btn btn-secondary">CANCEL</Link>
+                            <Link :href="`/admin/nutrition-fact`" class="btn btn-secondary">CANCEL</Link>
                         </div>
                     </form>
                 </div>
@@ -181,13 +181,13 @@ const form = useForm({
     id: id.value,
 })
 
-let apiEndpoint = "/create-nutrition-fact";
+let apiEndpoint = "/admin/create-nutrition-fact";
 let nutritionFact = page.props.nutritionFact;
 let recipes = page.props.recipes || [];
 let preSelectedRecipeId = page.props.preSelectedRecipeId;
 
 if (id.value && nutritionFact !== null && nutritionFact !== undefined) {
-    apiEndpoint = "/update-nutrition-fact";
+    apiEndpoint = "/admin/update-nutrition-fact";
     // Fill the form with existing data
     form.recipe_id = nutritionFact.recipe_id || '';
     form.calories = nutritionFact.calories || '';
@@ -206,7 +206,7 @@ function submit() {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/nutrition-fact");
+                router.get("/admin/nutrition-fact");
             } else {
                 toaster.error(page.props.flash.message);
             }

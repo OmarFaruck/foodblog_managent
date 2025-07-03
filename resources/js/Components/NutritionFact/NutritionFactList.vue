@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col text-end">
-                    <Link href="/NutritionFactSavePage" class="btn btn-dark create-btn">CREATE NUTRITION FACTS</Link>
+                    <Link href="/admin/NutritionFactSavePage" class="btn btn-dark create-btn">CREATE NUTRITION FACTS</Link>
                 </div>
             </div>
             
@@ -24,7 +24,7 @@
                             <i class="fa fa-filter me-2"></i>
                             <strong>Filtered by Recipe:</strong> {{ getRecipeName(recipeFilter) }}
                         </div>
-                        <Link href="/nutrition-fact" class="btn btn-sm btn-outline-secondary">
+                        <Link href="/admin/nutrition-fact" class="btn btn-sm btn-outline-secondary">
                             <i class="fa fa-times me-1"></i>Clear Filter
                         </Link>
                     </div>
@@ -78,7 +78,7 @@
 
                                 <template #item-actions="{ id }">
                                     <div v-if="id" class="edit-delete-container">
-                                        <Link class="btn btn-edit" :href="`/NutritionFactSavePage?id=${id}`">EDIT</Link>
+                                        <Link class="btn btn-edit" :href="`/admin/NutritionFactSavePage?id=${id}`">EDIT</Link>
                                         <button class="btn btn-delete" @click="deleteResource(id)">DELETE</button>
                                     </div>
                                     <div v-else>Loading...</div>
@@ -164,11 +164,11 @@ const deleteResource = (id) => {
 };
 
 const confirmDelete = () => {
-    form.get(`/delete-nutrition-fact/${resourceToDelete.value}`, {
+    form.get(`/admin/delete-nutrition-fact/${resourceToDelete.value}`, {
         onSuccess: () => {
             if (page.props.flash.status === true) {
                 toaster.success(page.props.flash.message);
-                router.get("/nutrition-fact")
+                router.get("/admin/nutrition-fact")
             } else {
                 toaster.error(page.props.flash.message);
             }
