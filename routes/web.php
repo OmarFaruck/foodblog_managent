@@ -24,7 +24,7 @@ Route::get('/recipes', [RecipeController::class, 'index'])->name('frontend.recip
 Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('frontend.recipes.show');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('BlogListPage');
-Route::get('/blog/detail', [BlogController::class, 'show'])->name('BlogDetailPage');
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('BlogDetailPage');
 
 Route::get('/about-us', [PageController::class, 'about'])->name('AboutPage');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('ContactPage');

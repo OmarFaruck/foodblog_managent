@@ -43,26 +43,6 @@
     "file": "assets/main-C0om5YRK.css",
     "src": "resources/js/Assets/css/main.css"
   },
-  "resources/js/Assets/img/blogs/article-1.png": {
-    "file": "assets/article-1-CT8hiqLB.png",
-    "src": "resources/js/Assets/img/blogs/article-1.png"
-  },
-  "resources/js/Assets/img/blogs/article-2.png": {
-    "file": "assets/article-2-CdPKiZtQ.png",
-    "src": "resources/js/Assets/img/blogs/article-2.png"
-  },
-  "resources/js/Assets/img/blogs/article-3.png": {
-    "file": "assets/article-3-B7rrWMvY.png",
-    "src": "resources/js/Assets/img/blogs/article-3.png"
-  },
-  "resources/js/Assets/img/blogs/article-4.png": {
-    "file": "assets/article-4-C9dP_mv8.png",
-    "src": "resources/js/Assets/img/blogs/article-4.png"
-  },
-  "resources/js/Assets/img/blogs/article-5.png": {
-    "file": "assets/article-5-CVf3pSnR.png",
-    "src": "resources/js/Assets/img/blogs/article-5.png"
-  },
   "resources/js/Assets/img/chef/cooker-1.png": {
     "file": "assets/cooker-1-CnWUbgNB.png",
     "src": "resources/js/Assets/img/chef/cooker-1.png"
@@ -119,41 +99,9 @@
     "file": "assets/newsletter-2-D0LQpsaH.png",
     "src": "resources/js/Assets/img/newsletter/newsletter-2.png"
   },
-  "resources/js/Assets/img/post-details/image1.jpg": {
-    "file": "assets/image1-qJIDm6Ou.jpg",
-    "src": "resources/js/Assets/img/post-details/image1.jpg"
-  },
   "resources/js/Assets/img/recipes/Star-1.png": {
     "file": "assets/Star-1-DmZnCDVm.png",
     "src": "resources/js/Assets/img/recipes/Star-1.png"
-  },
-  "resources/js/Assets/img/recipes/direction.png": {
-    "file": "assets/direction-LkcfEdbS.png",
-    "src": "resources/js/Assets/img/recipes/direction.png"
-  },
-  "resources/js/Assets/img/recipes/food-13.png": {
-    "file": "assets/food-13-B3v4FjVZ.png",
-    "src": "resources/js/Assets/img/recipes/food-13.png"
-  },
-  "resources/js/Assets/img/recipes/food-14.png": {
-    "file": "assets/food-14-CGepGdeA.png",
-    "src": "resources/js/Assets/img/recipes/food-14.png"
-  },
-  "resources/js/Assets/img/recipes/food-15.png": {
-    "file": "assets/food-15-Du5VKzr0.png",
-    "src": "resources/js/Assets/img/recipes/food-15.png"
-  },
-  "resources/js/Assets/img/recipes/food-18.png": {
-    "file": "assets/food-18-CO8zIVJQ.png",
-    "src": "resources/js/Assets/img/recipes/food-18.png"
-  },
-  "resources/js/Assets/img/recipes/food-19.png": {
-    "file": "assets/food-19-ZE0FgzZI.png",
-    "src": "resources/js/Assets/img/recipes/food-19.png"
-  },
-  "resources/js/Assets/img/recipes/food-20.png": {
-    "file": "assets/food-20-BV-Lnlw0.png",
-    "src": "resources/js/Assets/img/recipes/food-20.png"
   },
   "resources/js/Assets/img/recipes/promotional-banner.png": {
     "file": "assets/promotional-banner-B4BZx3Qd.png",
@@ -180,7 +128,7 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DVn9hYeL.js",
+    "file": "assets/app-D2f1I60Y.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -190,26 +138,13 @@
     "assets": [
       "assets/icon-CCwf_-ea.svg",
       "assets/chef-4-DB3x09kv.png",
-      "assets/image1-qJIDm6Ou.jpg",
-      "assets/direction-LkcfEdbS.png",
-      "assets/food-18-CO8zIVJQ.png",
-      "assets/food-19-ZE0FgzZI.png",
-      "assets/food-20-BV-Lnlw0.png",
-      "assets/food-13-B3v4FjVZ.png",
       "assets/newsletter-1-ClHF-wOH.png",
       "assets/newsletter-2-D0LQpsaH.png",
-      "assets/article-1-CT8hiqLB.png",
-      "assets/article-2-CdPKiZtQ.png",
-      "assets/chef-2-BQNQMJ2C.png",
-      "assets/article-3-B7rrWMvY.png",
-      "assets/article-4-C9dP_mv8.png",
-      "assets/article-5-CVf3pSnR.png",
-      "assets/food-15-Du5VKzr0.png",
-      "assets/food-14-CGepGdeA.png",
       "assets/Star-1-DmZnCDVm.png",
       "assets/promotional-banner-B4BZx3Qd.png",
       "assets/our-experience-CAvP8lVN.jpg",
       "assets/chef-1-83u84PT0.png",
+      "assets/chef-2-BQNQMJ2C.png",
       "assets/chef-3-C2meQZhU.png",
       "assets/Cook-contact-5_sDndCp.png",
       "assets/hot-recipe-BtFeXoaa.png",

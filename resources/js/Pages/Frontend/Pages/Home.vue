@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 mt-sm-0">
-                                    <Link href="/recipe/detail" class="btn btn-dark btn-lg view-recipes-btn">
+                                    <Link :href="`/recipe/${featuredRecipe.id}`" class="btn btn-dark btn-lg view-recipes-btn">
                                         View Recipes
                                         <i class="fas fa-chevron-right"></i>
                                     </Link>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="recipe-content p-4">
                             <h4 class="recipe-title mb-3">
-                                <Link href="#" class="text-decoration-none text-dark">
+                                <Link :href="`/recipe/${recipe.id}`" class="text-decoration-none text-dark">
                                     {{ recipe.title }}
                                 </Link>
                             </h4>
@@ -380,7 +380,7 @@
                                     </div>
                                     <div class="featured-recipe-content p-3">
                                         <h5 class="featured-recipe-title mb-2">
-                                            <Link href="#" class="text-decoration-none text-dark">
+                                            <Link :href="`/recipe/${recipe.id}`" class="text-decoration-none text-dark">
                                                 {{ recipe.title }}
                                             </Link>
                                         </h5>
