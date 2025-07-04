@@ -12,8 +12,14 @@
                     <div class="col-lg-7">
                         <div class="search-container">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Search for a recipe...">
-                                <button class="btn btn-dark search-button" type="button">Search</button>
+                                <input 
+                                    type="text" 
+                                    class="form-control search-input" 
+                                    placeholder="Search for a recipe..."
+                                    v-model="searchForm.search"
+                                    @keyup.enter="searchRecipes"
+                                >
+                                <button class="btn btn-dark search-button" type="button" @click="searchRecipes">Search</button>
                             </div>
                         </div>
                     </div>
@@ -30,52 +36,25 @@
                  <div class="col-lg-3">
                     <h2 class="fw-semibold mb-4">Categories</h2>
                     <div class="category-filters">
-                        <div class="category-filter-item d-flex align-items-center mb-4">
+                        <div 
+                            v-for="category in categories" 
+                            :key="category.id" 
+                            class="category-filter-item d-flex align-items-center mb-4"
+                        >
                             <div class="category-checkbox me-3">
-                                <input type="checkbox" id="breakfast" class="category-input visually-hidden">
-                                <label for="breakfast" class="category-checkbox-label"></label>
+                                <input 
+                                    type="checkbox" 
+                                    :id="'category-' + category.id" 
+                                    :value="category.id"
+                                    v-model="searchForm.categories"
+                                    @change="filterRecipes"
+                                    class="category-input visually-hidden"
+                                >
+                                <label :for="'category-' + category.id" class="category-checkbox-label"></label>
                             </div>
-                            <label for="breakfast" class="category-label fs-5">Breakfast</label>
-                        </div>
-                        
-                        <div class="category-filter-item d-flex align-items-center mb-4">
-                            <div class="category-checkbox me-3">
-                                <input type="checkbox" id="vegan" class="category-input visually-hidden">
-                                <label for="vegan" class="category-checkbox-label"></label>
-                            </div>
-                            <label for="vegan" class="category-label fs-5">Vegan</label>
-                        </div>
-                        
-                        <div class="category-filter-item d-flex align-items-center mb-4">
-                            <div class="category-checkbox me-3">
-                                <input type="checkbox" id="meat" class="category-input visually-hidden">
-                                <label for="meat" class="category-checkbox-label"></label>
-                            </div>
-                            <label for="meat" class="category-label fs-5">Meat</label>
-                        </div>
-                        
-                        <div class="category-filter-item d-flex align-items-center mb-4">
-                            <div class="category-checkbox me-3">
-                                <input type="checkbox" id="dessert" class="category-input visually-hidden">
-                                <label for="dessert" class="category-checkbox-label"></label>
-                            </div>
-                            <label for="dessert" class="category-label fs-5">Dessert</label>
-                        </div>
-                        
-                        <div class="category-filter-item d-flex align-items-center mb-4">
-                            <div class="category-checkbox me-3">
-                                <input type="checkbox" id="lunch" class="category-input visually-hidden">
-                                <label for="lunch" class="category-checkbox-label"></label>
-                            </div>
-                            <label for="lunch" class="category-label fs-5">Lunch</label>
-                        </div>
-                        
-                        <div class="category-filter-item d-flex align-items-center mb-4">
-                            <div class="category-checkbox me-3">
-                                <input type="checkbox" id="chocolate" class="category-input visually-hidden">
-                                <label for="chocolate" class="category-checkbox-label"></label>
-                            </div>
-                            <label for="chocolate" class="category-label fs-5">Chocolate</label>
+                            <label :for="'category-' + category.id" class="category-label fs-5">
+                                {{ category.name }} ({{ category.recipes_count }})
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -83,189 +62,35 @@
                     <div class="featured-recipe-cards">
                         <!-- Recipe Cards Row -->
                         <div class="row g-5">
-                            <!-- Recipe Card 1 -->
-                            <div class="col-lg-4 col-md-6">
+                            <div 
+                                v-for="recipe in recipes.data" 
+                                :key="recipe.id" 
+                                class="col-lg-4 col-md-6"
+                            >
                                 <div class="featured-recipe-card bg-white overflow-hidden h-100">
                                     <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-18.png" alt="Mixed Tropical Fruit Salad with Superfood Boosts" class="img-fluid w-100">
+                                        <img 
+                                            :src="recipe.recipe_image || '/images/empty.png'" 
+                                            :alt="recipe.title"
+                                            class="img-fluid w-100"
+                                        >
                                         <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
                                     </div>
                                     <div class="featured-recipe-content p-3">
-                                        <Link href="/recipe/detail" class="text-decoration-none text-dark">
-                                            <h5 class="featured-recipe-title mb-2">Mixed Tropical Fruit Salad with Superfood Boosts</h5>
+                                        <Link 
+                                            :href="`/recipe/detail`" 
+                                            class="text-decoration-none text-dark"
+                                        >
+                                            <h5 class="featured-recipe-title mb-2">{{ recipe.title }}</h5>
                                         </Link>
                                         <div class="featured-recipe-meta d-flex align-items-center">
                                             <div class="me-3">
                                                 <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
+                                                <span>{{ recipe.prep_time + recipe.cook_time }} Minutes</span>
                                             </div>
                                             <div>
                                                 <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 2 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-19.png" alt="Big and Juicy Wagyu Beef Cheeseburger" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Big and Juicy Wagyu Beef Cheeseburger</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Western</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Second Row of Recipe Cards -->
-                            <!-- Recipe Card 3 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-20.png" alt="Healthy Japanese Fried Rice with Asparagus" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Healthy Japanese Fried Rice with Asparagus</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 4 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-13.png" alt="Cauliflower Walnut Vegetarian Taco Meat" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Cauliflower Walnut Vegetarian Taco Meat</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Eastern</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Third Row of Recipe Cards -->
-                            <!-- Recipe Card 5 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-17.png" alt="Rainbow Chicken Salad with Almond Honey Mustard Dressing" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Rainbow Chicken Salad with Almond Honey Mustard Dressing</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 6 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-15.png" alt="Barbeque Spicy Sandwiches with Chips" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Barbeque Spicy Sandwiches with Chips</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Snack</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Fourth Row of Recipe Cards -->
-                            <!-- Recipe Card 7 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-16.png" alt="Firecracker Vegan Lettuce Wraps - Spicy!" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Firecracker Vegan Lettuce Wraps - Spicy!</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Seafood</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 8 -->
-                            <div class="col-lg-4 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-18.png" alt="Chicken Ramen Soup with Mushroom" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Chicken Ramen Soup with Mushroom</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Japanese</span>
+                                                <span>{{ recipe.category.name }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -277,13 +102,50 @@
             </div>
             
             <!-- Pagination -->
-            <div class="pagination-container d-flex justify-content-center mt-5">
+            <div class="pagination-container d-flex justify-content-center mt-5" v-if="shouldShowPagination">
                 <nav aria-label="Recipe pagination">
                     <ul class="pagination">
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        <!-- Previous Button -->
+                        <li class="page-item" :class="{ disabled: !canGoPrev }">
+                            <button 
+                                class="page-link" 
+                                @click="prevPage"
+                                :disabled="!canGoPrev"
+                            >
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                        </li>
+                        
+                        <!-- Page Numbers -->
+                        <li 
+                            v-for="page in visiblePages" 
+                            :key="page" 
+                            class="page-item" 
+                            :class="{ 
+                                active: page === currentPage,
+                                disabled: page === '...'
+                            }"
+                        >
+                            <button 
+                                v-if="page !== '...'" 
+                                class="page-link" 
+                                @click="goToPage(page)"
+                            >
+                                {{ page }}
+                            </button>
+                            <span v-else class="page-link">{{ page }}</span>
+                        </li>
+                        
+                        <!-- Next Button -->
+                        <li class="page-item" :class="{ disabled: !canGoNext }">
+                            <button 
+                                class="page-link" 
+                                @click="nextPage"
+                                :disabled="!canGoNext"
+                            >
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -296,5 +158,58 @@
 <script setup>
 import FrontendLayout from '@/Layout/FrontendLayout.vue';
 import { Link } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+import { usePagination, useSearch } from '@/utilities/pagination.js';
+
+// Props received from controller
+const props = defineProps({
+    recipes: Object,
+    categories: Array,
+    filters: Object
+});
+
+// Reactive form for search and filters
+const searchForm = ref({
+    search: props.filters.search || '',
+    categories: props.filters.categories || []
+});
+
+// Convert props to reactive refs for utilities
+const recipesData = computed(() => props.recipes);
+const filtersData = computed(() => searchForm.value);
+
+// Use pagination utility
+const {
+    goToPage,
+    nextPage,
+    prevPage,
+    visiblePages,
+    shouldShowPagination,
+    paginationInfo,
+    canGoPrev,
+    canGoNext,
+    currentPage,
+    lastPage
+} = usePagination(recipesData, filtersData, '', {
+    preserveState: true,
+    preserveScroll: true,
+    maxVisiblePages: 5
+});
+
+// Use search utility
+const { search: performSearch } = useSearch(searchForm, '', {
+    preserveState: true,
+    preserveScroll: true
+});
+
+// Search recipes function
+const searchRecipes = () => {
+    performSearch();
+};
+
+// Filter recipes by category
+const filterRecipes = () => {
+    performSearch();
+};
 
 </script>

@@ -143,14 +143,6 @@
     "file": "assets/food-15-Du5VKzr0.png",
     "src": "resources/js/Assets/img/recipes/food-15.png"
   },
-  "resources/js/Assets/img/recipes/food-16.png": {
-    "file": "assets/food-16-B60Twjph.png",
-    "src": "resources/js/Assets/img/recipes/food-16.png"
-  },
-  "resources/js/Assets/img/recipes/food-17.png": {
-    "file": "assets/food-17-CRDPFPde.png",
-    "src": "resources/js/Assets/img/recipes/food-17.png"
-  },
   "resources/js/Assets/img/recipes/food-18.png": {
     "file": "assets/food-18-CO8zIVJQ.png",
     "src": "resources/js/Assets/img/recipes/food-18.png"
@@ -188,7 +180,7 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BQ6Ta88v.js",
+    "file": "assets/app-DrUGuqUG.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -229,9 +221,7 @@
       "assets/tomato-CmjFmdd7.png",
       "assets/onion-C3x1hHC8.png",
       "assets/lettuce-BfoKhT74.png",
-      "assets/food-1-Ck5e_X4k.png",
-      "assets/food-17-CRDPFPde.png",
-      "assets/food-16-B60Twjph.png"
+      "assets/food-1-Ck5e_X4k.png"
     ]
   }
 }
