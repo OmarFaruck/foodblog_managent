@@ -40,7 +40,29 @@ class RecipeController extends Controller
         ]);
     }
 
-    function show(){
-        return Inertia::render("Frontend/Recipes/detail");
+    function show($id){
+        $recipe = Recipe::with([
+            'category', 
+            'user', 
+            'nutritionFacts',
+            'ingredients' => function($query) {
+                $query->orderBy('recipe_ingredients.ingredient_group');
+            },
+            'directions' => function($query) {
+                $query->orderBy('step_number');
+            }
+        ])->findOrFail($id);
+
+        // Get related recipes from the same category
+        $relatedRecipes = Recipe::with(['category', 'user'])
+            ->where('category_id', $recipe->category_id)
+            ->where('id', '!=', $recipe->id)
+            ->take(4)
+            ->get();
+
+        return Inertia::render("Frontend/Recipes/detail", [
+            'recipe' => $recipe,
+            'relatedRecipes' => $relatedRecipes
+        ]);
     }
 }

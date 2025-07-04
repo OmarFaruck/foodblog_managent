@@ -45,7 +45,7 @@
             <div class="row g-5 align-items-stretch">
                 <div class="col-lg-12 d-flex">
                     <div class="recipe-image-container position-relative w-100 d-flex">
-                        <img src="@/Assets/img/post details/image1.jpg" alt="Health Japanese Fried Rice" class="img-fluid w-100 object-fit-cover">
+                        <img src="@/Assets/img/post-details/image1.jpg" alt="Health Japanese Fried Rice" class="img-fluid w-100 object-fit-cover">
                     </div>
                 </div>
             </div>
