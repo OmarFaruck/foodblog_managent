@@ -43,7 +43,7 @@
 
     <slot />
 
-<!-- Newsletter Section -->
+    <!-- Newsletter Section -->
     <section id="newsletter" class="py-5">
         <div class="container">
             <div class="newsletter-container position-relative rounded-4">
@@ -55,12 +55,18 @@
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                         incididunt ut labore et dolore magna aliqut enim ad minim
                     </p>
-                    <form class="newsletter-form mx-auto">
+                    <form @submit.prevent="subscribeNewsletter" class="newsletter-form mx-auto">
                         <div class="input-group">
-                            <input type="email" class="form-control" 
-                                   placeholder="Your email address..." required>
-                            <button class="btn btn-dark px-4" type="submit">
-                                Subscribe
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                placeholder="Your email address..." 
+                                v-model="email"
+                                :disabled="isLoading"
+                                >
+                            <button class="btn btn-dark px-4" type="submit" :disabled="isLoading">
+                                <span v-if="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                {{ isLoading ? 'Subscribing...' : 'Subscribe' }}
                             </button>
                         </div>
                     </form>
@@ -120,5 +126,40 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { createToaster } from "@meforma/vue-toaster";
+import axios from 'axios';
+
+const toast = createToaster();
+const email = ref('');
+const isLoading = ref(false);
+
+const subscribeNewsletter = async () => {
+    if (!email.value) {
+        toast.error('Please enter your email address');
+        return;
+    }
+
+    isLoading.value = true;
+
+    try {
+        const response = await axios.post('/subscribe', {
+            email: email.value
+        });
+
+        if (response.data.success) {
+            toast.success(response.data.message);
+            email.value = ''; // Clear the form
+        }
+    } catch (error) {
+        if (error.response && error.response.data) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.error('Something went wrong. Please try again.');
+        }
+    } finally {
+        isLoading.value = false;
+    }
+};
 
 </script>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\RecipeController;
+use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Middleware\SessionAuthenticate;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::get('/blog/detail', [BlogController::class, 'show'])->name('BlogDetailPag
 
 Route::get('/about-us', [PageController::class, 'about'])->name('AboutPage');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('ContactPage');
+
+Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/admin/login', [UserController::class, 'LoginPage'])->name('LoginPage');
 Route::post('/admin/login', [UserController::class, 'login'])->name('user.login');
