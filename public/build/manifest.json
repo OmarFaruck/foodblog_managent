@@ -63,30 +63,6 @@
     "file": "assets/article-5-CVf3pSnR.png",
     "src": "resources/js/Assets/img/blogs/article-5.png"
   },
-  "resources/js/Assets/img/categories/breakfast.png": {
-    "file": "assets/breakfast-BPbcacp0.png",
-    "src": "resources/js/Assets/img/categories/breakfast.png"
-  },
-  "resources/js/Assets/img/categories/chocolate.png": {
-    "file": "assets/chocolate-C_qj5UBd.png",
-    "src": "resources/js/Assets/img/categories/chocolate.png"
-  },
-  "resources/js/Assets/img/categories/dessert.png": {
-    "file": "assets/dessert-DIXnO5Ea.png",
-    "src": "resources/js/Assets/img/categories/dessert.png"
-  },
-  "resources/js/Assets/img/categories/lunch.png": {
-    "file": "assets/lunch-D3HFkUkW.png",
-    "src": "resources/js/Assets/img/categories/lunch.png"
-  },
-  "resources/js/Assets/img/categories/meat.png": {
-    "file": "assets/meat-DlilraEL.png",
-    "src": "resources/js/Assets/img/categories/meat.png"
-  },
-  "resources/js/Assets/img/categories/vegan.png": {
-    "file": "assets/vegan-BAYQY-aY.png",
-    "src": "resources/js/Assets/img/categories/vegan.png"
-  },
   "resources/js/Assets/img/chef/cooker-1.png": {
     "file": "assets/cooker-1-CnWUbgNB.png",
     "src": "resources/js/Assets/img/chef/cooker-1.png"
@@ -212,7 +188,7 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bp-VEUQF.js",
+    "file": "assets/app-BdnllZiX.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -248,20 +224,14 @@
       "assets/food-2-yi2nZV9G.png",
       "assets/food-3-DErzAZgH.png",
       "assets/hand-picked-recipes-CZvgI-Jk.png",
-      "assets/breakfast-BPbcacp0.png",
-      "assets/vegan-BAYQY-aY.png",
-      "assets/meat-DlilraEL.png",
-      "assets/dessert-DIXnO5Ea.png",
-      "assets/lunch-D3HFkUkW.png",
-      "assets/chocolate-C_qj5UBd.png",
-      "assets/food-16-B60Twjph.png",
-      "assets/food-17-CRDPFPde.png",
       "assets/cooker-1-CnWUbgNB.png",
       "assets/meat-CcM88xx3.png",
       "assets/tomato-CmjFmdd7.png",
       "assets/onion-C3x1hHC8.png",
       "assets/lettuce-BfoKhT74.png",
-      "assets/food-1-Ck5e_X4k.png"
+      "assets/food-1-Ck5e_X4k.png",
+      "assets/food-17-CRDPFPde.png",
+      "assets/food-16-B60Twjph.png"
     ]
   }
 }

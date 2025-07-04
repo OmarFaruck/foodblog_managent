@@ -70,7 +70,7 @@
         </div>
     </section>
 
-<!-- Categories Section -->
+    <!-- Categories Section -->
     <section id="categories" class="py-5">
         <div class="container">
             <div class="categories-header d-flex align-items-center justify-content-between mb-5">
@@ -79,63 +79,25 @@
             </div>
             
             <div class="row g-4">
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-breakfast">
+                <div 
+                    v-for="(category, index) in categories" 
+                    :key="category.id"
+                    class="col-lg-2 col-md-4 col-6"
+                >
+                    <div class="category-card" :class="getCategoryClass(index)">
                         <div class="category-icon">
-                            <img src="@/Assets/img/categories/breakfast.png" 
-                                 alt="Breakfast" class="img-fluid">
+                            <img 
+                                :src="category.icon ? `/storage/${category.icon}` : `@/Assets/img/categories/${category.slug}.png`" 
+                                :alt="category.name" 
+                                class="img-fluid"
+                            >
                         </div>
-                        <h5 class="category-title">Breakfast</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-vegan">
-                        <div class="category-icon">
-                            <img src="@/Assets/img/categories/vegan.png" 
-                                 alt="Vegan" class="img-fluid">
-                        </div>
-                        <h5 class="category-title">Vegan</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-meat">
-                        <div class="category-icon">
-                            <img src="@/Assets/img/categories/meat.png" 
-                                 alt="Meat" class="img-fluid">
-                        </div>
-                        <h5 class="category-title">Meat</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-dessert">
-                        <div class="category-icon">
-                            <img src="@/Assets/img/categories/dessert.png" 
-                                 alt="Dessert" class="img-fluid">
-                        </div>
-                        <h5 class="category-title">Dessert</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-lunch">
-                        <div class="category-icon">
-                            <img src="@/Assets/img/categories/lunch.png" 
-                                 alt="Lunch" class="img-fluid">
-                        </div>
-                        <h5 class="category-title">Lunch</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-6">
-                    <div class="category-card category-chocolate">
-                        <div class="category-icon">
-                            <img src="@/Assets/img/categories/chocolate.png" 
-                                 alt="Chocolate" class="img-fluid">
-                        </div>
-                        <h5 class="category-title">Chocolate</h5>
+                        <h5 class="category-title">{{ category.name }}</h5>
                     </div>
                 </div>
             </div>
         </div>
-    </section>        
+    </section>     
 
     <!-- Simple and Tasty Recipes Section -->
     <section id="recipes" class="py-5">
@@ -151,115 +113,34 @@
             
             <!-- Recipe Cards -->
             <div class="row g-5">
-                <!-- Recipe Card 1 -->
-                <div class="col-lg-4 col-md-6">
+                <div 
+                    v-for="recipe in featuredRecipes" 
+                    :key="recipe.id"
+                    class="col-lg-4 col-md-6"
+                >
                     <div class="recipe-card rounded-4 overflow-hidden h-100">
                         <div class="recipe-image position-relative">
-                            <img src="@/Assets/img/recipes/food-13.png" alt="Big and Juicy Wagyu Beef Cheeseburger" class="img-fluid w-100">
+                            <img 
+                                :src="recipe.recipe_image ? `/storage/${recipe.recipe_image}` : '@/Assets/img/recipes/food-13.png'" 
+                                :alt="recipe.title" 
+                                class="img-fluid w-100"
+                            >
                             <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
                         </div>
                         <div class="recipe-content p-4">
-                            <h4 class="recipe-title mb-3">Big and Juicy Wagyu Beef Cheeseburger</h4>
+                            <h4 class="recipe-title mb-3">
+                                <Link href="#" class="text-decoration-none text-dark">
+                                    {{ recipe.title }}
+                                </Link>
+                            </h4>
                             <div class="recipe-meta d-flex align-items-center mb-4">
                                 <div class="me-4">
                                     <i class="far fa-clock me-2"></i>
-                                    <span>30 Minutes</span>
+                                    <span>{{ formatTime(recipe.cook_time) }}</span>
                                 </div>
                                 <div>
                                     <i class="fas fa-utensils me-2"></i>
-                                    <span>Snack</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recipe Card 2 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="recipe-card rounded-4 overflow-hidden h-100">
-                        <div class="recipe-image position-relative">
-                            <img src="@/Assets/img/recipes/food-14.png" alt="Fresh Lime Roasted Salmon with Ginger Sauce" class="img-fluid w-100">
-                            <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                        </div>
-                        <div class="recipe-content p-4">
-                            <h4 class="recipe-title mb-3">Fresh Lime Roasted Salmon with Ginger Sauce</h4>
-                            <div class="recipe-meta d-flex align-items-center mb-4">
-                                <div class="me-4">
-                                    <i class="far fa-clock me-2"></i>
-                                    <span>30 Minutes</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-utensils me-2"></i>
-                                    <span>Fish</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recipe Card 3 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="recipe-card rounded-4 overflow-hidden h-100">
-                        <div class="recipe-image position-relative">
-                            <img src="@/Assets/img/recipes/food-15.png" alt="Strawberry Oatmeal Pancake with Honey Syrup" class="img-fluid w-100">
-                            <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                        </div>
-                        <div class="recipe-content p-4">
-                            <h4 class="recipe-title mb-3">Strawberry Oatmeal Pancake with Honey Syrup</h4>
-                            <div class="recipe-meta d-flex align-items-center mb-4">
-                                <div class="me-4">
-                                    <i class="far fa-clock me-2"></i>
-                                    <span>30 Minutes</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-utensils me-2"></i>
-                                    <span>Breakfast</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recipe Card 4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="recipe-card rounded-4 overflow-hidden h-100">
-                        <div class="recipe-image position-relative">
-                            <img src="@/Assets/img/recipes/food-16.png" alt="Fresh and Healthy Mixed Mayonnaise Salad" class="img-fluid w-100">
-                            <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                        </div>
-                        <div class="recipe-content p-4">
-                            <h4 class="recipe-title mb-3">Fresh and Healthy Mixed Mayonnaise Salad</h4>
-                            <div class="recipe-meta d-flex align-items-center mb-4">
-                                <div class="me-4">
-                                    <i class="far fa-clock me-2"></i>
-                                    <span>30 Minutes</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-utensils me-2"></i>
-                                    <span>Healthy</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recipe Card 5 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="recipe-card rounded-4 overflow-hidden h-100">
-                        <div class="recipe-image position-relative">
-                            <img src="@/Assets/img/recipes/food-17.png" alt="Chicken Meatballs with Cream Cheese" class="img-fluid w-100">
-                            <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                        </div>
-                        <div class="recipe-content p-4">
-                            <h4 class="recipe-title mb-3">Chicken Meatballs with Cream Cheese</h4>
-                            <div class="recipe-meta d-flex align-items-center mb-4">
-                                <div class="me-4">
-                                    <i class="far fa-clock me-2"></i>
-                                    <span>30 Minutes</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-utensils me-2"></i>
-                                    <span>Meat</span>
+                                    <span>{{ recipe.category.name }}</span>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +150,7 @@
 
             <!-- View All Button -->
             <div class="text-center mt-5">
-                <a href="#" class="btn btn-dark btn-lg px-5 py-3 view-all-btn">
+                <a href="/recipes" class="btn btn-dark btn-lg px-5 py-3 view-all-btn">
                     View All Recipes
                     <i class="fas fa-chevron-right ms-2"></i>
                 </a>
@@ -291,7 +172,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
                             incididunt ut labore et dolore magna aliqua enim ad minim veniam
                         </p>
-                        <a href="#" class="learn-more-btn">
+                        <a href="/about-us" class="learn-more-btn">
                             Learn More
                         </a>
                     </div>
@@ -460,7 +341,7 @@
         </div>
     </section>        
 
-<!-- Try This Delicious Recipe Section -->
+    <!-- Try This Delicious Recipe Section -->
     <section id="featured-recipe" class="py-5">
         <div class="container">
             <div class="row">
@@ -483,187 +364,34 @@
                     <div class="featured-recipe-cards">
                         <!-- Recipe Cards Row -->
                         <div class="row g-5">
-                            <!-- Recipe Card 1 -->
-                            <div class="col-lg-3 col-md-6">
+                            <div 
+                                v-for="recipe in randomRecipes" 
+                                :key="recipe.id"
+                                class="col-lg-3 col-md-6"
+                            >
                                 <div class="featured-recipe-card bg-white overflow-hidden h-100">
                                     <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-18.png" alt="Mixed Tropical Fruit Salad with Superfood Boosts" class="img-fluid w-100">
+                                        <img 
+                                            :src="recipe.recipe_image ? `/storage/${recipe.recipe_image}` : '@/Assets/img/recipes/food-18.png'" 
+                                            :alt="recipe.title" 
+                                            class="img-fluid w-100"
+                                        >
                                         <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
                                     </div>
                                     <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Mixed Tropical Fruit Salad with Superfood Boosts</h5>
+                                        <h5 class="featured-recipe-title mb-2">
+                                            <Link href="#" class="text-decoration-none text-dark">
+                                                {{ recipe.title }}
+                                            </Link>
+                                        </h5>
                                         <div class="featured-recipe-meta d-flex align-items-center">
                                             <div class="me-3">
                                                 <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
+                                                <span>{{ formatTime(recipe.cook_time) }}</span>
                                             </div>
                                             <div>
                                                 <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 2 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-19.png" alt="Big and Juicy Wagyu Beef Cheeseburger" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Big and Juicy Wagyu Beef Cheeseburger</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Western</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Second Row of Recipe Cards -->
-                            <!-- Recipe Card 3 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-20.png" alt="Healthy Japanese Fried Rice with Asparagus" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Healthy Japanese Fried Rice with Asparagus</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 4 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-13.png" alt="Cauliflower Walnut Vegetarian Taco Meat" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Cauliflower Walnut Vegetarian Taco Meat</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Eastern</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Third Row of Recipe Cards -->
-                            <!-- Recipe Card 5 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-17.png" alt="Rainbow Chicken Salad with Almond Honey Mustard Dressing" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Rainbow Chicken Salad with Almond Honey Mustard Dressing</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Healthy</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 6 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-15.png" alt="Barbeque Spicy Sandwiches with Chips" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Barbeque Spicy Sandwiches with Chips</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Snack</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        <!-- Fourth Row of Recipe Cards -->
-                            <!-- Recipe Card 7 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-16.png" alt="Firecracker Vegan Lettuce Wraps - Spicy!" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Firecracker Vegan Lettuce Wraps - Spicy!</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Seafood</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Recipe Card 8 -->
-                            <div class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <img src="@/Assets/img/recipes/food-18.png" alt="Chicken Ramen Soup with Mushroom" class="img-fluid w-100">
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">Chicken Ramen Soup with Mushroom</h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>30 Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>Japanese</span>
+                                                <span>{{ recipe.category.name }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -686,9 +414,26 @@ import { Link } from '@inertiajs/vue3';
 
 // Define props to receive data from controller
 const props = defineProps({
-    featuredRecipe: Object
+    featuredRecipe: Object,
+    categories: Array,
+    featuredRecipes: Array,
+    randomRecipes: Array
 });
 
+// Define category classes to cycle through
+const categoryClasses = [
+    'category-breakfast',
+    'category-vegan', 
+    'category-meat',
+    'category-dessert',
+    'category-lunch',
+    'category-chocolate'
+];
+
+// Function to get category class based on index
+const getCategoryClass = (index) => {
+    return categoryClasses[index % categoryClasses.length];
+};
 
 </script>
 
