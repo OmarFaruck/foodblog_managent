@@ -28,6 +28,7 @@ Route::get('/blog/{id}', [BlogController::class, 'show'])->name('BlogDetailPage'
 
 Route::get('/about-us', [PageController::class, 'about'])->name('AboutPage');
 Route::get('/contact-us', [PageController::class, 'contact'])->name('ContactPage');
+Route::post('/contact', [PageController::class, 'contact_store'])->name('ContactPage.store');
 
 Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
