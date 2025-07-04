@@ -20,8 +20,8 @@ use App\Http\Controllers\Frontend\BlogController;
 
 Route::get('/', [PageController::class, 'home'])->name('HomePage');
 
-Route::get('/recipes', [RecipeController::class, 'index'])->name('RecipeListPage');
-Route::get('/recipe/detail', [RecipeController::class, 'show'])->name('RecipeDetailPage');
+Route::get('/recipes', [RecipeController::class, 'index'])->name('frontend.recipes.index');
+Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('frontend.recipes.show');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('BlogListPage');
 Route::get('/blog/detail', [BlogController::class, 'show'])->name('BlogDetailPage');
