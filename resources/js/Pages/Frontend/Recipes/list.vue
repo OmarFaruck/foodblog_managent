@@ -70,7 +70,7 @@
                                 <div class="featured-recipe-card bg-white overflow-hidden h-100">
                                     <div class="featured-recipe-image position-relative rounded-4">
                                         <img 
-                                            :src="recipe.recipe_image || '/images/empty.png'" 
+                                            :src=" `/storage/${recipe.recipe_image}` || '/images/empty.png'" 
                                             :alt="recipe.title"
                                             class="img-fluid w-100"
                                         >
