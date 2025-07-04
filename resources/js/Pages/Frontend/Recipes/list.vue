@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="featured-recipe-content p-3">
                                         <Link 
-                                            :href="`/recipe/detail`" 
+                                            :href="`/recipe/${recipe.id}`" 
                                             class="text-decoration-none text-dark"
                                         >
                                             <h5 class="featured-recipe-title mb-2">{{ recipe.title }}</h5>

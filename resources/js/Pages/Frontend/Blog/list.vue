@@ -12,8 +12,14 @@
                     <div class="col-lg-7">
                         <div class="search-container">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="Search article, news or recipe...">
-                                <button class="btn btn-dark search-button" type="button">Search</button>
+                                <input 
+                                    type="text" 
+                                    class="form-control search-input" 
+                                    placeholder="Search article, news or recipe..."
+                                    v-model="searchQuery"
+                                    @keyup.enter="performSearch"
+                                >
+                                <button class="btn btn-dark search-button" type="button" @click="performSearch">Search</button>
                             </div>
                         </div>
                     </div>
@@ -28,144 +34,43 @@
             <div class="row g-5">
                 <!-- Left Column - Blog Posts -->
                 <div class="col-lg-8">
-                    <!-- Blog Post 1 -->
-                    <div class="blog-post mb-5">
-                        <div class="row">
-                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                <a href="/blog/detail" class="text-decoration-none">
-                                    <div class="blog-image-container">
-                                        <img src="@/Assets/img/blogs/article-1.png" alt="Crochet Projects for Noodle Lovers" class="img-fluid rounded-4">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h4 class="fw-bold mb-3"><a href="blog-detail.html" class="text-decoration-none text-dark">Crochet Projects for Noodle Lovers</a></h4>
-                                <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetuipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim</p>
-                                <div class="author-info-container d-flex align-items-center">
-                                    <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-4.png" alt="Wade Warren" class="rounded-circle" width="50" height="50">
-                                    </div>
-                                    <div class="author-info d-flex align-items-center">
-                                        <h6 class="mb-0 fw-bold me-3">Wade Warren</h6>
-                                        <div class="d-flex align-items-center recipe-meta-item">
-                                            <i class="far fa-clock me-2 text-muted"></i>
-                                            <p class="text-muted small mb-0">12 November 2021</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Show message if no blogs found -->
+                    <div v-if="blogs.data.length === 0" class="text-center py-5">
+                        <h4 class="text-muted">No blogs found</h4>
+                        <p class="text-muted">{{ search ? 'Try adjusting your search terms' : 'No blogs have been published yet' }}</p>
                     </div>
 
-                    <!-- Blog Post 2 -->
-                    <div class="blog-post mb-5">
+                    <!-- Blog Posts -->
+                    <div v-for="blog in blogs.data" :key="blog.id" class="blog-post mb-5">
                         <div class="row">
                             <div class="col-lg-4 mb-4 mb-lg-0">
-                                <a href="blog-detail.html" class="text-decoration-none">
+                                <Link :href="`/blog/${blog.id}`" class="text-decoration-none">
                                     <div class="blog-image-container">
-                                        <img src="@/Assets/img/blogs/article-2.png" alt="10 Vegetarian Recipes To Eat This Month" class="img-fluid rounded-4">
+                                        <img 
+                                            :src="blog.image ? `/storage/${blog.image}` : '/images/placeholder-blog.jpg'" 
+                                            :alt="blog.title" 
+                                            class="img-fluid rounded-4"
+                                            style="width: 100%; height: 200px; object-fit: cover;"
+                                        >
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                             <div class="col-lg-8">
-                                <h4 class="fw-bold mb-3"><a href="blog-detail.html" class="text-decoration-none text-dark">10 Vegetarian Recipes To Eat This Month</a></h4>
-                                <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetuipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim</p>
+                                <h4 class="fw-bold mb-3">
+                                    <Link :href="`/blog/${blog.id}`" class="text-decoration-none text-dark">
+                                        {{ blog.title }}
+                                    </Link>
+                                </h4>
+                                <p class="text-muted mb-4">{{ blog.excerpt || truncateContent(blog.content, 120) }}</p>
                                 <div class="author-info-container d-flex align-items-center">
                                     <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-2.png" alt="Robert Fox" class="rounded-circle" width="50" height="50">
+                                        <img src="@/Assets/img/users/chef-4.png" alt="Author" class="rounded-circle" width="50" height="50">
                                     </div>
                                     <div class="author-info d-flex align-items-center">
-                                        <h6 class="mb-0 fw-bold me-3">Robert Fox</h6>
+                                        <h6 class="mb-0 fw-bold me-3">{{ blog.user.name }}</h6>
                                         <div class="d-flex align-items-center recipe-meta-item">
                                             <i class="far fa-clock me-2 text-muted"></i>
-                                            <p class="text-muted small mb-0">12 November 2021</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post 3 -->
-                    <div class="blog-post mb-5">
-                        <div class="row">
-                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                <a href="blog-detail.html" class="text-decoration-none">
-                                    <div class="blog-image-container">
-                                        <img src="@/Assets/img/blogs/article-3.png" alt="Full Guide to Becoming a Professional Chef" class="img-fluid rounded-4">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h4 class="fw-bold mb-3"><a href="blog-detail.html" class="text-decoration-none text-dark">Full Guide to Becoming a Professional Chef</a></h4>
-                                <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetuipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim</p>
-                                <div class="author-info-container d-flex align-items-center">
-                                    <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-4.png" alt="Dianne Russell" class="rounded-circle" width="50" height="50">
-                                    </div>
-                                    <div class="author-info d-flex align-items-center">
-                                        <h6 class="mb-0 fw-bold me-3">Dianne Russell</h6>
-                                        <div class="d-flex align-items-center recipe-meta-item">
-                                            <i class="far fa-clock me-2 text-muted"></i>
-                                            <p class="text-muted small mb-0">12 November 2021</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post 4 -->
-                    <div class="blog-post mb-5">
-                        <div class="row">
-                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                <a href="blog-detail.html" class="text-decoration-none">
-                                    <div class="blog-image-container">
-                                        <img src="@/Assets/img/blogs/article-4.png" alt="Simple & Delicious Vegetarian Lasagna" class="img-fluid rounded-4">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h4 class="fw-bold mb-3"><a href="blog-detail.html" class="text-decoration-none text-dark">Simple & Delicious Vegetarian Lasagna</a></h4>
-                                <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetuipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim</p>
-                                <div class="author-info-container d-flex align-items-center">
-                                    <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-4.png" alt="Dianne Russell" class="rounded-circle" width="50" height="50">
-                                    </div>
-                                    <div class="author-info d-flex align-items-center">
-                                        <h6 class="mb-0 fw-bold me-3">Dianne Russell</h6>
-                                        <div class="d-flex align-items-center recipe-meta-item">
-                                            <i class="far fa-clock me-2 text-muted"></i>
-                                            <p class="text-muted small mb-0">12 November 2021</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post 5 -->
-                    <div class="blog-post mb-5">
-                        <div class="row">
-                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                <a href="blog-detail.html" class="text-decoration-none">
-                                    <div class="blog-image-container">
-                                        <img src="@/Assets/img/blogs/article-5.png" alt="Comfort Food For Rainy Days" class="img-fluid rounded-4">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h4 class="fw-bold mb-3"><a href="blog-detail.html" class="text-decoration-none text-dark">Comfort Food For Rainy Days</a></h4>
-                                <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetuipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim</p>
-                                <div class="author-info-container d-flex align-items-center">
-                                    <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-4.png" alt="Guy Hawkins" class="rounded-circle" width="50" height="50">
-                                    </div>
-                                    <div class="author-info d-flex align-items-center recipe-meta-item">
-                                        <h6 class="mb-0 fw-bold me-3">Guy Hawkins</h6>
-                                        <div class="d-flex align-items-center">
-                                            <i class="far fa-clock me-2 text-muted"></i>
-                                            <p class="text-muted small mb-0">12 November 2021</p>
+                                            <p class="text-muted small mb-0">{{ formatDate(blog.created_at) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -174,13 +79,40 @@
                     </div>
 
                     <!-- Pagination -->
-                    <div class="pagination-container d-flex justify-content-center my-5">
+                    <div v-if="blogs.last_page > 1" class="pagination-container d-flex justify-content-center my-5">
                         <nav aria-label="Blog pagination">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                                <!-- Previous Page -->
+                                <li class="page-item" :class="{ disabled: !blogs.prev_page_url }">
+                                    <button 
+                                        class="page-link" 
+                                        @click="goToPage(blogs.current_page - 1)"
+                                        :disabled="!blogs.prev_page_url"
+                                    >
+                                        <i class="fas fa-angle-left"></i>
+                                    </button>
+                                </li>
+
+                                <!-- Page Numbers -->
+                                <li 
+                                    v-for="page in visiblePages" 
+                                    :key="page" 
+                                    class="page-item" 
+                                    :class="{ active: page === blogs.current_page }"
+                                >
+                                    <button class="page-link" @click="goToPage(page)">{{ page }}</button>
+                                </li>
+
+                                <!-- Next Page -->
+                                <li class="page-item" :class="{ disabled: !blogs.next_page_url }">
+                                    <button 
+                                        class="page-link" 
+                                        @click="goToPage(blogs.current_page + 1)"
+                                        :disabled="!blogs.next_page_url"
+                                    >
+                                        <i class="fas fa-angle-right"></i>
+                                    </button>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -192,43 +124,31 @@
                     <div class="other-recipes mb-5">
                         <h3 class="fw-bold mb-4">Tasty Recipes</h3>
                         
-                        <!-- Recipe Item 1 -->
-                        <div class="recipe-item d-flex mb-4">
+                        <!-- Recipe Items -->
+                        <div v-for="recipe in recentRecipes" :key="recipe.id" class="recipe-item d-flex mb-4">
                             <div class="recipe-thumb me-3">
-                                <a href="recipe-detail.html">
-                                    <img src="@/Assets/img/recipes/food-13.png" alt="Chicken Meatball" class="rounded-4 recipe-thumb-img">
-                                </a>
+                                <Link :href="`/recipe/${recipe.id}`">
+                                    <img 
+                                        :src="recipe.recipe_image ? `/storage/${recipe.recipe_image}` : '/images/placeholder-recipe.jpg'" 
+                                        :alt="recipe.title" 
+                                        class="rounded-4 recipe-thumb-img"
+                                        style="width: 80px; height: 80px; object-fit: cover;"
+                                    >
+                                </Link>
                             </div>
                             <div class="recipe-info">
-                                <h5 class="fw-bold mb-2"><a href="recipe-detail.html" class="text-decoration-none text-dark">Chicken Meatballs with Cream Cheese</a></h5>
-                                <p class="text-muted small mb-0">By Andreas Paula</p>
+                                <h5 class="fw-bold mb-2">
+                                    <Link :href="`/recipe/${recipe.id}`" class="text-decoration-none text-dark">
+                                        {{ recipe.title }}
+                                    </Link>
+                                </h5>
+                                <p class="text-muted small mb-0">By {{ recipe.user.name }}</p>
                             </div>
                         </div>
-                        
-                        <!-- Recipe Item 2 -->
-                        <div class="recipe-item d-flex mb-4">
-                            <div class="recipe-thumb me-3">
-                                <a href="recipe-detail.html">
-                                    <img src="@/Assets/img/recipes/food-15.png" alt="Traditional Bolognaise" class="rounded-4 recipe-thumb-img">
-                                </a>
-                            </div>
-                            <div class="recipe-info">
-                                <h5 class="fw-bold mb-2"><a href="recipe-detail.html" class="text-decoration-none text-dark">Traditional Bolognaise Ragu</a></h5>
-                                <p class="text-muted small mb-0">By Andreas Paula</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Recipe Item 3 -->
-                        <div class="recipe-item d-flex mb-4">
-                            <div class="recipe-thumb me-3">
-                                <a href="recipe-detail.html">
-                                    <img src="@/Assets/img/recipes/food-14.png" alt="Chinese Dumplings" class="rounded-4 recipe-thumb-img">
-                                </a>
-                            </div>
-                            <div class="recipe-info">
-                                <h5 class="fw-bold mb-2"><a href="recipe-detail.html" class="text-decoration-none text-dark">Pork and Chive Chinese Dumplings</a></h5>
-                                <p class="text-muted small mb-0">By Andreas Paula</p>
-                            </div>
+
+                        <!-- Show message if no recipes -->
+                        <div v-if="recentRecipes.length === 0" class="text-center text-muted">
+                            <p>No recipes available</p>
                         </div>
                     </div>
                     
@@ -274,6 +194,69 @@
 
 <script setup>
 import FrontendLayout from '@/Layout/FrontendLayout.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+
+// Props from the controller
+const props = defineProps({
+    blogs: Object,
+    recentRecipes: Array,
+    search: String,
+});
+
+// Reactive data
+const searchQuery = ref(props.search || '');
+
+// Methods
+const performSearch = () => {
+    router.get('/blog', { 
+        search: searchQuery.value 
+    }, {
+        preserveState: true,
+        replace: true
+    });
+};
+
+const goToPage = (page) => {
+    router.get('/blog', { 
+        page: page,
+        search: searchQuery.value 
+    }, {
+        preserveState: true,
+        replace: true
+    });
+};
+
+const truncateContent = (content, length = 120) => {
+    if (!content) return '';
+    const text = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
+    return text.length > length ? text.substring(0, length) + '...' : text;
+};
+
+const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+};
+
+// Computed properties
+const visiblePages = computed(() => {
+    const pages = [];
+    const current = props.blogs.current_page;
+    const last = props.blogs.last_page;
+    const maxVisible = 5;
+    
+    let start = Math.max(1, current - Math.floor(maxVisible / 2));
+    let end = Math.min(last, start + maxVisible - 1);
+    
+    if (end - start + 1 < maxVisible) {
+        start = Math.max(1, end - maxVisible + 1);
+    }
+    
+    for (let i = start; i <= end; i++) {
+        pages.push(i);
+    }
+    
+    return pages;
+});
 
 </script>
