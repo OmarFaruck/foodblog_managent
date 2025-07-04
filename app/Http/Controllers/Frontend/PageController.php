@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactEmail;
 
 class PageController extends Controller
 {
@@ -48,5 +50,32 @@ class PageController extends Controller
 
     public function contact(){
         return Inertia::render("Frontend/Pages/Contact");
+    }    
+
+    public function contact_store(Request $request)
+    {
+        try{
+            //dd($request->input());
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $subject = $request->input('subject');
+            $enquiryType = $request->input('enquiryType');
+            $message = $request->input('description');
+
+            Mail::to("developntest@gmail.com")->send(new ContactEmail($name, $email, $subject, $enquiryType, $message));
+
+            return redirect()->route('ContactPage')->with([
+                'message' => 'Message Sent Successful',
+                'status' => true,
+                'error' => ''
+            ]);
+
+        } catch (\Exception $e){
+            return redirect()->route('ContactPage')->with([
+                'message' => 'Message Sent Fail',
+                'status' => false,
+                'error' => $e->getMessage()
+            ]);
+        }
     }    
 }

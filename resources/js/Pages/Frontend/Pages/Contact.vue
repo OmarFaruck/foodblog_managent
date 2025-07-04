@@ -28,30 +28,30 @@
                 
                 <!-- Right Column (Form) -->
                 <div class="col-lg-7">
-                    <form class="contact-form">
+                    <form class="contact-form" @submit.prevent="submit">
                         <div class="row">
                             <!-- Name -->
                             <div class="col-md-6 mb-4">
                                 <label for="name" class="form-label text-uppercase small">Name</label>
-                                <input type="text" class="form-control form-control-lg rounded-3" id="name" placeholder="Enter your name...">
+                                <input type="text" v-model="form.name" class="form-control form-control-lg rounded-3" id="name" placeholder="Enter your name...">
                             </div>
                             
                             <!-- Email -->
                             <div class="col-md-6 mb-4">
                                 <label for="email" class="form-label text-uppercase small">Email Address</label>
-                                <input type="email" class="form-control form-control-lg rounded-3" id="email" placeholder="Your email address...">
+                                <input type="email" v-model="form.email" class="form-control form-control-lg rounded-3" id="email" placeholder="Your email address...">
                             </div>
                             
                             <!-- Subject -->
                             <div class="col-md-6 mb-4">
                                 <label for="subject" class="form-label text-uppercase small">Subject</label>
-                                <input type="text" class="form-control form-control-lg rounded-3" id="subject" placeholder="Enter subject...">
+                                <input type="text" v-model="form.subject" class="form-control form-control-lg rounded-3" id="subject" placeholder="Enter subject...">
                             </div>
                             
                             <!-- Enquiry Type -->
                             <div class="col-md-6 mb-4">
                                 <label for="enquiryType" class="form-label text-uppercase small">Enquiry Type</label>
-                                <select class="form-select form-select-lg rounded-3" id="enquiryType">
+                                <select v-model="form.enquiryType" class="form-select form-select-lg rounded-3" id="enquiryType">
                                     <option selected>Advertising</option>
                                     <option>Recipe Submission</option>
                                     <option>Collaboration</option>
@@ -63,7 +63,7 @@
                             <!-- Message -->
                             <div class="col-12 mb-4">
                                 <label for="message" class="form-label text-uppercase small">Messages</label>
-                                <textarea class="form-control form-control-lg rounded-3" id="message" rows="5" placeholder="Enter your messages..."></textarea>
+                                <textarea v-model="form.description" class="form-control form-control-lg rounded-3" id="message" rows="5" placeholder="Enter your messages..."></textarea>
                             </div>
                             
                             <!-- Submit Button -->
@@ -82,6 +82,52 @@
 
 <script setup>
 import FrontendLayout from '@/Layout/FrontendLayout.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { createToaster } from "@meforma/vue-toaster";
+
+
+const form = useForm({ email: '', name: '', message: '', subject: '', enquiryType: '' });
+const toaster = createToaster();
+const page = usePage();
+
+function submit() {
+
+    if (form.name.length === 0) {
+        toaster.error("Name Required");
+        return;
+    }
+
+    if (form.email.length === 0) {
+        toaster.error("Email Required");
+        return;
+    }
+
+    if (form.message.length === 0) {
+        toaster.error("Message Required");
+        return;
+    }
+
+    if (form.subject.length === 0) {
+        toaster.error("Subject Required");
+        return;
+    }
+
+    if (form.enquiryType.length === 0) {
+        toaster.error("Enquiry Type Required");
+        return;
+    }
+
+    form.post("/contact", {
+        onSuccess: () => {
+            if (page.props.flash.status === true) {
+                toaster.success(page.props.flash.message);
+                //form.reset();
+                //router.get("/contact");
+            } else {
+                toaster.error(page.props.flash.message);
+            }
+        }
+    });
+}
 
 </script>
