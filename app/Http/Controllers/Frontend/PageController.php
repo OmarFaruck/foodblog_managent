@@ -60,7 +60,7 @@ class PageController extends Controller
             $email = $request->input('email');
             $subject = $request->input('subject');
             $enquiryType = $request->input('enquiryType');
-            $message = $request->input('description');
+            $message = $request->input('message');
 
             Mail::to("developntest@gmail.com")->send(new ContactEmail($name, $email, $subject, $enquiryType, $message));
 

@@ -63,7 +63,7 @@
                             <!-- Message -->
                             <div class="col-12 mb-4">
                                 <label for="message" class="form-label text-uppercase small">Messages</label>
-                                <textarea v-model="form.description" class="form-control form-control-lg rounded-3" id="message" rows="5" placeholder="Enter your messages..."></textarea>
+                                <textarea v-model="form.message" class="form-control form-control-lg rounded-3" id="message" rows="5" placeholder="Enter your messages..."></textarea>
                             </div>
                             
                             <!-- Submit Button -->
