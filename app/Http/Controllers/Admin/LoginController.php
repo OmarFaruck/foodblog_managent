@@ -29,6 +29,9 @@ class LoginController extends Controller
         // Checking if user exists and verify password
         if ($user && Hash::check($request->input('password'), $user->password)) {
 
+            // Regenerate session for security
+            $request->session()->regenerate();
+            
             $email=$request->input('email');
             $request->session()->put('email',$email);
             $request->session()->put('user_id',$user->id);
@@ -52,7 +55,8 @@ class LoginController extends Controller
 
     function logout(Request $request){
 //        echo 'logout'; exit;
-        $request->session()->flush();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('LoginPage');
 
     }    

@@ -61,12 +61,12 @@
                                 type="email" 
                                 class="form-control" 
                                 placeholder="Your email address..." 
-                                v-model="email"
-                                :disabled="isLoading"
+                                v-model="form.email"
+                                :disabled="form.processing"
                                 >
-                            <button class="btn btn-dark px-4" type="submit" :disabled="isLoading">
-                                <span v-if="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
-                                {{ isLoading ? 'Subscribing...' : 'Subscribe' }}
+                            <button class="btn btn-dark px-4" type="submit" :disabled="form.processing">
+                                <span v-if="form.processing" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                {{ form.processing ? 'Subscribing...' : 'Subscribe' }}
                             </button>
                         </div>
                     </form>
@@ -175,10 +175,9 @@
 </template>
 
 <script setup>
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, usePage, useForm } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
 import { createToaster } from "@meforma/vue-toaster";
-import axios from 'axios';
 
 const page = usePage();
 
@@ -203,35 +202,43 @@ const navClass = (path) => {
 }
 
 const toast = createToaster();
-const email = ref('');
-const isLoading = ref(false);
 
-const subscribeNewsletter = async () => {
-    if (!email.value) {
+// Create form using Inertia's useForm helper
+const form = useForm({
+    email: ''
+});
+
+const subscribeNewsletter = () => {
+    if (!form.email) {
         toast.error('Please enter your email address');
         return;
     }
 
-    isLoading.value = true;
-
-    try {
-        const response = await axios.post('/subscribe', {
-            email: email.value
-        });
-
-        if (response.data.success) {
-            toast.success(response.data.message);
-            email.value = ''; // Clear the form
+    form.post('/subscribe', {
+        onSuccess: (page) => {
+            // Check for success flash message
+            if (page.props.flash?.success) {
+                toast.success(page.props.flash.success);
+            } else {
+                toast.success('Successfully subscribed to newsletter!');
+            }
+            form.reset('email'); // Clear the email field
+        },
+        onError: (errors) => {
+            // Handle validation errors
+            if (errors.email) {
+                toast.error(errors.email);
+            } else if (page.props.flash?.error) {
+                toast.error(page.props.flash.error);
+            } else {
+                toast.error('Something went wrong. Please try again.');
+            }
+        },
+        onFinish: () => {
+            // This runs regardless of success or error
+            // You can add any cleanup logic here if needed
         }
-    } catch (error) {
-        if (error.response && error.response.data) {
-            toast.error(error.response.data.message);
-        } else {
-            toast.error('Something went wrong. Please try again.');
-        }
-    } finally {
-        isLoading.value = false;
-    }
+    });
 };
 
 </script>

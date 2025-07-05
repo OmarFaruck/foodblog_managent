@@ -23,10 +23,7 @@ class SubscriberController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => $validator->errors()->first()
-            ], 422);
+            return back()->withErrors($validator->errors());
         }
 
         try {
@@ -38,16 +35,10 @@ class SubscriberController extends Controller
             // Send welcome email
             Mail::to($request->email)->send(new SubscriberMail());
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Thank you for subscribing! Check your email for a welcome message.'
-            ]);
+            return back()->with('success', 'Thank you for subscribing! Check your email for a welcome message.');
 
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Something went wrong. Please try again later.'
-            ], 500);
+            return back()->with('error', 'Something went wrong. Please try again later.');
         }
     }
 }
