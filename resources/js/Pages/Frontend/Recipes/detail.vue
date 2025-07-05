@@ -12,9 +12,13 @@
                             <!-- Author Info -->
                             <div class="d-flex align-items-center me-4 mb-3 mb-md-0">
                                 <div class="author-avatar me-2">
-                                    <div class="avatar-circle bg-primary text-white d-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px;">
-                                        {{ recipe.user.name.charAt(0).toUpperCase() }}
-                                    </div>
+                                    <!-- <div class="avatar-circle bg-primary text-white d-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px;"> -->
+                                        <!-- {{ recipe.user.name.charAt(0).toUpperCase() }} -->
+                                          <!-- <img :src="`/storage/${recipe.user.avatar}`" alt="Author" class="rounded-circle me-3" width="50" height="50">
+                                    </div> -->
+                                    <div class="author-avatar me-2">
+                                        <img :src="`/storage/${recipe.user.avatar}`" alt="John Smith" class="rounded-circle" width="50" height="50">
+                                    </div>                                    
                                 </div>
                                 <div>
                                     <h6 class="mb-0 fw-bold">{{ recipe.user.name }}</h6>

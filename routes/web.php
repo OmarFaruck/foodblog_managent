@@ -4,8 +4,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectionController;
 use App\Http\Controllers\Admin\IngredientController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NutritionFactController;
 use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
+use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\RecipeController;
@@ -32,15 +34,23 @@ Route::post('/contact', [PageController::class, 'contact_store'])->name('Contact
 
 Route::post('/subscribe', [SubscriberController::class, 'subscribe'])->name('subscribe');
 
-Route::get('/admin/login', [UserController::class, 'LoginPage'])->name('LoginPage');
-Route::post('/admin/login', [UserController::class, 'login'])->name('user.login');
-Route::get('/admin/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::get('/admin/login', [LoginController::class, 'LoginPage'])->name('LoginPage');
+Route::post('/admin/login', [LoginController::class, 'login'])->name('user.login');
+Route::get('/admin/logout', [LoginController::class, 'logout'])->name('user.logout');
 
-Route::get('/admin/register', [UserController::class, 'RegistrationPage'])->name('RegistrationPage');
-Route::post('/admin/register', [UserController::class, 'register'])->name('user.register');
+Route::get('/admin/register', [RegisterController::class, 'RegistrationPage'])->name('RegistrationPage');
+Route::post('/admin/register', [RegisterController::class, 'register'])->name('user.register');
 
 Route::middleware(SessionAuthenticate::class)->group(callback: function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('DashboardPage');
+
+    // User Management Routes
+    Route::get('/admin/user', [UserController::class, 'UserPage'])->name('UserPage');
+    Route::get('/admin/UserSavePage', [UserController::class, 'UserSavePage'])->name('UserSavePage');
+    Route::post('/admin/create-user', [UserController::class, 'create']);
+    Route::post('/admin/update-user', [UserController::class, 'update']);
+    Route::get('/admin/delete-user/{id}', [UserController::class, 'delete']);
+
 
     Route::get('/admin/category', [CategoryController::class, 'CategoryPage'])->name('CategoryPage');
     Route::get('/admin/CategorySavePage', [CategoryController::class, 'CategorySavePage'])->name('CategorySavePage');

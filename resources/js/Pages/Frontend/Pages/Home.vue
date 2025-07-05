@@ -30,7 +30,7 @@
                             </div>
                             <div class="d-flex flex-wrap align-items-center justify-content-between mb-5">
                                 <div class="hero-author d-flex align-items-center">
-                                    <img src="@/Assets/img/users/chef-2.png" alt="Author" class="rounded-circle me-3" width="50" height="50">
+                                    <img :src="`/storage/${featuredRecipe.user.avatar}`" alt="Author" class="rounded-circle me-3" width="50" height="50">
                                     <div>
                                         <h6 class="mb-0">{{ featuredRecipe.user.name }}</h6>
                                         <small class="text-muted">{{ formatDate(featuredRecipe.created_at) }}</small>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="mt-3 mt-sm-0">
                                     <Link :href="`/recipe/${featuredRecipe.id}`" class="btn btn-dark btn-lg view-recipes-btn">
-                                        View Recipes
+                                        View Recipe
                                         <i class="fas fa-chevron-right"></i>
                                     </Link>
                                 </div>

@@ -2,102 +2,146 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
-use Inertia\Response;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController
 {
-    public function index(): Response
+    function UserPage(Request $request)
     {
-        return Inertia::render('User/Index');
+        $list = User::orderBy('id','desc')->get();
+        return Inertia::render('Admin/User/UserPage',['list'=>$list]);
     }
 
-    public function LoginPage(Request $request)
+    function UserSavePage(Request $request)
     {
-        $email=$request->session()->get('email','default'); //dd($email);
+        $user_id = $request->query('id');
+        $list = User::where('id', $user_id)->first();
+        return Inertia::render('Admin/User/UserSavePage',['list'=>$list]);
+    }
 
-        if($email != 'default') {
-            return redirect()->route('DashboardPage');
-        }
-
-        return Inertia::render('Admin/User/Login');
-    }  
-    
-    function login(Request $request) { //dd(Hash::make($request->input('password')));
-
-        // Retrieving the user by email
-        $user = User::where('email', $request->input('email'))->first();
-
-        // Checking if user exists and verify password
-        if ($user && Hash::check($request->input('password'), $user->password)) {
-
-            $email=$request->input('email');
-            $request->session()->put('email',$email);
-            $request->session()->put('user_id',$user->id);
-            $request->session()->put('name',$user->name);
-
-            session()->flash('message', 'Login Successful');
-            session()->flash('status', true);
-            session()->flash('error', '');
-
-            return redirect()->route('DashboardPage');
-        }
-
-        // Login failed
-        return back()->with([
-            'message' => 'Login Failed',
-            'status' => false,
-            'error' => 'Invalid email or password'
+    function create(Request $request){
+        // Validating the request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'bio' => 'nullable|string|max:500',
+            'role' => 'required|in:user,admin',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,png|max:2048',
         ]);
 
-    }    
-
-    function logout(Request $request){
-//        echo 'logout'; exit;
-        $request->session()->flush();
-        return redirect()->route('LoginPage');
-
-    }    
-
-    public function RegistrationPage(Request $request)
-    {
-        $email=$request->session()->get('email','default'); //dd($email);
-
-        if($email != 'default') {
-            return redirect()->route('DashboardPage');
-        }
-        return Inertia::render('Admin/User/Register');
-    }   
-    
-    function register(Request $request){
-
         try {
-            $email=$request->input('email');
-            $name=$request->input('name');
-            $role='user';
-            $password=$request->input('password');
+            if ($request->hasFile('avatar')) {
+                $file = $request->file('avatar');
+                $fileName = now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+                $imagePath = $file->storeAs('user-avatars', $fileName, 'public');
+            } else {
+                $imagePath = null;
+            }
 
             User::create([
-                'name'=>$name,
-                'email'=>$email,
-                'role'=>$role,
-                'password'=>$password
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'bio' => $validatedData['bio'],
+                'role' => $validatedData['role'],
+                'avatar' => $imagePath,
             ]);
 
-            session()->flash('message', 'Registration Successful');
-            session()->flash('status', true);
-            session()->flash('error', '');
-
-            return  redirect()->route('RegistrationPage');
+            return redirect()->route('UserSavePage')->with([
+                'message' => 'User Created Successfully',
+                'status' => true,
+                'error' => ''
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('UserSavePage')->with([
+                'message' => 'User Creation Failed',
+                'status' => false,
+                'error' => $e->getMessage()
+            ]);
         }
-        catch (\Exception $e) {
-            session()->flash('message', 'Registration Fail');
-            session()->flash('status', false);
-            session()->flash('error', $e->getMessage());
+    }
+
+    function update(Request $request){
+        //dd('inside user update');
+        $user_id = $request->input('id');
+
+        // Remove empty avatar field if it exists
+        if ($request->has('avatar') && empty($request->file('avatar'))) {
+            $request->request->remove('avatar');
         }
 
-    }    
+        // Validating the request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user_id)],
+            'password' => 'nullable|string|min:8|confirmed',
+            'bio' => 'nullable|string|max:500',
+            'role' => 'required|in:user,admin',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,png|max:2048',
+        ]);
+        //dd( $request->all() );
+        try {
+            $user = User::where('id', $user_id)->first();
+
+            if ($request->hasFile('avatar')) {
+                // Delete old avatar if it exists
+                if ($user->avatar) {
+                    Storage::disk('public')->delete($user->avatar);
+                }
+                $file = $request->file('avatar');
+                $fileName = now()->format('YmdHis') . '_' . $file->getClientOriginalName();
+                $imagePath = $file->storeAs('user-avatars', $fileName, 'public');
+            } else {
+                $imagePath = $user->avatar; // Keep the existing avatar
+            }
+
+            $updateData = [
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'bio' => $validatedData['bio'],
+                'role' => $validatedData['role'],
+                'avatar' => $imagePath,
+            ];
+
+            // Only update password if provided
+            if (!empty($validatedData['password'])) {
+                $updateData['password'] = Hash::make($validatedData['password']);
+            }
+
+            $user->update($updateData);
+
+            $data = ['message' => 'User Updated Successfully', 'status' => true, 'error' => ''];
+        } catch (Exception $e) {
+            $data = ['message' => 'User Update Failed', 'status' => false, 'error' => $e->getMessage()];
+        }
+
+        return redirect()->route('UserSavePage')->with($data);
+    }
+
+    function delete(Request $request){
+        try {
+            $user_id = $request->id;
+            $user = User::where('id', $user_id)->first();
+
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            
+            $user->delete();
+
+            $data = ['message' => 'User Deleted Successfully', 'status' => true, 'error' => ''];
+            return redirect()->route('UserPage')->with($data);
+
+        } catch (Exception $e) {
+            $data = ['message' => 'User Deletion Failed', 'status' => false, 'error' => ''];
+            return redirect()->route('UserPage')->with($data);
+        }
+    }
 }
