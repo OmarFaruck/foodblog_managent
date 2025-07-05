@@ -87,10 +87,6 @@
     "file": "assets/hot-recipe-BtFeXoaa.png",
     "src": "resources/js/Assets/img/hand-picked-recipes/hot-recipe.png"
   },
-  "resources/js/Assets/img/icon.svg": {
-    "file": "assets/icon-CCwf_-ea.svg",
-    "src": "resources/js/Assets/img/icon.svg"
-  },
   "resources/js/Assets/img/newsletter/newsletter-1.png": {
     "file": "assets/newsletter-1-ClHF-wOH.png",
     "src": "resources/js/Assets/img/newsletter/newsletter-1.png"
@@ -128,15 +124,14 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-bRbR-dbe.js",
+    "file": "assets/app-BJVgDBCz.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-esBtKBI7.css"
+      "assets/app-CHArhMPD.css"
     ],
     "assets": [
-      "assets/icon-CCwf_-ea.svg",
       "assets/newsletter-1-ClHF-wOH.png",
       "assets/newsletter-2-D0LQpsaH.png",
       "assets/Star-1-DmZnCDVm.png",

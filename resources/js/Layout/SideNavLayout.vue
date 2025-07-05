@@ -87,7 +87,8 @@
 import { ref, watchEffect } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 
-const activeMenu = ref(localStorage.getItem('activeMenu') || window.location.pathname);
+// const activeMenu = ref(localStorage.getItem('activeMenu') || window.location.pathname);
+const activeMenu = window.location.pathname;
 
 watchEffect(() => {
     localStorage.setItem('activeMenu', activeMenu.value);
