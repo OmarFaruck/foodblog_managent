@@ -13,22 +13,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item px-2">
-                        <Link class="nav-link active fw-medium" href="/">Home</Link>
+                        <Link :class="navClass('/')" href="/">Home</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <Link class="nav-link fw-medium" href="/recipes">Recipes</Link>
+                        <Link :class="navClass('/recipes')" href="/recipes">Recipes</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <Link class="nav-link fw-medium" href="/blog">Blog</Link>
+                        <Link :class="navClass('/blog')" href="/blog">Blog</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <Link class="nav-link fw-medium" href="/contact-us">Contact</Link>
+                        <Link :class="navClass('/contact-us')" href="/contact-us">Contact</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <Link class="nav-link fw-medium" href="/about-us">About Us</Link>
+                        <Link :class="navClass('/about-us')" href="/about-us">About Us</Link>
                     </li>
                     <li class="nav-item px-2">
-                        <Link href="/admin/login" class="nav-link fw-medium">Login</Link>
+                        <Link :class="navClass('/admin/login')" href="/admin/login">Login</Link>
                     </li>
                 </ul>
                 
@@ -175,10 +175,12 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
 import { createToaster } from "@meforma/vue-toaster";
 import axios from 'axios';
+
+const page = usePage();
 
 // Props
 const props = defineProps({
@@ -191,6 +193,14 @@ const props = defineProps({
         default: false
     }
 });
+
+const currentUrl = computed(() => page.url)
+
+const navClass = (path) => {
+    return currentUrl.value === path
+        ? 'nav-link active fw-medium' // Active link style
+        : 'nav-link fw-medium' // Inactive link style
+}
 
 const toast = createToaster();
 const email = ref('');
