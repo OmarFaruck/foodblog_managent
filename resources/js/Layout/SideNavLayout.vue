@@ -1,0 +1,193 @@
+<template>
+    <div>
+        <nav id="topNav" class="navbar fixed-top food-blog-navbar" :class="isNavOpen ? 'top-navbar' : 'top-navbar-expand'">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center">
+                    <a id="MenuBar" @click="NavOpenClose" class="icon-nav mx-2 my-1 h5">
+                        <i class="fa text-white fa-bars"></i>
+                    </a>
+                    <span class="navbar-brand font-lobster text-white ms-2 d-none d-md-block">
+                        {{ isAdmin ? 'Foodieland Admin' : 'Foodieland Dashboard' }}
+                    </span>
+                </div>
+                <div>
+                    <Link href="/admin/logout" class="btn-logout">
+                        <i class="fa fa-sign-out-alt me-1"></i> Logout
+                    </Link>
+                </div>
+            </div>
+        </nav>
+        <div id="sideNav" :class="isNavOpen ? 'side-nav-open' : 'side-nav-close'">
+            <div class="side-nav-top text-center">
+                <h2 class="font-lobster text-white mt-4 mb-2">Foodieland.</h2>
+                <p class="sidebar-tagline">Delicious Creations</p>
+                <div class="sidebar-divider"></div>
+            </div>
+
+            <Link href="/admin/dashboard" class="side-bar-item" :class="{ active: activeMenu === '/admin/dashboard' }" @click="setActiveMenu('/admin/dashboard')">
+                <span class="side-bar-item-icon"><i class="fa fa-tachometer-alt"/></span>
+                <span class="side-bar-item-caption">Dashboard</span>
+            </Link>
+
+            <!-- Admin Only - User Management -->
+            <Link v-if="isAdmin" href="/admin/user" class="side-bar-item" :class="{ active: activeMenu === '/admin/user' }" @click="setActiveMenu('/admin/user')">
+                <span class="side-bar-item-icon"><i class="fa fa-users-cog"/></span>
+                <span class="side-bar-item-caption">User Management</span>
+            </Link>   
+            
+            <!-- Show divider only if admin (has access to categories section) -->
+            <div v-if="isAdmin" class="sidebar-divider"></div>         
+
+            <!-- Admin Only - Categories -->
+            <Link v-if="isAdmin" href="/admin/category" class="side-bar-item" :class="{ active: activeMenu === '/admin/category' }" @click="setActiveMenu('/admin/category')">
+                <span class="side-bar-item-icon"><i class="fa fa-th-list"/></span>
+                <span class="side-bar-item-caption">Categories</span>
+            </Link>                       
+
+            <!-- Admin Only - Ingredients -->
+            <Link v-if="isAdmin" href="/admin/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/admin/ingredient' }" @click="setActiveMenu('/admin/ingredient')">
+                <span class="side-bar-item-icon"><i class="fa fa-carrot"/></span>
+                <span class="side-bar-item-caption">Ingredients</span>
+            </Link>
+
+            <!-- Admin Only - Directions -->
+            <Link v-if="isAdmin" href="/admin/direction" class="side-bar-item" :class="{ active: activeMenu === '/admin/direction' }" @click="setActiveMenu('/admin/direction')">
+                <span class="side-bar-item-icon"><i class="fa fa-list-ol"/></span>
+                <span class="side-bar-item-caption">Directions</span>
+            </Link>        
+
+            <!-- Admin Only - Nutrition Facts -->
+            <Link v-if="isAdmin" href="/admin/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/admin/nutrition-fact' }" @click="setActiveMenu('/admin/nutrition-fact')">
+                <span class="side-bar-item-icon"><i class="fa fa-chart-pie"/></span>
+                <span class="side-bar-item-caption">Nutrition Facts</span>
+            </Link>            
+
+            <!-- Accessible by all users - Recipes -->
+            <Link href="/admin/recipe" class="side-bar-item" :class="{ active: activeMenu === '/admin/recipe' }" @click="setActiveMenu('/admin/recipe')">
+                <span class="side-bar-item-icon"><i class="fa fa-utensils"/></span>
+                <span class="side-bar-item-caption">Recipes</span>
+            </Link>
+            
+            <div class="sidebar-divider"></div>
+            
+            <!-- Accessible by all users - Blog Posts -->
+            <Link href="/admin/blog" class="side-bar-item" :class="{ active: activeMenu === '/admin/blog' }" @click="setActiveMenu('/admin/blog')">
+                <span class="side-bar-item-icon"><i class="fa fa-blog"/></span>
+                <span class="side-bar-item-caption">Blog Posts</span>
+            </Link>
+            
+            <!-- Admin Only - Subscribers -->
+            <Link v-if="isAdmin" href="/admin/subscriber" class="side-bar-item" :class="{ active: activeMenu === '/admin/subscriber' }" @click="setActiveMenu('/admin/subscriber')">
+                <span class="side-bar-item-icon"><i class="fa fa-envelope"/></span>
+                <span class="side-bar-item-caption">Subscribers</span>
+            </Link>
+
+        </div>
+        <div id="content" :class="isNavOpen ? 'content' : 'content-expand'">
+            <div class="container-fluid">
+                <main>
+                    <slot></slot>
+                </main>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<script setup>
+import { ref, watchEffect, computed } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+
+// Get user data from Inertia shared props
+const user = computed(() => page.props.auth?.user || null);
+const userRole = computed(() => user.value?.role || 'user');
+
+// Check if user is admin
+const isAdmin = computed(() => userRole.value === 'admin');
+
+// const activeMenu = ref(localStorage.getItem('activeMenu') || window.location.pathname);
+const activeMenu = window.location.pathname;
+
+watchEffect(() => {
+    localStorage.setItem('activeMenu', activeMenu.value);
+});
+
+const setActiveMenu = (path) => {
+    activeMenu.value = path;
+};
+
+// Track sidebar state
+const isNavOpen = ref(localStorage.getItem('isNavOpen') === 'true');
+
+const NavOpenClose = () => {
+    isNavOpen.value = !isNavOpen.value;
+    localStorage.setItem('isNavOpen', isNavOpen.value);
+};
+
+</script>
+
+<style scoped>
+.active {
+    background-color: #000000; /* Black background */
+    color: white !important;
+}
+
+.food-blog-navbar {
+    background: linear-gradient(to right, #000000, #333333) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+}
+
+.btn-logout {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.sidebar-tagline {
+    color: #cccccc;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: 15px 20px;
+}
+
+#sideNav {
+    background: linear-gradient(to bottom, #1a1a1a, #272727) !important;
+}
+
+.side-bar-item {
+    margin: 5px 10px;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+.side-bar-item:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    transform: translateX(5px);
+}
+
+.side-bar-item-icon {
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+</style>
+

@@ -1,11 +1,157 @@
 {
+  "node_modules/@fortawesome/fontawesome-free/css/all.css": {
+    "file": "assets/all-CjfE1Ck1.css",
+    "src": "node_modules/@fortawesome/fontawesome-free/css/all.css"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-D1LuMI3I.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-D_cYUPeE.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-DZaxPHgR.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-BjRzuEpd.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-D0aA9rwL.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-CTAAxXor.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf": {
+    "file": "assets/fa-v4compatibility-CCth-dXg.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-C9RhG_FT.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/js/Assets/css/frontend.css": {
+    "file": "assets/frontend-DnbJjpIX.css",
+    "src": "resources/js/Assets/css/frontend.css"
+  },
+  "resources/js/Assets/css/main.css": {
+    "file": "assets/main-C0om5YRK.css",
+    "src": "resources/js/Assets/css/main.css"
+  },
+  "resources/js/Assets/img/chef/cooker-1.png": {
+    "file": "assets/cooker-1-CnWUbgNB.png",
+    "src": "resources/js/Assets/img/chef/cooker-1.png"
+  },
+  "resources/js/Assets/img/chef/lettuce.png": {
+    "file": "assets/lettuce-BfoKhT74.png",
+    "src": "resources/js/Assets/img/chef/lettuce.png"
+  },
+  "resources/js/Assets/img/chef/meat.png": {
+    "file": "assets/meat-CcM88xx3.png",
+    "src": "resources/js/Assets/img/chef/meat.png"
+  },
+  "resources/js/Assets/img/chef/onion.png": {
+    "file": "assets/onion-C3x1hHC8.png",
+    "src": "resources/js/Assets/img/chef/onion.png"
+  },
+  "resources/js/Assets/img/chef/tomato.png": {
+    "file": "assets/tomato-CmjFmdd7.png",
+    "src": "resources/js/Assets/img/chef/tomato.png"
+  },
+  "resources/js/Assets/img/contact-us/Cook-contact.png": {
+    "file": "assets/Cook-contact-5_sDndCp.png",
+    "src": "resources/js/Assets/img/contact-us/Cook-contact.png"
+  },
+  "resources/js/Assets/img/hand-picked-recipes/food-1.png": {
+    "file": "assets/food-1-Ck5e_X4k.png",
+    "src": "resources/js/Assets/img/hand-picked-recipes/food-1.png"
+  },
+  "resources/js/Assets/img/hand-picked-recipes/food-2.png": {
+    "file": "assets/food-2-yi2nZV9G.png",
+    "src": "resources/js/Assets/img/hand-picked-recipes/food-2.png"
+  },
+  "resources/js/Assets/img/hand-picked-recipes/food-3.png": {
+    "file": "assets/food-3-DErzAZgH.png",
+    "src": "resources/js/Assets/img/hand-picked-recipes/food-3.png"
+  },
+  "resources/js/Assets/img/hand-picked-recipes/hand-picked-recipes.png": {
+    "file": "assets/hand-picked-recipes-CZvgI-Jk.png",
+    "src": "resources/js/Assets/img/hand-picked-recipes/hand-picked-recipes.png"
+  },
+  "resources/js/Assets/img/hand-picked-recipes/hot-recipe.png": {
+    "file": "assets/hot-recipe-BtFeXoaa.png",
+    "src": "resources/js/Assets/img/hand-picked-recipes/hot-recipe.png"
+  },
+  "resources/js/Assets/img/newsletter/newsletter-1.png": {
+    "file": "assets/newsletter-1-ClHF-wOH.png",
+    "src": "resources/js/Assets/img/newsletter/newsletter-1.png"
+  },
+  "resources/js/Assets/img/newsletter/newsletter-2.png": {
+    "file": "assets/newsletter-2-D0LQpsaH.png",
+    "src": "resources/js/Assets/img/newsletter/newsletter-2.png"
+  },
+  "resources/js/Assets/img/recipes/Star-1.png": {
+    "file": "assets/Star-1-DmZnCDVm.png",
+    "src": "resources/js/Assets/img/recipes/Star-1.png"
+  },
+  "resources/js/Assets/img/recipes/promotional-banner.png": {
+    "file": "assets/promotional-banner-B4BZx3Qd.png",
+    "src": "resources/js/Assets/img/recipes/promotional-banner.png"
+  },
+  "resources/js/Assets/img/users/chef-1.png": {
+    "file": "assets/chef-1-83u84PT0.png",
+    "src": "resources/js/Assets/img/users/chef-1.png"
+  },
+  "resources/js/Assets/img/users/chef-2.png": {
+    "file": "assets/chef-2-BQNQMJ2C.png",
+    "src": "resources/js/Assets/img/users/chef-2.png"
+  },
+  "resources/js/Assets/img/users/chef-3.png": {
+    "file": "assets/chef-3-C2meQZhU.png",
+    "src": "resources/js/Assets/img/users/chef-3.png"
+  },
+  "resources/js/Assets/img/users/chef-4.png": {
+    "file": "assets/chef-4-DB3x09kv.png",
+    "src": "resources/js/Assets/img/users/chef-4.png"
+  },
+  "resources/js/Assets/img/users/our-experience.jpg": {
+    "file": "assets/our-experience-CAvP8lVN.jpg",
+    "src": "resources/js/Assets/img/users/our-experience.jpg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-C0KtP73i.js",
+    "file": "assets/app-mq82w2tu.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-B_7lVK5n.css"
+      "assets/app-YqMgsEPT.css"
+    ],
+    "assets": [
+      "assets/newsletter-1-ClHF-wOH.png",
+      "assets/newsletter-2-D0LQpsaH.png",
+      "assets/Star-1-DmZnCDVm.png",
+      "assets/promotional-banner-B4BZx3Qd.png",
+      "assets/our-experience-CAvP8lVN.jpg",
+      "assets/chef-1-83u84PT0.png",
+      "assets/chef-2-BQNQMJ2C.png",
+      "assets/chef-3-C2meQZhU.png",
+      "assets/chef-4-DB3x09kv.png",
+      "assets/Cook-contact-5_sDndCp.png",
+      "assets/hot-recipe-BtFeXoaa.png",
+      "assets/food-2-yi2nZV9G.png",
+      "assets/food-3-DErzAZgH.png",
+      "assets/hand-picked-recipes-CZvgI-Jk.png",
+      "assets/cooker-1-CnWUbgNB.png",
+      "assets/meat-CcM88xx3.png",
+      "assets/tomato-CmjFmdd7.png",
+      "assets/onion-C3x1hHC8.png",
+      "assets/lettuce-BfoKhT74.png",
+      "assets/food-1-Ck5e_X4k.png"
     ]
   }
 }

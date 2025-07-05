@@ -1,0 +1,644 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+@import "fontawesome.css";
+@import "sidebar.css";
+
+
+.font-lobster{
+    font-family: 'Lobster', cursive !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #f8f9fa !important;
+    color: #343a40 !important;
+}
+
+.text-green{
+    color:#000000 !important;
+}
+
+.card{
+    border: none !important;
+}
+
+.btn-success{
+    background: #000000 !important;
+    border-color:  #000000 !important;
+}
+.center-screen{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+/* Customize the progress bar */
+#nprogress .bar {
+    background: #000000 !important; /* Green color */
+    height: 4px !important; /* Adjust height */
+}
+
+.side-nav-open {
+    width: 250px;
+    transition: width 0.3s ease-in-out;
+}
+
+.side-nav-closed {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Content area adjustment when sidebar is open/closed */
+.content-expanded {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content-collapsed {
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Content area styles */
+#content {
+    margin-left: 250px; /* Match sidebar width */
+    padding-top: 20px; /* Space for the top navbar */
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
+
+#content.content-expand {
+    margin-left: 0;
+}
+
+/* Optional: Add padding/margins to content for better layout */
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Auth Form Styles - Shared between login and registration */
+.food-card {
+    border: none !important;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.food-heading {
+    color: #000000;
+    font-weight: 600;
+}
+
+.food-link {
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.food-link:hover {
+    color: #333333;
+    text-decoration: underline;
+}
+
+.login-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.auth-input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px !important;
+}
+
+.auth-input-group .input-group-text {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-right: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.auth-input-group .input-group-text i {
+    color: #333333 !important;  /* Darker color for icons */
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.auth-input-group .form-control {
+    border-left: none;
+    background-color: #ffffff;
+    padding: 15px;
+    height: auto;
+    font-size: 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.auth-input-group:focus-within {
+    box-shadow: 0 0 0 0.1rem rgba(0, 0, 0, 0.07);
+}
+
+.btn-success {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 40px !important; /* Rounded corners matching the screenshot */
+    padding: 12px 24px !important; /* More padding for better appearance */
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.btn-success:hover {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.food-quotes {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.credential-hint {
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.food-benefits {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+}
+
+.benefit-item {
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .benefit-item {
+        margin-bottom: 5px;
+    }
+}
+
+/* Additional UI enhancements */
+.search-btn-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-success::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-success:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Add nicer focus styles to match black theme */
+.form-control:focus {
+    border-color: #cccccc;
+    box-shadow: none;
+}
+
+/* Elegant underline animation for links */
+.elegant-link {
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+}
+
+.elegant-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.elegant-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Admin Panel Food Blog Styles */
+.admin-card {
+    border: none !important;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+    margin-bottom: 20px;
+}
+
+.admin-card h5 {
+    font-family: 'Lobster', cursive;
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.admin-subtitle {
+    color: #6c757d;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.admin-search {
+    border-radius: 40px;
+    padding: 8px 15px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.admin-search:focus {
+    border-color: #000000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    color: #495057;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left !important;
+}
+
+.admin-table tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.admin-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.btn-admin-primary {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+    border-radius: 40px;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-admin-primary:hover {
+    background-color: #333333;
+    border-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-admin-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+    border-radius: 40px;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-admin-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.2);
+}
+
+/* Action button styling to match screenshot */
+.btn-edit, .btn-delete {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #333;
+    border-color: #333;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+/* Create button styling */
+.btn-dark.create-btn {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.btn-dark.create-btn:hover {
+    background-color: #333;
+    border-color: #333;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Food blog themed pagination */
+.easy-data-table .vue3-easy-data-table__pagination {
+    border-radius: 40px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 5px;
+}
+
+.easy-data-table .vue3-easy-data-table__pagination button {
+    border-radius: 50%;
+    margin: 0 2px;
+    color: #333333;
+}
+
+.easy-data-table .vue3-easy-data-table__pagination button.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Food blog themed data table */
+.vue3-easy-data-table {
+    border-radius: 0 !important;
+    overflow: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.vue3-easy-data-table th {
+    background-color: white !important;
+    color: #333333 !important;
+    font-weight: 600 !important;
+    padding: 15px !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    text-align: left !important;
+}
+
+.vue3-easy-data-table td {
+    padding: 15px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    vertical-align: middle !important;
+}
+
+.vue3-easy-data-table tr:nth-child(even) {
+    background-color: #f9f9f9 !important;
+}
+
+.vue3-easy-data-table tr:hover {
+    background-color: #f5f5f5 !important;
+}
+
+.vue3-easy-data-table__footer {
+    background-color: transparent !important;
+    padding: 10px 0 !important;
+    border-top: none !important;
+}
+
+.vue3-easy-data-table__rows-per-page-selector select {
+    border-radius: 20px !important;
+    padding: 5px 10px !important;
+    border: 1px solid #ddd !important;
+}
+
+.vue3-easy-data-table__pagination-buttons button:not([disabled]) {
+    background-color: #000000 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    margin: 0 2px !important;
+}
+
+.vue3-easy-data-table__pagination-buttons button:hover:not([disabled]) {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Food blog inspired header for admin sections */
+.admin-header {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+/* Food-themed icons */
+.food-icon {
+    color: #000000;
+}
+
+.admin-header h5 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.admin-subtitle {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Container with slight texture for food-blog feel */
+.food-blog-container {
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5f5f5' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin container to properly align content */
+.admin-container {
+    padding: 20px !important;
+    width: 100% !important;
+}
+
+/* Adjust card for better fit */
+.card.admin-card {
+    margin-bottom: 20px !important;
+    background: white !important;
+    border-radius: 10px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+    border: none !important;
+}
+
+/* Style the action buttons in the data table */
+.btn-admin-primary.btn-sm, .btn-admin-danger.btn-sm {
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+}
+
+/* Add responsive padding */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 10px !important;
+    }
+}
+
+/* Search input styling */
+.search-container {
+    max-width: 300px;
+}
+
+.search-input {
+    padding-left: 35px !important;
+    border-radius: 5px !important;
+    border: 1px solid #dee2e6 !important;
+    height: 38px !important;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    color: #555;
+    z-index: 10;
+}
+
+/* Form input styling */
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    color: #555;
+    z-index: 10;
+}
+
+/* Form label styling */
+.form-label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Secondary button styling */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    color: white;
+}
+
+/* Make sure edit/delete buttons align properly */
+.edit-delete-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.search-input {
+    padding-left: 35px !important;
+    height: 47px !important;
+}
+
+.no-image {
+    color: #6c757d;
+    font-style: italic;
+}
+
