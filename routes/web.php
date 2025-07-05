@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectionController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NutritionFactController;
 use App\Http\Controllers\Admin\RecipeController as AdminRecipeController;
 use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\RecipeController;
@@ -85,5 +87,19 @@ Route::middleware(SessionAuthenticate::class)->group(callback: function () {
     Route::post("/admin/create-nutrition-fact",[NutritionFactController::class,'create']);
     Route::post("/admin/update-nutrition-fact",[NutritionFactController::class,'update']);
     Route::get("/admin/delete-nutrition-fact/{id}",[NutritionFactController::class,'delete']);
+
+    // Blog Routes
+    Route::get('/admin/blog', [AdminBlogController::class, 'BlogPage'])->name('BlogPage');
+    Route::get('/admin/BlogSavePage', [AdminBlogController::class, 'BlogSavePage'])->name('BlogSavePage');
+    Route::post('/admin/create-blog', [AdminBlogController::class, 'create']);
+    Route::post('/admin/update-blog', [AdminBlogController::class, 'update']);
+    Route::get('/admin/delete-blog/{id}', [AdminBlogController::class, 'delete']);
+
+    // Subscriber Routes
+    Route::get('/admin/subscriber', [AdminSubscriberController::class, 'SubscriberPage'])->name('SubscriberPage');
+    Route::get('/admin/SubscriberSavePage', [AdminSubscriberController::class, 'SubscriberSavePage'])->name('SubscriberSavePage');
+    Route::post('/admin/create-subscriber', [AdminSubscriberController::class, 'create']);
+    Route::post('/admin/update-subscriber', [AdminSubscriberController::class, 'update']);
+    Route::get('/admin/delete-subscriber/{id}', [AdminSubscriberController::class, 'delete']);
 
 });
