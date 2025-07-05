@@ -32,6 +32,7 @@
                                             name="user_id"
                                             v-model="form.user_id"
                                             class="form-control search-input"
+                                            :disabled="isUserSelectionDisabled"
                                         >
                                             <option value="">Select Author</option>
                                             <option v-for="user in users" :key="user.id" :value="user.id">
@@ -42,6 +43,9 @@
                                     <span v-if="form.errors.user_id" class="text-danger mt-2 d-block">
                                         {{ form.errors.user_id }}
                                     </span>
+                                    <small v-if="isUserSelectionDisabled" class="text-muted">
+                                        You can only create blog posts for yourself.
+                                    </small>
                                 </div>
                                 <!-- Blog Title Input -->
                                 <div class="mb-4">
@@ -184,7 +188,7 @@
 <script setup>
 import {useForm,router,Link,usePage} from '@inertiajs/vue3'
 import { createToaster } from "@meforma/vue-toaster";
-import {ref} from "vue";
+import {ref, computed, onMounted} from "vue";
 
 const toaster = createToaster();
 
@@ -212,7 +216,7 @@ const updateContent = () => {
 };
 
 const urlParams = new URLSearchParams(window.location.search)
-let id = ref(parseInt(urlParams.get('id')))
+let id = ref(parseInt(urlParams.get('id')) || null)
 
 const form = useForm({
     title: '',
@@ -225,11 +229,18 @@ const form = useForm({
 
 const page = usePage()
 
+// Get user data from Inertia shared props
+const user = computed(() => page.props.auth?.user || null);
+const userRole = computed(() => user.value?.role || 'user');
+
+// Check if user selection should be disabled (for regular users)
+const isUserSelectionDisabled = computed(() => userRole.value !== 'admin');
+
 let apiEndpoint = "/admin/create-blog";
 let list = page.props.list;
 let users = page.props.users || [];
 
-if(id.value !== 0 && list !== null){
+if(id.value && list !== null){
     apiEndpoint = "/admin/update-blog";
     // fill the form with existing data
     form.title = list['title']
@@ -241,6 +252,14 @@ if(id.value !== 0 && list !== null){
 } else {   
     form.image = '';
 }
+
+// Auto-select user for regular users after component is mounted
+onMounted(() => {
+    // For new blogs and regular users, auto-select current user
+    if (!id.value && userRole.value !== 'admin' && users.length > 0) {
+        form.user_id = users[0].id; // Regular users only see themselves in the list
+    }
+});
 
 // Validation Errors
 const errors = ref({});
@@ -302,6 +321,12 @@ select.search-input {
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;
+}
+
+select.search-input:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
 }
 
 textarea.search-input {

@@ -36,6 +36,7 @@ class LoginController extends Controller
             $request->session()->put('email',$email);
             $request->session()->put('user_id',$user->id);
             $request->session()->put('name',$user->name);
+            $request->session()->put('role',$user->role);
 
             session()->flash('message', 'Login Successful');
             session()->flash('status', true);
