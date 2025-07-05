@@ -2,7 +2,7 @@
     <FrontendLayout :relatedRecipes="randomRecipes" :showRelatedRecipes="true">
     
 <!-- recipe header Section -->
-    <section class="recipe-header">
+    <section class="recipe-header pb-1">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <!-- Left Side Content -->
@@ -13,7 +13,7 @@
                         <!-- Author Info -->
                         <div class="d-flex align-items-center  me-4 mb-3 mb-md-0">
                             <div class="author-avatar me-2">
-                                <img src="@/Assets/img/users/chef-4.png" alt="Author" class="rounded-circle" width="50" height="50">
+                                <img :src="`/storage/${blog.user.avatar}`" alt="Author" class="rounded-circle" width="50" height="50">
                             </div>
                             <div>
                                 <h6 class="mb-0 fw-bold">{{ blog.user.name }}</h6>
@@ -38,6 +38,20 @@
                 </div>
             </div>
     </section>
+
+    <section class="recipe-description-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="mb-4">
+                        <p class="text-muted text-center fs-5 fst-italic">
+                            {{ blog.excerpt || '' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
 
     <!-- blog detail image -->
     <section class="recipe-detail-section py-4">
@@ -69,9 +83,9 @@
                         <div class="d-flex align-items-start mb-4">
                             <div>
                                 <!-- Blog Excerpt -->
-                                <div v-if="blog.excerpt" class="mb-4">
+                                <!-- <div v-if="blog.excerpt" class="mb-4">
                                     <p class="text-muted fs-5 fst-italic">{{ blog.excerpt }}</p>
-                                </div>
+                                </div> -->
                                 
                                 <!-- Blog Content -->
                                 <div class="blog-content" v-html="blog.content"></div>
@@ -140,7 +154,12 @@
                                             <span>{{ formatDate(relatedBlog.created_at) }}</span>
                                         </div>
                                         <div>
-                                            <i class="fas fa-user me-1"></i>
+                                            <img 
+                                                :src="relatedBlog.user.avatar ? `/storage/${relatedBlog.user.avatar}` : '/images/placeholder-avatar.png'" 
+                                                alt="Author" 
+                                                class="rounded-circle me-2" 
+                                                width="20" height="20"
+                                            >
                                             <span>{{ relatedBlog.user.name }}</span>
                                         </div>
                                     </div>

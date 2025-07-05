@@ -64,7 +64,7 @@
                                 <p class="text-muted mb-4">{{ blog.excerpt || truncateContent(blog.content, 120) }}</p>
                                 <div class="author-info-container d-flex align-items-center">
                                     <div class="author-avatar me-3">
-                                        <img src="@/Assets/img/users/chef-4.png" alt="Author" class="rounded-circle" width="50" height="50">
+                                        <img :src="`/storage/${blog.user.avatar}`" alt="Author" class="rounded-circle" width="50" height="50">
                                     </div>
                                     <div class="author-info d-flex align-items-center">
                                         <h6 class="mb-0 fw-bold me-3">{{ blog.user.name }}</h6>

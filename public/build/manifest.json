@@ -128,16 +128,15 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BaLRDhkR.js",
+    "file": "assets/app-DzkNzzC5.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-2o031njX.css"
+      "assets/app-jndLwuye.css"
     ],
     "assets": [
       "assets/icon-CCwf_-ea.svg",
-      "assets/chef-4-DB3x09kv.png",
       "assets/newsletter-1-ClHF-wOH.png",
       "assets/newsletter-2-D0LQpsaH.png",
       "assets/Star-1-DmZnCDVm.png",
@@ -146,6 +145,7 @@
       "assets/chef-1-83u84PT0.png",
       "assets/chef-2-BQNQMJ2C.png",
       "assets/chef-3-C2meQZhU.png",
+      "assets/chef-4-DB3x09kv.png",
       "assets/Cook-contact-5_sDndCp.png",
       "assets/hot-recipe-BtFeXoaa.png",
       "assets/food-2-yi2nZV9G.png",
