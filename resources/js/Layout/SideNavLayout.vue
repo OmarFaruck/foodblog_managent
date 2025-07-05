@@ -30,14 +30,14 @@
             <Link href="/admin/user" class="side-bar-item" :class="{ active: activeMenu === '/admin/user' }" @click="setActiveMenu('/admin/user')">
                 <span class="side-bar-item-icon"><i class="fa fa-users-cog"/></span>
                 <span class="side-bar-item-caption">User Management</span>
-            </Link>
+            </Link>   
+            
+            <div class="sidebar-divider"></div>         
 
             <Link href="/admin/category" class="side-bar-item" :class="{ active: activeMenu === '/admin/category' }" @click="setActiveMenu('/admin/category')">
                 <span class="side-bar-item-icon"><i class="fa fa-th-list"/></span>
                 <span class="side-bar-item-caption">Categories</span>
-            </Link>              
-            
-            <div class="sidebar-divider"></div>         
+            </Link>                       
 
             <Link href="/admin/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/admin/ingredient' }" @click="setActiveMenu('/admin/ingredient')">
                 <span class="side-bar-item-icon"><i class="fa fa-carrot"/></span>
@@ -61,13 +61,13 @@
             
             <div class="sidebar-divider"></div>
             
-            <Link href="#" class="side-bar-item">
-                <span class="side-bar-item-icon"><i class="fa fa-book"/></span>
+            <Link href="/admin/blog" class="side-bar-item" :class="{ active: activeMenu === '/admin/blog' }" @click="setActiveMenu('/admin/blog')">
+                <span class="side-bar-item-icon"><i class="fa fa-blog"/></span>
                 <span class="side-bar-item-caption">Blog Posts</span>
             </Link>
             
-            <Link href="#" class="side-bar-item">
-                <span class="side-bar-item-icon"><i class="fa fa-users"/></span>
+            <Link href="/admin/subscriber" class="side-bar-item" :class="{ active: activeMenu === '/admin/subscriber' }" @click="setActiveMenu('/admin/subscriber')">
+                <span class="side-bar-item-icon"><i class="fa fa-envelope"/></span>
                 <span class="side-bar-item-caption">Subscribers</span>
             </Link>
 
