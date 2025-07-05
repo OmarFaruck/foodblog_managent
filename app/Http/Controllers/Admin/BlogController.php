@@ -13,15 +13,54 @@ class BlogController
 {
     function BlogPage(Request $request)
     {
-        $list = Blog::with('user')->orderBy('id','desc')->get();
+        $user_id = $request->header('id');
+        $user_role = $request->session()->get('role', 'user');
+        
+        // Admin users can see all blogs, regular users can only see their own
+        if ($user_role === 'admin') {
+            $list = Blog::with('user')->orderBy('id','desc')->get();
+        } else {
+            $list = Blog::with('user')->where('user_id', $user_id)->orderBy('id','desc')->get();
+        }
+        
         return Inertia::render('Admin/Blog/BlogPage',['list'=>$list]);
     }
 
     function BlogSavePage(Request $request)
     {
         $blog_id = $request->query('id');
-        $list = Blog::with('user')->where('id', $blog_id)->first();
-        $users = User::orderBy('name')->get();
+        $user_id = $request->header('id');
+        $user_role = $request->session()->get('role', 'user');
+        
+        // Build the query
+        $query = Blog::with('user');
+        if ($blog_id) {
+            $query->where('id', $blog_id);
+            
+            // If regular user, ensure they can only access their own blogs
+            if ($user_role !== 'admin') {
+                $query->where('user_id', $user_id);
+            }
+        }
+        
+        $list = $query->first();
+        
+        // If regular user tries to access someone else's blog, redirect
+        if ($blog_id && !$list && $user_role !== 'admin') {
+            return redirect()->route('BlogPage')->with([
+                'message' => 'Access denied. You can only edit your own blog posts.',
+                'status' => false,
+                'error' => 'Unauthorized access'
+            ]);
+        }
+        
+        // Get users list - admin gets all users, regular user gets only themselves
+        if ($user_role === 'admin') {
+            $users = User::orderBy('name')->get();
+        } else {
+            $users = User::where('id', $user_id)->get();
+        }
+        
         return Inertia::render('Admin/Blog/BlogSavePage',['list'=>$list, 'users'=>$users]);
     }
 
@@ -30,6 +69,9 @@ class BlogController
          //dd($request->all(), $request->hasFile('image'), $request->file('image')?->getMimeType());
         
         try {
+            $user_id = $request->header('id');
+            $user_role = $request->session()->get('role', 'user');
+            
             // Validating the request
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
@@ -38,6 +80,15 @@ class BlogController
                 'user_id' => 'required|exists:users,id',
                 'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             ]);
+
+            // Regular users can only create blogs for themselves
+            if ($user_role !== 'admin' && $validatedData['user_id'] != $user_id) {
+                return redirect()->route('BlogSavePage')->with([
+                    'message' => 'Access denied. You can only create blog posts for yourself.',
+                    'status' => false,
+                    'error' => 'Unauthorized access'
+                ]);
+            }
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
@@ -73,6 +124,8 @@ class BlogController
 
     function update(Request $request){
         $blog_id = $request->input('id');
+        $user_id = $request->header('id');
+        $user_role = $request->session()->get('role', 'user');
 
         // Remove empty image field if it exists
         if ($request->has('image') && empty($request->file('image'))) {
@@ -90,6 +143,33 @@ class BlogController
 
         try {
             $blog = Blog::where('id', $blog_id)->first();
+            
+            // Check if blog exists
+            if (!$blog) {
+                return redirect()->route('BlogPage')->with([
+                    'message' => 'Blog post not found',
+                    'status' => false,
+                    'error' => 'Blog post not found'
+                ]);
+            }
+            
+            // Regular users can only update their own blogs
+            if ($user_role !== 'admin' && $blog->user_id != $user_id) {
+                return redirect()->route('BlogPage')->with([
+                    'message' => 'Access denied. You can only edit your own blog posts.',
+                    'status' => false,
+                    'error' => 'Unauthorized access'
+                ]);
+            }
+            
+            // Regular users can only update to their own user_id
+            if ($user_role !== 'admin' && $validatedData['user_id'] != $user_id) {
+                return redirect()->route('BlogSavePage', ['id' => $blog_id])->with([
+                    'message' => 'Access denied. You can only assign blog posts to yourself.',
+                    'status' => false,
+                    'error' => 'Unauthorized access'
+                ]);
+            }
 
             if ($request->hasFile('image')) {
                 // Delete old image if it exists
@@ -122,7 +202,27 @@ class BlogController
     function delete(Request $request){
         try {
             $blog_id = $request->id;
+            $user_id = $request->header('id');
+            $user_role = $request->session()->get('role', 'user');
+            
             $blog = Blog::where('id', $blog_id)->first();
+            
+            if (!$blog) {
+                return redirect()->route('BlogPage')->with([
+                    'message' => 'Blog post not found',
+                    'status' => false,
+                    'error' => 'Blog post not found'
+                ]);
+            }
+            
+            // Regular users can only delete their own blogs
+            if ($user_role !== 'admin' && $blog->user_id != $user_id) {
+                return redirect()->route('BlogPage')->with([
+                    'message' => 'Access denied. You can only delete your own blog posts.',
+                    'status' => false,
+                    'error' => 'Unauthorized access'
+                ]);
+            }
 
             if ($blog->image && Storage::disk('public')->exists($blog->image)) {
                 Storage::disk('public')->delete($blog->image);

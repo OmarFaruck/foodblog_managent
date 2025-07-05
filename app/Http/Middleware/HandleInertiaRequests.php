@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\User;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -42,6 +43,15 @@ class HandleInertiaRequests extends Middleware
                 'status' => fn () => $request->session()->get('status'),
                 'message' => fn () => $request->session()->get('message'),
                 'share_data' => fn () => $request->session()->get('share_data')
+            ],
+            'auth' => [
+                'user' => function () use ($request) {
+                    $userId = $request->session()->get('user_id');
+                    if ($userId) {
+                        return \App\Models\User::find($userId);
+                    }
+                    return null;
+                }
             ]
  ]      );
     }

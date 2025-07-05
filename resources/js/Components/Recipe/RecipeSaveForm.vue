@@ -71,6 +71,7 @@
                                         name="user_id"
                                         v-model="form.user_id"
                                         class="form-control search-input"
+                                        :disabled="isUserSelectionDisabled"
                                     >
                                         <option value="">Select Author</option>
                                         <option v-for="user in users" :key="user.id" :value="user.id">
@@ -81,6 +82,9 @@
                                 <span v-if="form.errors.user_id" class="text-danger mt-2 d-block">
                                     {{ form.errors.user_id }}
                                 </span>
+                                <small v-if="isUserSelectionDisabled" class="text-muted">
+                                    You can only create recipes for yourself.
+                                </small>
                             </div>
 
                             <!-- Serving Size -->
@@ -255,13 +259,20 @@
 <script setup>
 import { useForm, router, Link, usePage } from '@inertiajs/vue3'
 import { createToaster } from "@meforma/vue-toaster";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const toaster = createToaster();
 const page = usePage();
 
+// Get user data from Inertia shared props
+const user = computed(() => page.props.auth?.user || null);
+const userRole = computed(() => user.value?.role || 'user');
+
+// Check if user selection should be disabled (for regular users)
+const isUserSelectionDisabled = computed(() => userRole.value !== 'admin');
+
 const urlParams = new URLSearchParams(window.location.search)
-let id = ref(parseInt(urlParams.get('id')))
+let id = ref(parseInt(urlParams.get('id')) || null)
 
 const form = useForm({
     title: '',
@@ -317,6 +328,14 @@ if (id.value && recipe !== null && recipe !== undefined) {
         }));
     }
 }
+
+// Auto-select user for regular users after component is mounted
+onMounted(() => {
+    // For new recipes and regular users, auto-select current user
+    if (!id.value && userRole.value !== 'admin' && users.length > 0) {
+        form.user_id = users[0].id; // Regular users only see themselves in the list
+    }
+});
 
 // Image Upload
 const imageUrl = ref(form.recipe_image ? `/storage/${form.recipe_image}` : "/empty.png");
@@ -389,6 +408,12 @@ function submit() {
     border: 2px solid #e9ecef;
     border-radius: 8px;
     padding: 12px;
+}
+
+.form-control:disabled, .form-select:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
 }
 
 /* Ingredients Section Styles */

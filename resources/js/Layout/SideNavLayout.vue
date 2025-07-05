@@ -6,7 +6,9 @@
                     <a id="MenuBar" @click="NavOpenClose" class="icon-nav mx-2 my-1 h5">
                         <i class="fa text-white fa-bars"></i>
                     </a>
-                    <span class="navbar-brand font-lobster text-white ms-2 d-none d-md-block">Foodieland Admin</span>
+                    <span class="navbar-brand font-lobster text-white ms-2 d-none d-md-block">
+                        {{ isAdmin ? 'Foodieland Admin' : 'Foodieland Dashboard' }}
+                    </span>
                 </div>
                 <div>
                     <Link href="/admin/logout" class="btn-logout">
@@ -27,33 +29,40 @@
                 <span class="side-bar-item-caption">Dashboard</span>
             </Link>
 
-            <Link href="/admin/user" class="side-bar-item" :class="{ active: activeMenu === '/admin/user' }" @click="setActiveMenu('/admin/user')">
+            <!-- Admin Only - User Management -->
+            <Link v-if="isAdmin" href="/admin/user" class="side-bar-item" :class="{ active: activeMenu === '/admin/user' }" @click="setActiveMenu('/admin/user')">
                 <span class="side-bar-item-icon"><i class="fa fa-users-cog"/></span>
                 <span class="side-bar-item-caption">User Management</span>
             </Link>   
             
-            <div class="sidebar-divider"></div>         
+            <!-- Show divider only if admin (has access to categories section) -->
+            <div v-if="isAdmin" class="sidebar-divider"></div>         
 
-            <Link href="/admin/category" class="side-bar-item" :class="{ active: activeMenu === '/admin/category' }" @click="setActiveMenu('/admin/category')">
+            <!-- Admin Only - Categories -->
+            <Link v-if="isAdmin" href="/admin/category" class="side-bar-item" :class="{ active: activeMenu === '/admin/category' }" @click="setActiveMenu('/admin/category')">
                 <span class="side-bar-item-icon"><i class="fa fa-th-list"/></span>
                 <span class="side-bar-item-caption">Categories</span>
             </Link>                       
 
-            <Link href="/admin/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/admin/ingredient' }" @click="setActiveMenu('/admin/ingredient')">
+            <!-- Admin Only - Ingredients -->
+            <Link v-if="isAdmin" href="/admin/ingredient" class="side-bar-item" :class="{ active: activeMenu === '/admin/ingredient' }" @click="setActiveMenu('/admin/ingredient')">
                 <span class="side-bar-item-icon"><i class="fa fa-carrot"/></span>
                 <span class="side-bar-item-caption">Ingredients</span>
             </Link>
 
-            <Link href="/admin/direction" class="side-bar-item" :class="{ active: activeMenu === '/admin/direction' }" @click="setActiveMenu('/admin/direction')">
+            <!-- Admin Only - Directions -->
+            <Link v-if="isAdmin" href="/admin/direction" class="side-bar-item" :class="{ active: activeMenu === '/admin/direction' }" @click="setActiveMenu('/admin/direction')">
                 <span class="side-bar-item-icon"><i class="fa fa-list-ol"/></span>
                 <span class="side-bar-item-caption">Directions</span>
             </Link>        
 
-            <Link href="/admin/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/admin/nutrition-fact' }" @click="setActiveMenu('/admin/nutrition-fact')">
+            <!-- Admin Only - Nutrition Facts -->
+            <Link v-if="isAdmin" href="/admin/nutrition-fact" class="side-bar-item" :class="{ active: activeMenu === '/admin/nutrition-fact' }" @click="setActiveMenu('/admin/nutrition-fact')">
                 <span class="side-bar-item-icon"><i class="fa fa-chart-pie"/></span>
                 <span class="side-bar-item-caption">Nutrition Facts</span>
             </Link>            
 
+            <!-- Accessible by all users - Recipes -->
             <Link href="/admin/recipe" class="side-bar-item" :class="{ active: activeMenu === '/admin/recipe' }" @click="setActiveMenu('/admin/recipe')">
                 <span class="side-bar-item-icon"><i class="fa fa-utensils"/></span>
                 <span class="side-bar-item-caption">Recipes</span>
@@ -61,12 +70,14 @@
             
             <div class="sidebar-divider"></div>
             
+            <!-- Accessible by all users - Blog Posts -->
             <Link href="/admin/blog" class="side-bar-item" :class="{ active: activeMenu === '/admin/blog' }" @click="setActiveMenu('/admin/blog')">
                 <span class="side-bar-item-icon"><i class="fa fa-blog"/></span>
                 <span class="side-bar-item-caption">Blog Posts</span>
             </Link>
             
-            <Link href="/admin/subscriber" class="side-bar-item" :class="{ active: activeMenu === '/admin/subscriber' }" @click="setActiveMenu('/admin/subscriber')">
+            <!-- Admin Only - Subscribers -->
+            <Link v-if="isAdmin" href="/admin/subscriber" class="side-bar-item" :class="{ active: activeMenu === '/admin/subscriber' }" @click="setActiveMenu('/admin/subscriber')">
                 <span class="side-bar-item-icon"><i class="fa fa-envelope"/></span>
                 <span class="side-bar-item-caption">Subscribers</span>
             </Link>
@@ -84,8 +95,17 @@
 
 
 <script setup>
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+
+// Get user data from Inertia shared props
+const user = computed(() => page.props.auth?.user || null);
+const userRole = computed(() => user.value?.role || 'user');
+
+// Check if user is admin
+const isAdmin = computed(() => userRole.value === 'admin');
 
 // const activeMenu = ref(localStorage.getItem('activeMenu') || window.location.pathname);
 const activeMenu = window.location.pathname;
@@ -97,7 +117,6 @@ watchEffect(() => {
 const setActiveMenu = (path) => {
     activeMenu.value = path;
 };
-
 
 // Track sidebar state
 const isNavOpen = ref(localStorage.getItem('isNavOpen') === 'true');
