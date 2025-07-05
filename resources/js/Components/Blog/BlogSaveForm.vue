@@ -81,24 +81,67 @@
                                     </span>
                                 </div>
 
-                                <!-- Blog Content Input -->
-                                <div class="mb-4">
-                                    <label for="content" class="form-label fw-bold">Blog Content</label>
-                                    <div class="position-relative">
-                                        <i class="fa fa-file-text input-icon"></i>
-                                        <textarea
-                                            id="content"
-                                            name="content"
-                                            v-model="form.content"
-                                            placeholder="Enter blog content..."
-                                            class="form-control search-input"
-                                            rows="15"
-                                        ></textarea>
-                                    </div>
-                                    <span v-if="form.errors.content" class="text-danger mt-2 d-block">
-                                        {{ form.errors.content }}
-                                    </span>
-                                </div>
+                <!-- Blog Content Input -->
+                <div class="mb-4">
+                    <label for="content" class="form-label fw-bold">Blog Content</label>
+                    
+                    <!-- Rich Text Toolbar -->
+                    <div class="editor-toolbar">
+                        <button type="button" @click="execCommand('bold')" class="editor-btn" title="Bold">
+                            <i class="fa fa-bold"></i>
+                        </button>
+                        <button type="button" @click="execCommand('italic')" class="editor-btn" title="Italic">
+                            <i class="fa fa-italic"></i>
+                        </button>
+                        <button type="button" @click="execCommand('underline')" class="editor-btn" title="Underline">
+                            <i class="fa fa-underline"></i>
+                        </button>
+                        <button type="button" @click="execCommand('insertUnorderedList')" class="editor-btn" title="Bullet List">
+                            <i class="fa fa-list-ul"></i>
+                        </button>
+                        <button type="button" @click="execCommand('insertOrderedList')" class="editor-btn" title="Numbered List">
+                            <i class="fa fa-list-ol"></i>
+                        </button>
+                        <button type="button" @click="execCommand('justifyLeft')" class="editor-btn" title="Align Left">
+                            <i class="fa fa-align-left"></i>
+                        </button>
+                        <button type="button" @click="execCommand('justifyCenter')" class="editor-btn" title="Align Center">
+                            <i class="fa fa-align-center"></i>
+                        </button>
+                        <button type="button" @click="execCommand('justifyRight')" class="editor-btn" title="Align Right">
+                            <i class="fa fa-align-right"></i>
+                        </button>
+                        <select @change="formatBlock($event)" class="editor-select">
+                            <option value="">Format</option>
+                            <option value="h1">Heading 1</option>
+                            <option value="h2">Heading 2</option>
+                            <option value="h3">Heading 3</option>
+                            <option value="p">Paragraph</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Rich Text Editor -->
+                    <div 
+                        ref="editor"
+                        class="rich-text-editor"
+                        contenteditable="true"
+                        @input="updateContent"
+                        @blur="updateContent"
+                        v-html="form.content"
+                        placeholder="Write your blog content here..."
+                    ></div>
+                    
+                    <!-- Hidden textarea for form submission -->
+                    <textarea 
+                        v-model="form.content" 
+                        style="display: none;"
+                        name="content"
+                    ></textarea>
+                    
+                    <span v-if="form.errors.content" class="text-danger mt-2 d-block">
+                        {{ form.errors.content }}
+                    </span>
+                </div>
 
                                 <!-- Image Upload -->
                                 <div class="mb-4">
@@ -144,6 +187,29 @@ import { createToaster } from "@meforma/vue-toaster";
 import {ref} from "vue";
 
 const toaster = createToaster();
+
+// Rich text editor functions
+const editor = ref(null);
+
+const execCommand = (command, value = null) => {
+    document.execCommand(command, false, value);
+    updateContent();
+};
+
+const formatBlock = (event) => {
+    const value = event.target.value;
+    if (value) {
+        document.execCommand('formatBlock', false, `<${value}>`);
+        updateContent();
+        event.target.value = '';
+    }
+};
+
+const updateContent = () => {
+    if (editor.value) {
+        form.content = editor.value.innerHTML;
+    }
+};
 
 const urlParams = new URLSearchParams(window.location.search)
 let id = ref(parseInt(urlParams.get('id')))
@@ -248,5 +314,99 @@ textarea#content {
     /* border: 1px solid red !important; */
     margin-left: 3px;
     min-height: 300px !important;
+}
+
+/* Rich Text Editor Styles */
+.editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #f8f9fa;
+    gap: 4px;
+}
+
+.editor-btn {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.editor-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.editor-btn:active {
+    background-color: #dee2e6;
+}
+
+.editor-select {
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    background-color: white;
+}
+
+.rich-text-editor {
+    min-height: 300px;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 15px;
+    background-color: white;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-y: auto;
+}
+
+.rich-text-editor:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.rich-text-editor[contenteditable="true"]:empty:before {
+    content: attr(placeholder);
+    color: #999;
+    font-style: italic;
+}
+
+.rich-text-editor h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rich-text-editor h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rich-text-editor h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rich-text-editor p {
+    margin-bottom: 1rem;
+}
+
+.rich-text-editor ul, .rich-text-editor ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.rich-text-editor li {
+    margin-bottom: 0.25rem;
 }
 </style>
