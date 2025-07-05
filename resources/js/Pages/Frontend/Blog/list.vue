@@ -171,7 +171,7 @@
                     </div>
                     
                     <!-- Tags Section -->
-                    <div class="tags-section mb-5">
+                    <!-- <div class="tags-section mb-5">
                         <h3 class="fw-bold mb-4">Tags</h3>
                         <div class="tags-container">
                             <a href="#" class="tag-badge">Cooking</a>
@@ -183,7 +183,7 @@
                             <a href="#" class="tag-badge">Soup</a>
                             <a href="#" class="tag-badge">Vegetable</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-    <FrontendLayout>
+    <FrontendLayout :relatedRecipes="randomRecipes" :showRelatedRecipes="true">
        
 <!-- About Us Header Section -->
     <section class="about-header py-5 mt-5">
@@ -140,5 +140,10 @@
 <script setup>
 import FrontendLayout from '@/Layout/FrontendLayout.vue';
 import { Link } from '@inertiajs/vue3';
+
+// Props from the controller
+const props = defineProps({
+    randomRecipes: Array,
+});
 
 </script>

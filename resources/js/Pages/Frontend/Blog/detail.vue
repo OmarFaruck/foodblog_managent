@@ -1,5 +1,5 @@
 <template>
-    <FrontendLayout>
+    <FrontendLayout :relatedRecipes="randomRecipes" :showRelatedRecipes="true">
     
 <!-- recipe header Section -->
     <section class="recipe-header">
@@ -109,7 +109,7 @@
     <div class="container">
         <!-- Section Header -->
         <div class="text-center mb-5">
-            <h2 class="fw-bold mb-3">You may like these articles too</h2>
+            <h2 class="fw-bold mb-3">You may like these articles</h2>
         </div>
 
         <div class="featured-recipe-cards">
@@ -155,60 +155,7 @@
                 </div>
             </div>            
     </div>
-    </section>
-
-        <section id="recipes" class="py-5">
-        <div class="container">
-            <!-- Section Header -->
-            <div class="text-center mb-5">
-                <h2 class="fw-bold mb-3">You may like these recipes too</h2>
-            </div>
-
-            <div class="featured-recipe-cards">
-                        <!-- Recipe Cards Row -->
-                        <div class="row g-5">
-                            <!-- Recipe Cards -->
-                            <div v-for="recipe in randomRecipes" :key="recipe.id" class="col-lg-3 col-md-6">
-                                <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                                    <div class="featured-recipe-image position-relative rounded-4">
-                                        <Link :href="`/recipe/${recipe.id}`">
-                                            <img 
-                                                :src="recipe.recipe_image ? `/storage/${recipe.recipe_image}` : '/images/placeholder-recipe.jpg'" 
-                                                :alt="recipe.title" 
-                                                class="img-fluid w-100"
-                                                style="height: 200px; object-fit: cover;"
-                                            >
-                                        </Link>
-                                        <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                                    </div>
-                                    <div class="featured-recipe-content p-3">
-                                        <h5 class="featured-recipe-title mb-2">
-                                            <Link :href="`/recipe/${recipe.id}`" class="text-decoration-none text-dark">
-                                                {{ truncateTitle(recipe.title, 50) }}
-                                            </Link>
-                                        </h5>
-                                        <div class="featured-recipe-meta d-flex align-items-center">
-                                            <div class="me-3">
-                                                <i class="far fa-clock me-1"></i>
-                                                <span>{{ recipe.prep_time }} Minutes</span>
-                                            </div>
-                                            <div>
-                                                <i class="fas fa-utensils me-1"></i>
-                                                <span>{{ recipe.category ? recipe.category.name : 'Recipe' }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Show placeholder message if no recipes -->
-                            <div v-if="randomRecipes.length === 0" class="col-12 text-center">
-                                <p class="text-muted">No recipes found.</p>
-                            </div>
-                    </div>
-                </div>            
-        </div>
-        </section>        
+    </section>     
 
     </FrontendLayout>
 </template>
