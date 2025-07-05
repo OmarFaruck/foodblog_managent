@@ -1,7 +1,7 @@
 <template>
-    <FrontendLayout>
+    <FrontendLayout :relatedRecipes="randomRecipes" :showRelatedRecipes="true">
       
-<!-- recipe header Section -->
+    <!-- recipe header Section -->
     <section class="recipe-header">
         <div class="container">
             <div class="row align-items-center justify-content-between">
@@ -89,6 +89,11 @@ import { createToaster } from "@meforma/vue-toaster";
 const form = useForm({ email: '', name: '', message: '', subject: '', enquiryType: '' });
 const toaster = createToaster();
 const page = usePage();
+
+// Props from the controller
+const props = defineProps({
+    randomRecipes: Array,
+});
 
 function submit() {
 

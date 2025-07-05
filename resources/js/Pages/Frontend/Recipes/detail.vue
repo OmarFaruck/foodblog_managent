@@ -1,5 +1,5 @@
 <template>
-    <FrontendLayout>
+    <FrontendLayout :relatedRecipes="relatedRecipes" :showRelatedRecipes="true">
         <!-- recipe header Section -->
         <section class="recipe-header">
             <div class="container">
@@ -301,55 +301,6 @@
            </div>
         </div>
     </section>        
-
-<section id="recipes" class="py-5" v-if="relatedRecipes.length > 0">
-        <div class="container">
-            <!-- Section Header -->
-            <div class="text-center mb-5">
-                <h2 class="fw-bold mb-3">You may like these recipes too</h2>
-            </div>
-
-            <div class="featured-recipe-cards">
-                <!-- Recipe Cards Row -->
-                <div class="row g-5">
-                    <div 
-                        v-for="relatedRecipe in relatedRecipes" 
-                        :key="relatedRecipe.id" 
-                        class="col-lg-3 col-md-6"
-                    >
-                        <div class="featured-recipe-card bg-white overflow-hidden h-100">
-                            <div class="featured-recipe-image position-relative rounded-4">
-                                <img 
-                                    :src=" `/storage/${relatedRecipe.recipe_image}` || '/images/empty.png'" 
-                                    :alt="relatedRecipe.title" 
-                                    class="img-fluid w-100"
-                                >
-                                <button class="btn btn-like position-absolute"><i class="far fa-heart"></i></button>
-                            </div>
-                            <div class="featured-recipe-content p-3">
-                                <Link 
-                                    :href="`/recipe/${relatedRecipe.id}`"
-                                    class="text-decoration-none text-dark"
-                                >
-                                    <h5 class="featured-recipe-title mb-2">{{ relatedRecipe.title }}</h5>
-                                </Link>
-                                <div class="featured-recipe-meta d-flex align-items-center">
-                                    <div class="me-3">
-                                        <i class="far fa-clock me-1"></i>
-                                        <span>{{ relatedRecipe.prep_time + relatedRecipe.cook_time }} Minutes</span>
-                                    </div>
-                                    <div>
-                                        <i class="fas fa-utensils me-1"></i>
-                                        <span>{{ relatedRecipe.category.name }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </section>
 
     </FrontendLayout>
 </template>

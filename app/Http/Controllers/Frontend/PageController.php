@@ -45,12 +45,28 @@ class PageController extends Controller
     }
 
     public function about(){
-        return Inertia::render("Frontend/Pages/About");
+    // Get random recipes for "You may like these recipes too" section
+        $randomRecipes = Recipe::with(['user', 'category'])
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return Inertia::render("Frontend/Pages/About", [
+            'randomRecipes' => $randomRecipes
+        ]);
     }
 
     public function contact(){
-        return Inertia::render("Frontend/Pages/Contact");
-    }    
+        // Get random recipes for "You may like these recipes too" section
+        $randomRecipes = Recipe::with(['user', 'category'])
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return Inertia::render("Frontend/Pages/Contact", [
+            'randomRecipes' => $randomRecipes
+        ]);
+    }
 
     public function contact_store(Request $request)
     {
