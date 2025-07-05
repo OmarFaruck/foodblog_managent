@@ -28,11 +28,13 @@ class RecipeController
         $recipe = Recipe::with(['category', 'user', 'ingredients'])->where('id', $recipe_id)->first();
         $categories = Category::orderBy('name')->get();
         $ingredients = \App\Models\Ingredient::orderBy('name')->get();
+        $users = \App\Models\User::orderBy('name')->get();
         
         return Inertia::render('Admin/Recipe/RecipeSavePage', [
             'recipe' => $recipe,
             'categories' => $categories,
-            'ingredients' => $ingredients
+            'ingredients' => $ingredients,
+            'users' => $users
         ]);
     }
 
@@ -43,6 +45,7 @@ class RecipeController
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
             'prep_time' => 'required|integer|min:1',
             'cook_time' => 'required|integer|min:1',
             'serving_size' => 'required|integer|min:1',
@@ -65,7 +68,7 @@ class RecipeController
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
                 'category_id' => $validatedData['category_id'],
-                'user_id' => $request->header('id'), // Get from session/auth
+                'user_id' => $validatedData['user_id'],
                 'prep_time' => $validatedData['prep_time'],
                 'cook_time' => $validatedData['cook_time'],
                 'serving_size' => $validatedData['serving_size'],
@@ -110,6 +113,7 @@ class RecipeController
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
             'prep_time' => 'required|integer|min:1',
             'cook_time' => 'required|integer|min:1',
             'serving_size' => 'required|integer|min:1',
@@ -141,6 +145,7 @@ class RecipeController
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
                 'category_id' => $validatedData['category_id'],
+                'user_id' => $validatedData['user_id'],
                 'prep_time' => $validatedData['prep_time'],
                 'cook_time' => $validatedData['cook_time'],
                 'serving_size' => $validatedData['serving_size'],
