@@ -36,7 +36,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/js/Assets/css/frontend.css": {
-    "file": "assets/frontend-CrI7_kvd.css",
+    "file": "assets/frontend-DnbJjpIX.css",
     "src": "resources/js/Assets/css/frontend.css"
   },
   "resources/js/Assets/css/main.css": {
@@ -124,12 +124,12 @@
     "src": "resources/js/Assets/img/users/our-experience.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-yQ4p9FHP.js",
+    "file": "assets/app-CBr1Msiv.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-CHArhMPD.css"
+      "assets/app-DiCF50cY.css"
     ],
     "assets": [
       "assets/newsletter-1-ClHF-wOH.png",

@@ -61,6 +61,28 @@
                                 </span>
                             </div>
 
+                            <!-- User Selection -->
+                            <div class="col-md-6 mb-4">
+                                <label for="user_id" class="form-label fw-bold">Recipe Author</label>
+                                <div class="position-relative">
+                                    <i class="fa fa-user input-icon"></i>
+                                    <select
+                                        id="user_id"
+                                        name="user_id"
+                                        v-model="form.user_id"
+                                        class="form-control search-input"
+                                    >
+                                        <option value="">Select Author</option>
+                                        <option v-for="user in users" :key="user.id" :value="user.id">
+                                            {{ user.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <span v-if="form.errors.user_id" class="text-danger mt-2 d-block">
+                                    {{ form.errors.user_id }}
+                                </span>
+                            </div>
+
                             <!-- Serving Size -->
                             <div class="col-md-6 mb-4">
                                 <label for="serving_size" class="form-label fw-bold">Serving Size</label>
@@ -245,6 +267,7 @@ const form = useForm({
     title: '',
     description: '',
     category_id: '',
+    user_id: '',
     prep_time: '',
     cook_time: '',
     serving_size: '',
@@ -258,6 +281,7 @@ let apiEndpoint = "/admin/create-recipe";
 let recipe = page.props.recipe;
 let categories = page.props.categories || [];
 let ingredients = page.props.ingredients || [];
+let users = page.props.users || [];
 
 // Ingredient selection
 const selectedIngredient = ref(null);
@@ -276,6 +300,7 @@ if (id.value && recipe !== null && recipe !== undefined) {
     form.title = recipe.title || '';
     form.description = recipe.description || '';
     form.category_id = recipe.category_id || '';
+    form.user_id = recipe.user_id || '';
     form.prep_time = recipe.prep_time || '';
     form.cook_time = recipe.cook_time || '';
     form.serving_size = recipe.serving_size || '';
